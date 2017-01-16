@@ -15,8 +15,18 @@ import javax.swing.JTable;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
 
+
+
+import java.io.File;
+import java.io.IOException;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,12 +38,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import jxl.Workbook;
 
 /**
  *
  * @author Christos
  */
 public class AddSupervisor extends javax.swing.JFrame {
+
+   // private Object Workbook;
 
     
     /**
@@ -79,7 +92,7 @@ public class AddSupervisor extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 204, 153));
         jButton1.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
-        jButton1.setText("Delete");
+        jButton1.setText("Import");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -255,8 +268,59 @@ public class AddSupervisor extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
  
+        
+        JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle("Please select the .XLS (Excel File) where you want to IMPORT the data:");
+       int result =  jf.showOpenDialog(null);
+       if(result == JFileChooser.APPROVE_OPTION){
+       String filename = jf.getSelectedFile().getName();
+        String path = jf.getSelectedFile().getParentFile().getPath();
+
+        int len = filename.length();
+        String ext = "";
+        String file = "";
+
+        if(len > 4){
+            ext = filename.substring(len-4, len);
+        }
+
+        if(ext.equals(".xls")){
+            file = path + "/" + filename; 
+        }else{
+            file = path + "/" + filename + ".xls"; 
+        }
+        //ReadExcel(jTable1, new File(file));
+        //MAKE FUNCTION ReadExcel
+        
+       }
+    }
+        
+          /*
+    public void ReadExcel(JTable table, File file){
+		try{
+			TableModel model = table.getModel();
+			FileWriter excel = new FileWriter(file);
+
+			for(int i = 0; i < model.getColumnCount(); i++){
+				excel.write(model.getColumnName(i) + "\t");
+			}
+
+			excel.write("\n");
+
+			for(int i=0; i< model.getRowCount(); i++) {
+				for(int j=0; j < model.getColumnCount(); j++) {
+					excel.write(model.getValueAt(i,j).toString()+"\t");
+				}
+				excel.write("\n");
+			}
+
+			excel.close();
+		}catch(IOException e){ System.out.println(e); }   
+   
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    */
+   
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -264,9 +328,7 @@ public class AddSupervisor extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
- 
-        
-        
+
          /*Connection connection;
         PreparedStatement ps;
         try {
@@ -351,6 +413,64 @@ public class AddSupervisor extends javax.swing.JFrame {
 			excel.close();
 		}catch(IOException e){ System.out.println(e); }
 	}
+    
+   
+    
+  
+public class NewExcel 
+{
+
+    private String inputFile;
+    String[][] data = null;
+    public void setInputFile(String inputFile) 
+    {
+        this.inputFile = inputFile;
+    }
+
+    public String[][] read() throws IOException  
+    {
+        File inputWorkbook = new File(inputFile);
+        Workbook w;
+
+        try 
+        {
+            w = Workbook.getWorkbook(inputWorkbook);
+            // Get the first sheet
+
+
+            Sheet sheet = w.getSheet(0);
+            data = new String[sheet.getColumns()][sheet.getRows()];
+            // Loop over first 10 column and lines
+            System.out.println(sheet.getColumns() +  " " +sheet.getRows());
+            for (int j = 0; j <sheet.getColumns(); j++) 
+            {
+                for (int i = 0; i < sheet.getRows(); i++) 
+                {
+                    Cell cell = sheet.getCell(j, i);
+                    data[j][i] = cell.getContents();
+                  //  System.out.println(cell.getContents());
+                }
+            }
+
+         /*   for (int j = 0; j < data.length; j++) 
+            {
+                for (int i = 0; i <data[j].length; i++) 
+                {
+
+                    System.out.println(data[j][i]);
+                }
+            } */
+
+        } 
+        catch (BiffException e) 
+        {
+            e.printStackTrace();
+        }
+    return data;
+    }
+
+
+}
     
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
