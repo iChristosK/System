@@ -401,7 +401,7 @@ public class AddSupervisor extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         
-        
+        //how to update
         jFileChooser1.showOpenDialog(null);
 File file = jFileChooser1.getSelectedFile();
 if(!file.getName().endsWith("xls")){
