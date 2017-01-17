@@ -247,11 +247,11 @@ public class ExcelFile extends javax.swing.JFrame {
         // TODO add your handling code here:
         /*
         JTable jTable = new JTable();
-String excelFileName = "excel.xlsx";
-File file = new File(excelFileName );   //‘file’ is the file you want to load.
-JProgressBar progressBar = new JProgressBar(); //‘progressBar’ will show how much data it have loaded.
-//JTableReadTableModelTask task = new JTableReadTableModelTask(file, null, progressBar, jTable);
-//task.execute();*/
+        String excelFileName = "excel.xlsx";
+        File file = new File(excelFileName );   //‘file’ is the file you want to load.
+        JProgressBar progressBar = new JProgressBar(); //‘progressBar’ will show how much data it have loaded.
+        //JTableReadTableModelTask task = new JTableReadTableModelTask(file, null, progressBar, jTable);
+        //task.execute();*/
         
         
         //THIS CODE WAS CLOSE TO WORK BUT IT DIDN'T WORK
@@ -266,6 +266,12 @@ JProgressBar progressBar = new JProgressBar(); //‘progressBar’ will show how
           // excelHelper eh = new excelHelper(excelPath)l;
           // List<Pro>
            */
+        
+        
+        
+        
+        //this code is using import file but toexcel which is not working
+        /*
         JFileChooser jf = new JFileChooser();
     jf.setDialogTitle("Please select an excel file to import");
        int result =  jf.showOpenDialog(null);
@@ -287,11 +293,13 @@ JProgressBar progressBar = new JProgressBar(); //‘progressBar’ will show how
             file = path + "\\" + filename + ".xls"; 
         }
         toExcel(jTable, new File(file));
-        
-           
+        */
+
+
+
        
        
-       }
+       //}
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
