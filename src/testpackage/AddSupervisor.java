@@ -471,7 +471,7 @@ public void executeSQlQuery(String query, String message)
 
         
         
-               String query = "DELETE FROM `supervisors` WHERE id = '"+jTextField1.getText()+"')";
+               String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
          executeSQlQuery(query, "Deleted");
     }//GEN-LAST:event_jButton1ActionPerformed
 
