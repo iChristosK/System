@@ -60,6 +60,11 @@ public class ImportData extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 204, 153));
         jButton2.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
         jButton2.setText("Contracts File");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 204, 153));
         jButton3.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -199,6 +204,15 @@ public class ImportData extends javax.swing.JFrame {
             Menu closeCurrentWindow = new Menu();
              closeCurrentWindow.setVisible(true);//Open the new window
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+         dispose();//To close the current window
+
+            xxx closeCurrentWindow = new xxx();
+             closeCurrentWindow.setVisible(true);//Open the new window
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
