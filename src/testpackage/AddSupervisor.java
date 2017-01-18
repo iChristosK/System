@@ -471,7 +471,7 @@ public void executeSQlQuery(String query, String message)
 
         
         
-               String query = "DELETE FROM `supervisors` WHERE id = "+jTextField1.getText();
+               String query = "DELETE FROM `supervisors` WHERE id = '"+jTextField1.getText()+"')";
          executeSQlQuery(query, "Deleted");
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -482,7 +482,7 @@ public void executeSQlQuery(String query, String message)
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
                
-        String query = "INSERT INTO `supervisors`(`FullName`) VALUES ('"+jTextField2.getText()+"')";
+        String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
         
         executeSQlQuery(query, "Inserted");
         
