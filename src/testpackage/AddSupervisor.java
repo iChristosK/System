@@ -322,6 +322,9 @@ public void executeSQlQuery(String query, String message)
             }
         ));
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable2MousePressed(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
             }
@@ -467,14 +470,66 @@ public void executeSQlQuery(String query, String message)
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    /*
+     public void deleterow()
+    {
+         String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
+       
+         executeSQlQuery(query, "Deleted");
+    }*/
+       
+    
+    public void removeSelectedFromTable(JTable from)
+{
+    DefaultTableModel tm = (DefaultTableModel) from.getModel();
+    
+     int[] rows = from.getSelectedRows();
+            if(rows.length == 0){
+                JOptionPane.showMessageDialog(null, "No records are selected");
+            }else if(JOptionPane.showConfirmDialog(null, "Are you sure you want to permanently delete " +
+                        rows.length + " selected record(s)") == 0){
+
+                for(int i = 0; i < rows.length; i++){
+                    System.out.println("Value at " + rows[i] + ": " + from.getValueAt(rows[i], 0));
+
+                }
+
+                for(int i = 0; i < rows.length; i++){
+                    System.out.println("Current Row ("+ i +"): " + rows[i]);
+                    //rows[i] = from.convertRowIndexToModel(rows[i]);
+                    //tm.removeRow(rows[i]);
+                    
+                     tm.removeRow(rows[i]);
+                    
+                     String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.convertRowIndexToModel(rows[i])+"')";
+                    
+                     executeSQlQuery(query, "Deleted");
+                      }
+                }
+                     
+                            /*DELETE FROM `supervisors` WHERE `supervisors`.`ID` = 15;
+                            DELETE FROM `supervisors` WHERE `supervisors`.`ID` = 16;*/
+           
+        }
+    
+                            
+         
+        
+
+
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        removeSelectedFromTable(jTable2);
         
-        
-               String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
-         executeSQlQuery(query, "Deleted");
+               //String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
+        // executeSQlQuery(query, "Deleted");
+       // deleterow();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
+    
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -680,6 +735,13 @@ e.printStackTrace();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    
+    
+    
+    
+    
+    
+    
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
         
@@ -692,9 +754,13 @@ e.printStackTrace();
         jTextField1.setText(model.getValueAt(i,0).toString());
 
         jTextField2.setText(model.getValueAt(i,1).toString());
-
-
+    
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jTable2MousePressed
 
     /**
      * @param args the command line arguments
