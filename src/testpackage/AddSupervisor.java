@@ -31,18 +31,8 @@ import javax.swing.JTable;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.FileReader;
 import java.io.IOException;
 
-
-
-import java.io.File;
-import java.io.IOException;
-
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,9 +46,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-import jxl.Workbook;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -67,7 +54,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-
+import javax.swing.text.DefaultEditorKit;
 
 /**
  *
@@ -98,10 +85,6 @@ public class User {
       
     }
 
-
-   // private Object Workbook;
-
-
    
     public int getId()
     {
@@ -112,7 +95,7 @@ public class User {
     {
         return firstName;
     }
-
+    
    
 }
     
@@ -222,6 +205,8 @@ public void executeSQlQuery(String query, String message)
         kiosPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("kiosPU").createEntityManager();
         supervisorsQuery = java.beans.Beans.isDesignTime() ? null : kiosPUEntityManager.createQuery("SELECT s FROM Supervisors s");
         supervisorsList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : supervisorsQuery.getResultList();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -239,6 +224,15 @@ public void executeSQlQuery(String query, String message)
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButton7 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
+
+        jMenu4.setText("jMenu4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -298,6 +292,11 @@ public void executeSQlQuery(String query, String message)
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField2MouseClicked(evt);
+            }
+        });
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -340,6 +339,9 @@ public void executeSQlQuery(String query, String message)
             }
         ));
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable2MousePressed(evt);
+            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
             }
@@ -351,60 +353,55 @@ public void executeSQlQuery(String query, String message)
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(77, 77, 77)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(80, 80, 80)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(875, 875, 875)
+                                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(528, 528, 528)
-                                        .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(37, 37, 37)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(233, Short.MAX_VALUE))
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(264, 264, 264)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(356, 356, 356)
                         .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -414,7 +411,8 @@ public void executeSQlQuery(String query, String message)
                         .addGap(19, 19, 19)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
@@ -443,9 +441,41 @@ public void executeSQlQuery(String query, String message)
                 .addGap(19, 19, 19)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jMenu2.setText("File");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Edit");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Cut");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("Paste");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -465,12 +495,7 @@ public void executeSQlQuery(String query, String message)
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-       
-        
-    
-    
+   
     
     
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -485,15 +510,69 @@ public void executeSQlQuery(String query, String message)
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    /*
+     public void deleterow()
+    {
+         String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
+       
+         executeSQlQuery(query, "Deleted");
+    }*/
+       
+    
+    
+    /*
+    
+    public void removeSelectedFromTable(JTable from)
+{
+    DefaultTableModel tm = (DefaultTableModel) from.getModel();
+    
+     int[] rows = from.getSelectedRows();
+            if(rows.length == 0){
+                JOptionPane.showMessageDialog(null, "No records are selected");
+            }else if(JOptionPane.showConfirmDialog(null, "Are you sure you want to permanently delete " +
+                        rows.length + " selected record(s)") == 0){
+
+                for(int i = 0; i < rows.length; i++){
+                    System.out.println("Value at " + rows[i] + ": " + from.getValueAt(rows[i], 0));
+
+                }
+
+                for(int i = 0; i < rows.length; i++){
+                    System.out.println("Current Row ("+ i +"): " + rows[i]);
+                    //rows[i] = from.convertRowIndexToModel(rows[i]);
+                    //tm.removeRow(rows[i]);
+                    
+                     tm.removeRow(rows[i]);
+                    
+                     String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.convertRowIndexToModel(rows[i])+"')";
+                    
+                     executeSQlQuery(query, "Deleted");
+                      }
+                }
+                     
+                            //DELETE FROM `supervisors` WHERE `supervisors`.`ID` = 15;
+                           // DELETE FROM `supervisors` WHERE `supervisors`.`ID` = 16;
+           
+        }
+    */
+                            
+         
+        
+
+
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+       // removeSelectedFromTable(jTable2);
         
                String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
          executeSQlQuery(query, "Deleted");
-
+       // deleterow();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-   
+    
+    
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -503,49 +582,8 @@ public void executeSQlQuery(String query, String message)
                
         String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
         
-
         executeSQlQuery(query, "Inserted");
-
-         /*Connection connection;
-=======
-        executeSQlQuery(query, "Inserted");
-        
- /*
-        
-        
-         Connection connection;
->>>>>>> master
-        PreparedStatement ps;
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/kios", "root", "9667");
-            ps = connection.prepareStatement("INSERT INTO supervisors (ID,FullName) VALUES (?,?)");
-            
-            
-            ps.setString(1, jTextField1.getText());
-            ps.setString(2, jTextField2.getText());
-            //ps.setString(2, String.valueOf(jPasswordField1.getPassword()));
-        
-        
-        DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
-      //  model.addRow(new Object[]{jTextField1.getText(),jTextField2.getText()});
-       // model.addRow(new ps.setString(1, jTextField1.getText()),ps.setString(1, jTextField2.getText())});
-       
-            ResultSet result = ps.executeQuery();
-             ps.executeUpdate();
-            if(result.next()){
-                JOptionPane.showMessageDialog(null, "Added"); 
-                
-                
-        
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "NOPE");
-            }
-        }
-           catch (SQLException ex) {
-            Logger.getLogger(AddSupervisor.class.getName()).log(Level.SEVERE, null, ex);
-        
-           }    */ 
+   
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -601,88 +639,64 @@ public void executeSQlQuery(String query, String message)
 		}catch(IOException e){ System.out.println(e); }
 	}
     
-   
-    
-  
-public class NewExcel 
-{
-
-    private String inputFile;
-    String[][] data = null;
-    public void setInputFile(String inputFile) 
-    {
-        this.inputFile = inputFile;
-    }
-
-    public String[][] read() throws IOException  
-    {
-        File inputWorkbook = new File(inputFile);
-        Workbook w;
-
-        try 
-        {
-            w = Workbook.getWorkbook(inputWorkbook);
-            // Get the first sheet
-
-
-            Sheet sheet = w.getSheet(0);
-            data = new String[sheet.getColumns()][sheet.getRows()];
-            // Loop over first 10 column and lines
-            System.out.println(sheet.getColumns() +  " " +sheet.getRows());
-            for (int j = 0; j <sheet.getColumns(); j++) 
-            {
-                for (int i = 0; i < sheet.getRows(); i++) 
-                {
-                    Cell cell = sheet.getCell(j, i);
-                    data[j][i] = cell.getContents();
-                  //  System.out.println(cell.getContents());
-                }
-            }
-
-         /*   for (int j = 0; j < data.length; j++) 
-            {
-                for (int i = 0; i <data[j].length; i++) 
-                {
-
-                    System.out.println(data[j][i]);
-                }
-            } */
-
-        } 
-        catch (BiffException e) 
-        {
-            e.printStackTrace();
-        }
-    return data;
-    }
-
-
-}
-    
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    /*
-    private TableModel model = new DefaultTableModel(data, columnNames)
-  {
-    public boolean isCellEditable(int row, int column)
-    {
-      return false;//This causes all cells to be not editable
-    }
-  };
-  private JTable table = new JTable(model);
-    */
+    
   
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         
+                int dialogButton = JOptionPane.YES_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to export the current data first?","Warning",dialogButton);
+                 if(dialogResult == JOptionPane.YES_OPTION){
+                     
+                     
+         JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle("Please select the .XLS (Excel File) where you want to EXPORT the data:");
+       int result =  jf.showOpenDialog(null);
+       if(result == JFileChooser.APPROVE_OPTION){
+       String filename = jf.getSelectedFile().getName();
+        String path = jf.getSelectedFile().getParentFile().getPath();
+
+        int len = filename.length();
+        String ext = "";
+        String file = "";
+
+        if(len > 4){
+            ext = filename.substring(len-4, len);
+        }
+
+        if(ext.equals(".xls")){
+            file = path + "/" + filename; 
+        }else{
+            file = path + "/" + filename + ".xls"; 
+        }
+        toExcel(jTable1, new File(file));
+            }
+                
+                  }
        
-        jFileChooser1.showOpenDialog(null);
-File file = jFileChooser1.getSelectedFile();
-if(!file.getName().endsWith("xls")){
-    JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+                 int dialogButton2 = JOptionPane.YES_NO_OPTION;
+int dialogResult2 = JOptionPane.showConfirmDialog(this, "Would you like to import", "Importing .xls file", dialogButton2);
+if(dialogResult2 == 0) {
+  System.out.println("Yes option");
+  
+  
+  int dialogButton3 = JOptionPane.YES_NO_OPTION;
+int dialogResult3 = JOptionPane.showConfirmDialog(this, "Would you like to replace the current data", "Importing .xls file", dialogButton3);
+if(dialogResult3 == 0) {
+  System.out.println("Yes option");
+
+    
+       jFileChooser1.showOpenDialog(null);
+        File file = jFileChooser1.getSelectedFile();
+        if(!file.getName().endsWith("xls")){
+         JOptionPane.showMessageDialog(null,"Please select only Excel file.",
             "Error",JOptionPane.ERROR_MESSAGE);
+    
+
                  }
                 else
                 {
@@ -693,8 +707,40 @@ if(!file.getName().endsWith("xls")){
              jTable1.setPreferredSize( new Dimension (tableWidth,tableHeight));
                 }
             jTable1.setModel(model);
-          
+          } else 
+            {
+            System.out.println("Not Replacing! Adding to the existing data");
+            
+            
+       jFileChooser1.showOpenDialog(null);
+        File file = jFileChooser1.getSelectedFile();
+        if(!file.getName().endsWith("xls")){
+         JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+            "Error",JOptionPane.ERROR_MESSAGE);
+    
+
+                 }
+                else
+                {
+              fillData(file);
+              model = new DefaultTableModel(data,headers);
+              tableWidth = model.getColumnCount() *150;
+              tableHeight = model.getRowCount() *25;
+             jTable1.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                }
+            jTable1.setModel(model);
+            
+            
+            
+            
+            
+            
+            
+            
+                } 
     }
+    }
+
     
     void fillData(File file)
     {
@@ -762,7 +808,75 @@ e.printStackTrace();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+private void setMappings(JList list) { 
+        ActionMap map = list.getActionMap();
+        map.put(TransferHandler.getCutAction().getValue(Action.NAME),
+                TransferHandler.getCutAction());
+        map.put(TransferHandler.getCopyAction().getValue(Action.NAME),
+                TransferHandler.getCopyAction());
+        map.put(TransferHandler.getPasteAction().getValue(Action.NAME),
+                TransferHandler.getPasteAction());
+}
 
+
+public JMenuBar createMenuBar () {
+        JMenuItem menuItem = null;
+        JMenuBar menuBar = new JMenuBar();
+        JMenu mainMenu = new JMenu("Edit");
+        mainMenu.setMnemonic(KeyEvent.VK_E);
+
+        menuItem = new JMenuItem(new DefaultEditorKit.CutAction());
+        menuItem.setText("Cut");
+        menuItem.setMnemonic(KeyEvent.VK_T);
+        mainMenu.add(menuItem);
+
+        menuItem = new JMenuItem(new DefaultEditorKit.CopyAction());
+        menuItem.setText("Copy");
+        menuItem.setMnemonic(KeyEvent.VK_C);
+        mainMenu.add(menuItem);
+
+        menuItem = new JMenuItem(new DefaultEditorKit.PasteAction());
+        menuItem.setText("Paste");
+        menuItem.setMnemonic(KeyEvent.VK_P);
+        mainMenu.add(menuItem);
+
+        menuBar.add(mainMenu);
+        return menuBar;
+    }
+/*
+public class TransferActionListener implements ActionListener,
+                                              PropertyChangeListener {
+    private JComponent focusOwner = null;
+
+    public TransferActionListener() {
+        KeyboardFocusManager manager = KeyboardFocusManager.
+           getCurrentKeyboardFocusManager();
+        manager.addPropertyChangeListener("permanentFocusOwner", this);
+    }
+
+    public void propertyChange(PropertyChangeEvent e) {
+        Object o = e.getNewValue();
+        if (o instanceof JComponent) {
+            focusOwner = (JComponent)o;
+        } else {
+            focusOwner = null;
+        }
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (focusOwner == null)
+            return;
+        String action = (String)e.getActionCommand();
+        Action a = focusOwner.getActionMap().get(action);
+        if (a != null) {
+            a.actionPerformed(new ActionEvent(focusOwner,
+                                              ActionEvent.ACTION_PERFORMED,
+                                              null));
+        }
+    }
+}
+    */
+    
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
         
@@ -775,9 +889,37 @@ e.printStackTrace();
         jTextField1.setText(model.getValueAt(i,0).toString());
 
         jTextField2.setText(model.getValueAt(i,1).toString());
-
-
+    
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTable2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MousePressed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jTable2MousePressed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        TransferHandler.getCopyAction();
+        
+        
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+        // TODO add your handling code here:
+        
+       
+    }//GEN-LAST:event_jTextField2MouseClicked
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        
+         TransferHandler.getPasteAction();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -824,6 +966,13 @@ e.printStackTrace();
     private javax.swing.JButton jButton9;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
