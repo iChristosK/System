@@ -450,12 +450,7 @@ public void executeSQlQuery(String query, String message)
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-       
-        
-    
-    
+   
     
     
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -478,6 +473,9 @@ public void executeSQlQuery(String query, String message)
          executeSQlQuery(query, "Deleted");
     }*/
        
+    
+    
+    /*
     
     public void removeSelectedFromTable(JTable from)
 {
@@ -507,11 +505,11 @@ public void executeSQlQuery(String query, String message)
                       }
                 }
                      
-                            /*DELETE FROM `supervisors` WHERE `supervisors`.`ID` = 15;
-                            DELETE FROM `supervisors` WHERE `supervisors`.`ID` = 16;*/
+                            //DELETE FROM `supervisors` WHERE `supervisors`.`ID` = 15;
+                           // DELETE FROM `supervisors` WHERE `supervisors`.`ID` = 16;
            
         }
-    
+    */
                             
          
         
@@ -521,10 +519,10 @@ public void executeSQlQuery(String query, String message)
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        removeSelectedFromTable(jTable2);
+       // removeSelectedFromTable(jTable2);
         
-               //String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
-        // executeSQlQuery(query, "Deleted");
+               String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
+         executeSQlQuery(query, "Deleted");
        // deleterow();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -540,42 +538,7 @@ public void executeSQlQuery(String query, String message)
         String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
         
         executeSQlQuery(query, "Inserted");
-        
- /*
-        
-        
-         Connection connection;
-        PreparedStatement ps;
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/kios", "root", "9667");
-            ps = connection.prepareStatement("INSERT INTO supervisors (ID,FullName) VALUES (?,?)");
-            
-            
-            ps.setString(1, jTextField1.getText());
-            ps.setString(2, jTextField2.getText());
-            //ps.setString(2, String.valueOf(jPasswordField1.getPassword()));
-        
-        
-        DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
-      //  model.addRow(new Object[]{jTextField1.getText(),jTextField2.getText()});
-       // model.addRow(new ps.setString(1, jTextField1.getText()),ps.setString(1, jTextField2.getText())});
-       
-            ResultSet result = ps.executeQuery();
-             ps.executeUpdate();
-            if(result.next()){
-                JOptionPane.showMessageDialog(null, "Added"); 
-                
-                
-        
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "NOPE");
-            }
-        }
-           catch (SQLException ex) {
-            Logger.getLogger(AddSupervisor.class.getName()).log(Level.SEVERE, null, ex);
-        
-           }    */ 
+   
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -635,16 +598,7 @@ public void executeSQlQuery(String query, String message)
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    /*
-    private TableModel model = new DefaultTableModel(data, columnNames)
-  {
-    public boolean isCellEditable(int row, int column)
-    {
-      return false;//This causes all cells to be not editable
-    }
-  };
-  private JTable table = new JTable(model);
-    */
+    
   
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -735,11 +689,6 @@ e.printStackTrace();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    
-    
-    
-    
-    
     
     
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
