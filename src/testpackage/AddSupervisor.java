@@ -56,9 +56,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-<<<<<<< HEAD
+
 import jxl.Workbook;
-=======
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -67,7 +67,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
->>>>>>> master
+
 
 /**
  *
@@ -98,10 +98,10 @@ public class User {
       
     }
 
-<<<<<<< HEAD
+
    // private Object Workbook;
 
-=======
+
    
     public int getId()
     {
@@ -112,8 +112,7 @@ public class User {
     {
         return firstName;
     }
->>>>>>> master
-    
+
    
 }
     
@@ -250,7 +249,7 @@ public void executeSQlQuery(String query, String message)
 
         jButton1.setBackground(new java.awt.Color(255, 204, 153));
         jButton1.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
-        jButton1.setText("Import");
+        jButton1.setText("Delete");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -487,67 +486,13 @@ public void executeSQlQuery(String query, String message)
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-<<<<<<< HEAD
- 
-        
-        JFileChooser jf = new JFileChooser();
-        jf.setDialogTitle("Please select the .XLS (Excel File) where you want to IMPORT the data:");
-       int result =  jf.showOpenDialog(null);
-       if(result == JFileChooser.APPROVE_OPTION){
-       String filename = jf.getSelectedFile().getName();
-        String path = jf.getSelectedFile().getParentFile().getPath();
 
-        int len = filename.length();
-        String ext = "";
-        String file = "";
-
-        if(len > 4){
-            ext = filename.substring(len-4, len);
-        }
-
-        if(ext.equals(".xls")){
-            file = path + "/" + filename; 
-        }else{
-            file = path + "/" + filename + ".xls"; 
-        }
-        //ReadExcel(jTable1, new File(file));
-        //MAKE FUNCTION ReadExcel
-        
-       }
-    }
-        
-          /*
-    public void ReadExcel(JTable table, File file){
-		try{
-			TableModel model = table.getModel();
-			FileWriter excel = new FileWriter(file);
-
-			for(int i = 0; i < model.getColumnCount(); i++){
-				excel.write(model.getColumnName(i) + "\t");
-			}
-
-			excel.write("\n");
-
-			for(int i=0; i< model.getRowCount(); i++) {
-				for(int j=0; j < model.getColumnCount(); j++) {
-					excel.write(model.getValueAt(i,j).toString()+"\t");
-				}
-				excel.write("\n");
-			}
-
-			excel.close();
-		}catch(IOException e){ System.out.println(e); }   
-   
-=======
-
-        
         
                String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
          executeSQlQuery(query, "Deleted");
->>>>>>> master
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    */
    
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -558,7 +503,8 @@ public void executeSQlQuery(String query, String message)
                
         String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
         
-<<<<<<< HEAD
+
+        executeSQlQuery(query, "Inserted");
 
          /*Connection connection;
 =======
