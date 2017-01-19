@@ -7,45 +7,19 @@ package testpackage;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import jxl.Cell;
-
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-
-
-
-import javax.swing.table.TableModel;
-
 import javax.swing.JFileChooser;
-
 import javax.swing.JTable;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -64,12 +38,12 @@ public class AddSupervisor extends javax.swing.JFrame {
     
       
     static Vector headers = new Vector();
-  static DefaultTableModel model = null;
- static Vector data = new 
-   Vector();
+    static DefaultTableModel model = null;
+    static Vector data = new 
+    Vector();
  
- static int tableWidth = 0; // set the tableWidth 
- static int tableHeight = 0;
+    static int tableWidth = 0; // set the tableWidth 
+    static int tableHeight = 0;
  
  
 public class User {
@@ -260,7 +234,7 @@ public void executeSQlQuery(String query, String message)
 
         jButton2.setBackground(new java.awt.Color(255, 204, 153));
         jButton2.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
-        jButton2.setText("Insert");
+        jButton2.setText("Add");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
