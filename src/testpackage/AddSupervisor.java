@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package testpackage;
-//now code
+//now cod
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
