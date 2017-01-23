@@ -728,11 +728,15 @@ public ArrayList<Researcher> getResList()
         
    ///INSERT FULLNAME AND GET ID INTO THE DATABASE HOW?
    
-   //This insters the string value into the fk_Supevisor with the *2nd Supervisor* Combo Box
+   //This inserts the string value into the fk_Supevisor with the *2nd Supervisor* Combo Box
+   
+   
+   
+   
         
         String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`)"
                 
-       +"VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+jComboBox8.getSelectedItem().toString()+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"')"; 
+       +"VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+jComboBox8.getSelectedIndex()+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"')"; 
         executeSQlQuery(query, "Inserted");
         
         
@@ -781,7 +785,7 @@ public ArrayList<Researcher> getResList()
          // Display Slected Row In JTexteFields
         jTextField1.setText(model.getValueAt(i,0).toString());
         jTextField2.setText(model.getValueAt(i,1).toString());
-        jComboBox9.setSelectedItem(model.getValueAt(i,2).toString());
+        jComboBox8.setSelectedItem(model.getValueAt(i,2).toString());
         jTextField3.setText(model.getValueAt(i,3).toString());
         jTextField6.setText(model.getValueAt(i,4).toString());
         jTextField17.setText(model.getValueAt(i,5).toString());
