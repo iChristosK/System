@@ -731,6 +731,10 @@ public ArrayList<Researcher> getResList()
    //This inserts the string value into the fk_Supevisor with the *2nd Supervisor* Combo Box
    
    
+   //Change it to the First Supervisor *SOS* CHRISTOS CHECK HERE NEXT TIME AND CHANGE COMBO BOXES
+   // HERE HERE RHERE HER E HRER E HERE HERE HER E HERE HER ER HER E HER E HER EHER ER EH EHR EHR E
+   
+   
    
    
         
