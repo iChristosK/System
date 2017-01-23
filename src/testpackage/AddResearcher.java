@@ -692,7 +692,7 @@ public ArrayList<Researcher> getResList()
         
           Connection connection = getConnection();
        
-       String query = "SELECT * FROM  `researchers` ";
+       String query = "SELECT * FROM  `supervisors` ";
        Statement st;
        ResultSet rs;
        
@@ -702,7 +702,7 @@ public ArrayList<Researcher> getResList()
 
            
         while(rs.next()){
-           String memberType =  rs.getString("fk_Supervisor");
+           String memberType =  rs.getString("FullName");
             jComboBox8.addItem(memberType);
 
         }
