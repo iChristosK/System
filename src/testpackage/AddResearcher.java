@@ -727,10 +727,12 @@ public ArrayList<Researcher> getResList()
         // TODO add your handling code here:
         
    ///INSERT FULLNAME AND GET ID INTO THE DATABASE HOW?
+   
+   //This insters the string value into the fk_Supevisor with the *2nd Supervisor* Combo Box
         
         String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`)"
                 
-       +"VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+jComboBox9.getSelectedItem().toString()+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"')"; 
+       +"VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+jComboBox8.getSelectedItem().toString()+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"')"; 
         executeSQlQuery(query, "Inserted");
         
         
