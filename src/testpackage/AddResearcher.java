@@ -730,18 +730,7 @@ public ArrayList<Researcher> getResList()
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
-   ///INSERT FULLNAME AND GET ID INTO THE DATABASE HOW?
-   
-   //This inserts the string value into the fk_Supevisor with the *2nd Supervisor* Combo Box
-   
-   
-   //Change it to the First Supervisor *SOS* CHRISTOS CHECK HERE NEXT TIME AND CHANGE COMBO BOXES
-   // HERE HERE RHERE HER E HRER E HERE HERE HER E HERE HER ER HER E HER E HER EHER ER EH EHR EHR E
-   
-   
-   
-   
+
         
         String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`)"
                 
