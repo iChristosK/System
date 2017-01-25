@@ -633,6 +633,7 @@ public void executeSQlQuery(String query, String message)
         
         //add to existing data in jTable without replacing the old data
         //HERE
+        //add
         
                 int dialogButton = JOptionPane.YES_OPTION;
                 int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to export the current data first?","Warning",dialogButton);
