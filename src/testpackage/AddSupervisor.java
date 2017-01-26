@@ -530,12 +530,7 @@ public void executeSQlQuery(String query, String message)
            
         }
     */
-                            
-         
-        
-
-
-    
+ 
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -624,12 +619,6 @@ public void executeSQlQuery(String query, String message)
         // TODO add your handling code here:
         
         //add to existing data in jTable without replacing the old data
-        //HERE
-        //add
-        //HERE
-        
-        
-        
         
                 int dialogButton = JOptionPane.YES_OPTION;
                 int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to export the current data first?","Warning",dialogButton);
