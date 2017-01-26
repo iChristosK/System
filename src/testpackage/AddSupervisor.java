@@ -615,6 +615,7 @@ public void executeSQlQuery(String query, String message)
   
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        //HEREEEEEE
         
         //add to existing data in jTable without replacing the old data
         
