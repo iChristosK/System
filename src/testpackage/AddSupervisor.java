@@ -493,10 +493,8 @@ public void executeSQlQuery(String query, String message)
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
-   
-    
     /*
-    
+
     public void removeSelectedFromTable(JTable from)
 {
     DefaultTableModel tm = (DefaultTableModel) from.getModel();
