@@ -493,15 +493,7 @@ public void executeSQlQuery(String query, String message)
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    /*
-     public void deleterow()
-    {
-         String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
-       
-         executeSQlQuery(query, "Deleted");
-    }*/
-       
-    
+   
     
     /*
     
