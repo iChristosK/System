@@ -703,14 +703,9 @@ if(dialogResult3 == 0) {
             jTable1.setModel(model);
             
             
-            
-            
-            
-            
-            
-            
-                } 
-    }
+         
+              } 
+        }
     }
 
     
