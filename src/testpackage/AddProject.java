@@ -519,11 +519,95 @@ public void executeSQlQuery(String query, String message)
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     
     
-            // TODO add your handling code here:
-        //HEREEEEEE
-        
+         
         //add to existing data in jTable without replacing the old data
         
+                int dialogButton = JOptionPane.YES_OPTION;
+                int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to export the current data first?","Warning",dialogButton);
+                 if(dialogResult == JOptionPane.YES_OPTION){
+                     
+                     
+         JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle("Please select the .XLS (Excel File) where you want to EXPORT the data:");
+       int result =  jf.showOpenDialog(null);
+       if(result == JFileChooser.APPROVE_OPTION){
+       String filename = jf.getSelectedFile().getName();
+        String path = jf.getSelectedFile().getParentFile().getPath();
+
+        int len = filename.length();
+        String ext = "";
+        String file = "";
+
+        if(len > 4){
+            ext = filename.substring(len-4, len);
+        }
+
+        if(ext.equals(".xls")){
+            file = path + "/" + filename; 
+        }else{
+            file = path + "/" + filename + ".xls"; 
+        }
+        toExcel(jTable2, new File(file));
+            }
+                
+                  }
+       
+                 int dialogButton2 = JOptionPane.YES_NO_OPTION;
+                int dialogResult2 = JOptionPane.showConfirmDialog(this, "Would you like to import", "Importing .xls file", dialogButton2);
+                    if(dialogResult2 == 0) {
+                        System.out.println("Yes option");
+  
+  
+                         int dialogButton3 = JOptionPane.YES_NO_OPTION;
+                        int dialogResult3 = JOptionPane.showConfirmDialog(this, "Would you like to replace the current data", "Importing .xls file", dialogButton3);
+                        if(dialogResult3 == 0) {
+                     System.out.println("Yes option");
+
+    
+                      jFileChooser1.showOpenDialog(null);
+                  File file = jFileChooser1.getSelectedFile();
+                          if(!file.getName().endsWith("xls")){
+                          JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+                             "Error",JOptionPane.ERROR_MESSAGE);
+    
+
+                 }
+                else
+                {
+              fillData(file);
+              model = new DefaultTableModel(data,headers);
+              tableWidth = model.getColumnCount() *150;
+              tableHeight = model.getRowCount() *25;
+             jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                }
+            jTable2.setModel(model);
+          } else 
+            {
+            System.out.println("Not Replacing! Adding to the existing data");
+            
+            
+       jFileChooser1.showOpenDialog(null);
+        File file = jFileChooser1.getSelectedFile();
+        if(!file.getName().endsWith("xls")){
+         JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+            "Error",JOptionPane.ERROR_MESSAGE);
+    
+
+                 }
+                else
+                {
+              fillData(file);
+              model = new DefaultTableModel(data,headers);
+              tableWidth = model.getColumnCount() *150;
+              tableHeight = model.getRowCount() *25;
+             jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                }
+            jTable2.setModel(model);
+            
+            
+         
+              } 
+        }
              
         
     }
