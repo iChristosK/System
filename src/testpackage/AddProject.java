@@ -5,17 +5,187 @@
  */
 package testpackage;
 
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Vector;
+import javax.swing.*;
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+import javax.swing.JFileChooser;
+import javax.swing.JTable;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.DefaultEditorKit;
+
 /**
  *
  * @author Christos
  */
 public class AddProject extends javax.swing.JFrame {
+    
+    
+     static Vector headers = new Vector();
+    static DefaultTableModel model = null;
+    static Vector data = new 
+    Vector();
+ 
+    static int tableWidth = 0; // set the tableWidth 
+    static int tableHeight = 0;
 
+    
+    
+public class Project {
+    
+    private int id;
+    private String project_name;
+    private String supervisor;
+    private String details;
+   
+    
+    public Project(int ID, String ProjectName,String Supervisor,String Details)
+    {
+        this.id = ID;
+        this.project_name = ProjectName;
+        this.supervisor = Supervisor;
+        this.details = Details;
+      
+    }
+
+   
+    public int getId()
+    {
+        return id;
+    }
+    
+    public String getProjectName()
+    {
+        return project_name;
+    }
+    
+    
+    public String getSupervisor()
+    {
+        return supervisor;
+    }
+    
+    public String getDetails()
+    {
+        return details;
+    }
+ }
+
+
+    
+    public Connection getConnection()
+   {
+       Connection con;
+
+       try {
+           con = DriverManager.getConnection("jdbc:mysql://localhost/kios", "root","9667");
+           return con;
+       } 
+      catch (Exception e) {
+           e.printStackTrace();
+           return null;
+       }
+   }
+    
+    
+    
+    
+public ArrayList<Project> getProjectList()
+   {
+       ArrayList<Project> ProjectList = new ArrayList<Project>();
+       Connection connection = getConnection();
+       
+       String query = "SELECT * FROM  `project` ";
+       Statement st;
+       ResultSet rs;
+       
+       try {
+           st = connection.createStatement();
+           rs = st.executeQuery(query);
+
+           Project project;
+
+           while(rs.next())
+           {
+project = new Project(rs.getInt("Project_ID"),rs.getString("Project_Name"),rs.getString("Project_super"),rs.getString("Details"));
+               ProjectList.add(project);
+           }
+
+       } 
+      catch (Exception e) {
+           e.printStackTrace();
+       }
+       return ProjectList;
+   }
+
+
+   public void Show_Project_In_JTable()
+   {
+       ArrayList<Project> list = getProjectList();
+       DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+       Object[] row = new Object[4];
+       for(int i = 0; i < list.size(); i++)
+       {
+           row[0] = list.get(i).getId();
+           row[1] = list.get(i).getProjectName();
+           row[2] = list.get(i).getSupervisor();
+           row[3] = list.get(i).getDetails();
+           
+         
+           model.addRow(row);
+       }
+    }
+   
+public void executeSQlQuery(String query, String message)
+   {
+       Connection con = getConnection();
+       Statement st;
+       try{
+           st = con.createStatement();
+           if((st.executeUpdate(query)) == 1)
+           {
+               // refresh jtable data
+               DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+               model.setRowCount(0);
+               Show_Project_In_JTable();
+               
+               JOptionPane.showMessageDialog(null, "Data "+message+" Succefully");
+           }else{
+               JOptionPane.showMessageDialog(null, "Data Not "+message);
+           }
+       }catch(Exception ex){
+           ex.printStackTrace();
+       }
+   }
+
+    
+    
+    
+    
     /**
      * Creates new form AddProject
      */
     public AddProject() {
         initComponents();
+        FillComboBox();
+        Show_Project_In_JTable();
     }
 
     /**
@@ -42,7 +212,7 @@ public class AddProject extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,7 +225,6 @@ public class AddProject extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Project Name:");
 
-        jTextField1.setEditable(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -65,7 +234,6 @@ public class AddProject extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Supervisor:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -98,7 +266,12 @@ public class AddProject extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(255, 204, 153));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setText("Save");
+        jButton2.setText("Add");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 204, 153));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -113,15 +286,20 @@ public class AddProject extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-
+                "Project ID", "Project Name", "Supervisor", "Details"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -137,20 +315,20 @@ public class AddProject extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(28, 28, 28)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel5))
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTextField3))))
                         .addGap(46, 46, 46))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -251,6 +429,57 @@ public class AddProject extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+         String query = "INSERT INTO `project`(`Project_ID`,`Project_Name`,`Project_super`,`Details`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+jTextField3.getText()+"')";
+       
+         executeSQlQuery(query, "Inserted");
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+
+           // Get The Index Of The Slected Row 
+        int i = jTable2.getSelectedRow();
+
+        TableModel model = jTable2.getModel();
+        
+         // Display Slected Row In JTexteFields
+        jTextField1.setText(model.getValueAt(i,0).toString());
+        jTextField2.setText(model.getValueAt(i,1).toString());
+        jComboBox1.setSelectedItem(model.getValueAt(i,2).toString());
+        jTextField3.setText(model.getValueAt(i,3).toString());
+    
+        
+    }//GEN-LAST:event_jTable2MouseClicked
+
+     private void FillComboBox(){
+        
+          Connection connection = getConnection();
+       
+       String query = "SELECT * FROM  `supervisors` ";
+       Statement st;
+       ResultSet rs;
+       
+       try {
+           st = connection.createStatement();
+           rs = st.executeQuery(query);
+
+           
+        while(rs.next()){
+            String memberType = rs.getString("FullName");
+            jComboBox1.addItem(memberType);
+
+        }
+    }
+    catch(Exception e){
+        JOptionPane.showMessageDialog(null, e);
+    }
+}
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -299,7 +528,7 @@ public class AddProject extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
