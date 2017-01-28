@@ -517,7 +517,8 @@ public void executeSQlQuery(String query, String message)
 		}catch(IOException e){ System.out.println(e); }
 	}
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-//Import button     
+//Import button 
+//Here check the import and export
     
          
         //add to existing data in jTable without replacing the old data
