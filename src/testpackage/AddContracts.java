@@ -49,7 +49,22 @@ public class AddContracts extends javax.swing.JFrame {
     static int tableHeight = 0;
     
     
-    pu
+    public class Contract {
+      private int id;
+      private int researcher;
+      private int project;
+      private String position;
+      private String details;
+      private String datefrom;
+      private String dateto;
+      private int salary;
+      private int monthlyhours;
+      private int hourlyrate;
+      
+      
+      public Contract ( int ID,int Researcher, int Project, String Position,String Details,String DateFrom, String DateTo, int Salary, int MonthlyHours, int Monthly  )
+      
+    }
        
 
     /**
