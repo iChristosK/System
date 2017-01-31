@@ -62,9 +62,24 @@ public class AddContracts extends javax.swing.JFrame {
       private int hourlyrate;
       
       
-      public Contract ( int ID,int Researcher, int Project, String Position,String Details,String DateFrom, String DateTo, int Salary, int MonthlyHours, int Monthly  )
-      
+      public Contract( int ID,int Researcher, int Project, String Position, String Details, String DateFrom, String DateTo, int Salary, int MonthlyHours, int HourlyRate  )
+      {
+      this.id = ID;
+      this.researcher = Researcher;
+     this.project = Project;
+     this.position = Position;
+     this.details = Details;
+     this.datefrom = DateFrom;
+     this.dateto = DateTo;
+     this.salary = Salary;
+     this.monthlyhours = MonthlyHours;
+     this.hourlyrate = HourlyRate;
+     
+ 
+     
+      }
     }
+
        
 
     /**
