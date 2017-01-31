@@ -5,11 +5,52 @@
  */
 package testpackage;
 
+
+
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Vector;
+import javax.swing.*;
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+import javax.swing.JFileChooser;
+import javax.swing.JTable;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.text.DefaultEditorKit;
 /**
  *
  * @author Christos
  */
 public class AddContracts extends javax.swing.JFrame {
+    
+    
+    
+    static Vector headers = new Vector();
+    static DefaultTableModel model = null;
+    static Vector data = new
+            Vector();
+    
+    static int tableWidth = 0;// set the tableWidth
+    static int tableHeight = 0;
+    
+    
+    pu
+       
 
     /**
      * Creates new form AddContracts
