@@ -81,6 +81,12 @@ public class AddContracts extends javax.swing.JFrame {
        return id;
    }
   
+     
+  public int getResearcher()
+   {
+       return researcher;
+   }
+  
 
      
       }
