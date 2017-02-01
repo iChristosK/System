@@ -87,9 +87,69 @@ public class AddContracts extends javax.swing.JFrame {
        return researcher;
    }
   
+  public int getProject()
+  {
+      return project;
+      
+  }
+  
+  public String getPosition()
+          {
+              return position;
+          }
+  public String getDetails()
+  
+  {
+      return details;
+  }
+  
+  public String getDateFrom()
+  {
+      return datefrom;
+  }
+  public String getDateTo()
+  {
+      return dateto;
+  }
+  
+  public int getSalary()
+  {
+      return salary;
+  }
+  
+  public int getMonthlyhours()
+  {
+      return monthlyhours;
+  }
+  public int getHourlyRate()
+  {
+      return hourlyrate;
+  }
+
+  
+    public Connection getConnection()
+   {
+       Connection con;
+
+       try {
+           con = DriverManager.getConnection("jdbc:mysql://localhost/kios", "root","9667");
+           return con;
+       } 
+      catch (Exception e) {
+           e.printStackTrace();
+           return null;
+       }
+   }
+    
+  
+  
+  
+  
+  
+  
 
      
-      }
+    }
     
     
   
