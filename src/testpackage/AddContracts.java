@@ -231,6 +231,8 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         initComponents();
         Show_Contract_In_JTable();
         FillComboBox();
+        FillComboBox1();
+        FillComboBox2();
     }
 
     /**
@@ -411,7 +413,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10"
+                "Contract ID", "Researcher ID", "Project ID", "Position", "Details", "From Date", "To Date", "Salary", "Monthly Hours", "Hourly Rate"
             }
         ));
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -678,6 +680,55 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         while(rs.next()){
             String memberType = rs.getString("FullName");
             jComboBox1.addItem(memberType);
+
+        }
+    }
+    catch(Exception e){
+        JOptionPane.showMessageDialog(null, e);
+    }
+}
+     
+     private void FillComboBox1(){
+        
+          Connection connection = getConnection();
+       
+       String query = "SELECT * FROM  `project` ";
+       Statement st;
+       ResultSet rs;
+       
+       try {
+           st = connection.createStatement();
+           rs = st.executeQuery(query);
+
+           
+        while(rs.next()){
+            String memberType = rs.getString("Project_Name");
+            jComboBox2.addItem(memberType);
+
+        }
+    }
+    catch(Exception e){
+        JOptionPane.showMessageDialog(null, e);
+    }
+}
+     
+     
+     private void FillComboBox2(){
+        
+          Connection connection = getConnection();
+       
+       String query = "SELECT * FROM  `contract` ";
+       Statement st;
+       ResultSet rs;
+       
+       try {
+           st = connection.createStatement();
+           rs = st.executeQuery(query);
+
+           
+        while(rs.next()){
+            String memberType = rs.getString("Position");
+            jComboBox3.addItem(memberType);
 
         }
     }
