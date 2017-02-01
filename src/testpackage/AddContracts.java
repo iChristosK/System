@@ -230,6 +230,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
     public AddContracts() {
         initComponents();
         Show_Contract_In_JTable();
+        FillComboBox();
     }
 
     /**
@@ -413,6 +414,11 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8", "Title 9", "Title 10"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jButton5.setBackground(new java.awt.Color(255, 204, 153));
@@ -633,6 +639,52 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        
+        
+         int i = jTable2.getSelectedRow();
+
+        TableModel model = jTable2.getModel();
+        
+         // Display Slected Row In JTexteFields
+        jTextField1.setText(model.getValueAt(i,0).toString());
+        jComboBox1.setSelectedItem(model.getValueAt(i,1).toString());
+        jComboBox2.setSelectedItem(model.getValueAt(i,2).toString());
+        jComboBox3.setSelectedItem(model.getValueAt(i,3).toString());
+        jTextField2.setText(model.getValueAt(i,4).toString());
+        jTextField3.setText(model.getValueAt(i,5).toString());
+        jTextField4.setText(model.getValueAt(i,6).toString());
+        jTextField5.setText(model.getValueAt(i,7).toString());
+        jTextField6.setText(model.getValueAt(i,8).toString());
+        jTextField7.setText(model.getValueAt(i,9).toString());
+        
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    
+     private void FillComboBox(){
+        
+          Connection connection = getConnection();
+       
+       String query = "SELECT * FROM  `researchers` ";
+       Statement st;
+       ResultSet rs;
+       
+       try {
+           st = connection.createStatement();
+           rs = st.executeQuery(query);
+
+           
+        while(rs.next()){
+            String memberType = rs.getString("FullName");
+            jComboBox1.addItem(memberType);
+
+        }
+    }
+    catch(Exception e){
+        JOptionPane.showMessageDialog(null, e);
+    }
+}
     /**
      * @param args the command line arguments
      */
