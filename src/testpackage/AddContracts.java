@@ -62,7 +62,7 @@ public class AddContracts extends javax.swing.JFrame {
       private int hourlyrate;
       
       
-      public Contract( int ID,int Researcher, int Project, String Position, String Details, String DateFrom, String DateTo, int Salary, int MonthlyHours, int HourlyRate  )
+      public Contract( int ID,int Researcher, int Project, String Position, String Details, String DateFrom, String DateTo, int Salary, int MonthlyHours, int HourlyRate)
       {
      this.id = ID;
      this.researcher = Researcher;
@@ -74,8 +74,9 @@ public class AddContracts extends javax.swing.JFrame {
      this.salary = Salary;
      this.monthlyhours = MonthlyHours;
      this.hourlyrate = HourlyRate;
+      
       }
-     
+      
   public int getId()
    {
        return id;
@@ -121,11 +122,12 @@ public class AddContracts extends javax.swing.JFrame {
   {
       return monthlyhours;
   }
+  
   public int getHourlyRate()
   {
       return hourlyrate;
   }
-
+ }
   
     public Connection getConnection()
    {
@@ -141,15 +143,82 @@ public class AddContracts extends javax.swing.JFrame {
        }
    }
     
-  
-  
-  
-  
-  
-  
+    
+    
+        
+public ArrayList<Contract> getContractList()
+   {
+       ArrayList<Contract> ContractList = new ArrayList<Contract>();
+       Connection connection = getConnection();
+       
+       String query = "SELECT * FROM  `contract` ";
+       Statement st;
+       ResultSet rs;
+       
+       try {
+           st = connection.createStatement();
+           rs = st.executeQuery(query);
 
-     
+           Contract contract;
+
+           while(rs.next())
+           {
+contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),rs.getInt("fk_ID_project"),rs.getString("Position"),rs.getString("Details"),rs.getString("Date_From"),rs.getString("Date_To"),rs.getInt("Salary"),rs.getInt("Monthly_Hours"),rs.getInt("Hourly_Rate"));
+               ContractList.add(contract);
+           }
+
+       } 
+      catch (Exception e) {
+           e.printStackTrace();
+       }
+       return ContractList;
+   }
+
+
+   public void Show_Contract_In_JTable()
+   {
+       ArrayList<Contract> list = getContractList();
+       DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+       Object[] row = new Object[2];
+       for(int i = 0; i < list.size(); i++)
+       {
+           row[0] = list.get(i).getId();
+           row[1] = list.get(i).getResearcher();
+           row[2] = list.get(i).getProject();
+           row[3] = list.get(i).getPosition();
+           row[4] = list.get(i).getDetails();
+           row[5] = list.get(i).getDateFrom();
+           row[6] = list.get(i).getDateTo();
+           row[7] = list.get(i).getSalary();
+           row[8] = list.get(i).getMonthlyhours();
+           row[9] = list.get(i).getHourlyRate();
+           model.addRow(row);
+       }
+ 
     }
+   
+   
+   public void executeSQlQuery(String query, String message)
+   {
+       Connection con = getConnection();
+       Statement st;
+       try{
+           st = con.createStatement();
+           if((st.executeUpdate(query)) == 1)
+           {
+               // refresh jtable data
+               DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+               model.setRowCount(0);
+               Show_Contract_In_JTable();
+               
+               JOptionPane.showMessageDialog(null, "Data "+message+" Succefully");
+           }else{
+               JOptionPane.showMessageDialog(null, "Data Not "+message);
+           }
+       }catch(Exception ex){
+           ex.printStackTrace();
+       }
+   }
     
     
   
@@ -160,6 +229,7 @@ public class AddContracts extends javax.swing.JFrame {
      */
     public AddContracts() {
         initComponents();
+        Show_Contract_In_JTable();
     }
 
     /**
@@ -180,25 +250,25 @@ public class AddContracts extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextField2 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jTextField3 = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        jTextField4 = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
+        jTextField5 = new javax.swing.JFormattedTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jFileChooser1 = new javax.swing.JFileChooser();
@@ -231,11 +301,11 @@ public class AddContracts extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Salary:*");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextField2.setColumns(20);
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jTextField2.setLineWrap(true);
+        jTextField2.setRows(5);
+        jScrollPane1.setViewportView(jTextField2);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Contract ID:*");
@@ -256,35 +326,35 @@ public class AddContracts extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
-        jFormattedTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jFormattedTextField1.setText("eg. 10/12/15");
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("€");
-
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
-        jFormattedTextField3.setText("eg. 10/02/16");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Monthly Hours:");
-
+        jTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField3.setText("eg. 10/12/15");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
 
+        jLabel7.setText("€");
+
+        jTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
+        jTextField4.setText("eg. 10/02/16");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Monthly Hours:");
+
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Hourly Rate:");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextField7ActionPerformed(evt);
             }
         });
 
@@ -332,11 +402,11 @@ public class AddContracts extends javax.swing.JFrame {
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
-        jFormattedTextField4.setText("eg. 10000.00");
-        jFormattedTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
+        jTextField5.setText("eg. 10000.00");
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField4ActionPerformed(evt);
+                jTextField5ActionPerformed(evt);
             }
         });
 
@@ -405,11 +475,11 @@ public class AddContracts extends javax.swing.JFrame {
                                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField4)
+                                    .addComponent(jTextField7)
+                                    .addComponent(jTextField6)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
                                     .addComponent(jTextField3)
-                                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
-                                    .addComponent(jFormattedTextField1)
-                                    .addComponent(jFormattedTextField4)))
+                                    .addComponent(jTextField5)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jButton2)
                                 .addGap(18, 18, 18)
@@ -439,27 +509,27 @@ public class AddContracts extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jLabel1)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -468,7 +538,7 @@ public class AddContracts extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -519,17 +589,17 @@ public class AddContracts extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -557,15 +627,15 @@ public class AddContracts extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jFormattedTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField4ActionPerformed
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField4ActionPerformed
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-
-       // String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
-
+            //HERE ADD CONTRACTS COMBO BOXES
+       // String query = "INSERT INTO `Contract`(`ID_contract`,`fk_ID_researcher`,`fk_ID_project`,`Position`,`Details`,`Date_From`,`Date_To`,`Salary`,`Monthly_Hours`,`Hourly_Rate`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"',,'"+jTextField3.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"')";
+//rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),rs.getInt("fk_ID_project"),rs.getString("Position"),rs.getString("Details"),rs.getString("Date_From"),rs.getString("Date_To"),rs.getInt("Salary"),rs.getInt("Monthly_Hours"),rs.getInt("Hourly_Rate"));
        // executeSQlQuery(query, "Inserted");
 
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -616,9 +686,6 @@ public class AddContracts extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
@@ -634,9 +701,12 @@ public class AddContracts extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextArea jTextField2;
+    private javax.swing.JFormattedTextField jTextField3;
+    private javax.swing.JFormattedTextField jTextField4;
+    private javax.swing.JFormattedTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }
