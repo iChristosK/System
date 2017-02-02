@@ -278,6 +278,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         jTextField4 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -431,6 +432,15 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(255, 204, 153));
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton6.setText("Import");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -459,6 +469,8 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                         .addComponent(jButton1)
                         .addGap(62, 62, 62)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -558,7 +570,8 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, Short.MAX_VALUE)
@@ -679,6 +692,149 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        //works perfect
+        //add to existing data in jTable
+
+        int dialogButton = JOptionPane.YES_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to export the current data first?","Warning",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+
+            JFileChooser jf = new JFileChooser();
+            jf.setDialogTitle("Please select the .XLS (Excel File) where you want to EXPORT the data:");
+            int result =  jf.showOpenDialog(null);
+            if(result == JFileChooser.APPROVE_OPTION){
+                String filename = jf.getSelectedFile().getName();
+                String path = jf.getSelectedFile().getParentFile().getPath();
+
+                int len = filename.length();
+                String ext = "";
+                String file = "";
+
+                if(len > 4){
+                    ext = filename.substring(len-4, len);
+                }
+
+                if(ext.equals(".xls")){
+                    file = path + "/" + filename;
+                }else{
+                    file = path + "/" + filename + ".xls";
+                }
+                toExcel(jTable2, new File(file));
+            }
+
+        }
+
+        int dialogButton2 = JOptionPane.YES_NO_OPTION;
+        int dialogResult2 = JOptionPane.showConfirmDialog(this, "Would you like to import", "Importing .xls file", dialogButton2);
+        if(dialogResult2 == 0) {
+            System.out.println("Yes option");
+
+            int dialogButton3 = JOptionPane.YES_NO_OPTION;
+            int dialogResult3 = JOptionPane.showConfirmDialog(this, "Would you like to replace the current data", "Importing .xls file", dialogButton3);
+            if(dialogResult3 == 0) {
+                System.out.println("Yes option");
+
+                jFileChooser1.showOpenDialog(null);
+                File file = jFileChooser1.getSelectedFile();
+                if(!file.getName().endsWith("xls")){
+                    JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+                        "Error",JOptionPane.ERROR_MESSAGE);
+
+                }
+                else
+                {
+                    fillData(file);
+                    model = new DefaultTableModel(data,headers);
+                    tableWidth = model.getColumnCount() *150;
+                    tableHeight = model.getRowCount() *25;
+                    jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                }
+                jTable2.setModel(model);
+            } else
+            {
+                System.out.println("Not Replacing! Adding to the existing data");
+
+                jFileChooser1.showOpenDialog(null);
+                File file = jFileChooser1.getSelectedFile();
+                if(!file.getName().endsWith("xls")){
+                    JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+                        "Error",JOptionPane.ERROR_MESSAGE);
+
+                }
+                else
+                {
+                    fillData(file);
+                    model = new DefaultTableModel(data,headers);
+                    tableWidth = model.getColumnCount() *150;
+                    tableHeight = model.getRowCount() *25;
+                    jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                }
+                jTable2.setModel(model);
+
+            }
+        }
+        }
+    
+    
+    public void toExcel(JTable table, File file){
+		try{
+			TableModel model = table.getModel();
+			FileWriter excel = new FileWriter(file);
+
+			for(int i = 0; i < model.getColumnCount(); i++){
+				excel.write(model.getColumnName(i) + "\t");
+			}
+
+			excel.write("\n");
+
+			for(int i=0; i< model.getRowCount(); i++) {
+				for(int j=0; j < model.getColumnCount(); j++) {
+					excel.write(model.getValueAt(i,j).toString()+"\t");
+				}
+				excel.write("\n");
+			}
+
+			excel.close();
+		}catch(IOException e){ System.out.println(e); }
+	}
+
+        void fillData(File file)
+        {
+            Workbook workbook = null;
+            try {
+                try {
+                    workbook = Workbook.getWorkbook(file);
+                }  catch(IOException ex){
+                    Logger.getLogger(xxx.class.getName()).log(Level.SEVERE,null,ex);
+                }
+                Sheet sheet = workbook.getSheet(0);
+
+                headers.clear();
+                for ( int i=0; i<sheet.getColumns(); i++){
+                    Cell cell1 = sheet.getCell(i,0);
+                    headers.add(cell1.getContents());
+                }
+                data.clear();
+                for (int j = 1; j < sheet.getRows(); j++) {
+                    Vector d = new Vector();
+
+                    for (int i = 0; i < sheet.getColumns(); i++) {
+                        Cell cell = sheet.getCell(i, j);
+
+                        d.add(cell.getContents());
+
+                    }
+                    d.add("\\n");
+                    data.add(d);
+                }
+            }
+            catch (BiffException e) {
+                e.printStackTrace();
+            }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     
      private void FillComboBox(){
         
@@ -793,6 +949,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
