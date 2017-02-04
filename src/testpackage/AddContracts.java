@@ -278,7 +278,8 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         jTextField4 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jButton8 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -432,12 +433,21 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(255, 204, 153));
-        jButton8.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
-        jButton8.setText("Import");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setBackground(new java.awt.Color(255, 204, 153));
+        jButton6.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButton6.setText("Export");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setBackground(new java.awt.Color(255, 204, 153));
+        jButton9.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButton9.setText("Import");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
             }
         });
 
@@ -454,14 +464,14 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                         .addComponent(jLabel1)
                         .addComponent(jLabel4)
                         .addComponent(jLabel5)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
                     .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 115, Short.MAX_VALUE)
+                .addGap(0, 96, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,12 +496,14 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(0, 16, Short.MAX_VALUE))))
+                                    .addGap(0, 0, Short.MAX_VALUE))))
                         .addGap(68, 68, 68))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -508,7 +520,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(56, 56, 56)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(196, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -575,7 +587,9 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(163, Short.MAX_VALUE))
@@ -668,7 +682,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         jComboBox2.setSelectedItem(model.getValueAt(i,2).toString());
         jComboBox3.setSelectedItem(model.getValueAt(i,3).toString());
         jTextField2.setText(model.getValueAt(i,4).toString());
-        jTextField4.setText(model.getValueAt(i,5).toString());
+        jTextField3.setText(model.getValueAt(i,5).toString());
         jTextField4.setText(model.getValueAt(i,6).toString());
         jTextField5.setText(model.getValueAt(i,7).toString());
         jTextField6.setText(model.getValueAt(i,8).toString());
@@ -676,6 +690,30 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         
     }//GEN-LAST:event_jTable2MouseClicked
 
+    
+    
+    public void toExcel(JTable table, File file){
+		try{
+			TableModel model = table.getModel();
+			FileWriter excel = new FileWriter(file);
+
+			for(int i = 0; i < model.getColumnCount(); i++){
+				excel.write(model.getColumnName(i) + "\t");
+			}
+
+			excel.write("\n");
+
+			for(int i=0; i< model.getRowCount(); i++) {
+				for(int j=0; j < model.getColumnCount(); j++) {
+					excel.write(model.getValueAt(i,j).toString()+"\t");
+				}
+				excel.write("\n");
+			}
+
+			excel.close();
+		}catch(IOException e){ System.out.println(e); }
+	}
+    
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
@@ -688,9 +726,37 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-      
+
+        JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle("Please select the .XLS (Excel File) where you want to EXPORT the data:");
+        int result =  jf.showOpenDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            String filename = jf.getSelectedFile().getName();
+            String path = jf.getSelectedFile().getParentFile().getPath();
+
+            int len = filename.length();
+            String ext = "";
+            String file = "";
+
+            if(len > 4){
+                ext = filename.substring(len-4, len);
+            }
+
+            if(ext.equals(".xls")){
+                file = path + "/" + filename;
+            }else{
+                file = path + "/" + filename + ".xls";
+            }
+            toExcel(jTable2, new File(file));
+        }
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        //HEREEEEEE
 
         //add to existing data in jTable without replacing the old data
 
@@ -773,72 +839,42 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
             }
         }
         }
-    
-    
-    
-    
-    void fillData(File file)
-    {
-        Workbook workbook = null;
-        try {
+
+        void fillData(File file)
+        {
+            Workbook workbook = null;
             try {
-                workbook = Workbook.getWorkbook(file);
-            }  catch(IOException ex){
-                Logger.getLogger(AddContracts.class.getName()).log(Level.SEVERE,null,ex);
-            }
-            Sheet sheet = workbook.getSheet(0);
-            
-            headers.clear();
-            for ( int i=0; i<sheet.getColumns(); i++){
-                Cell cell1 = sheet.getCell(i,0);
-                headers.add(cell1.getContents());
-            }
-            data.clear();
-             for (int j = 1; j < sheet.getRows(); j++) { 
-                Vector d = new Vector();
-            
-            for (int i = 0; i < sheet.getColumns(); i++) { 
-                Cell cell = sheet.getCell(i, j);
-            
-            d.add(cell.getContents());
-
-
-        }
-        d.add("\\n");
-        data.add(d);
+                try {
+                    workbook = Workbook.getWorkbook(file);
+                }  catch(IOException ex){
+                    Logger.getLogger(AddContracts.class.getName()).log(Level.SEVERE,null,ex);
                 }
-                 }
-                catch (BiffException e) {
-                e.printStackTrace();
+                Sheet sheet = workbook.getSheet(0);
+
+                headers.clear();
+                for ( int i=0; i<sheet.getColumns(); i++){
+                    Cell cell1 = sheet.getCell(i,0);
+                    headers.add(cell1.getContents());
+                }
+                data.clear();
+                for (int j = 1; j < sheet.getRows(); j++) {
+                    Vector d = new Vector();
+
+                    for (int i = 0; i < sheet.getColumns(); i++) {
+                        Cell cell = sheet.getCell(i, j);
+
+                        d.add(cell.getContents());
+
                     }
-                      }
-   
-    
-    
-    public void toExcel(JTable table, File file){
-		try{
-			TableModel model = table.getModel();
-			FileWriter excel = new FileWriter(file);
+                    d.add("\\n");
+                    data.add(d);
+                }
+            }
+            catch (BiffException e) {
+                e.printStackTrace();
+            }
 
-			for(int i = 0; i < model.getColumnCount(); i++){
-				excel.write(model.getColumnName(i) + "\t");
-			}
-
-			excel.write("\n");
-
-			for(int i=0; i< model.getRowCount(); i++) {
-				for(int j=0; j < model.getColumnCount(); j++) {
-					excel.write(model.getValueAt(i,j).toString()+"\t");
-				}
-				excel.write("\n");
-			}
-
-			excel.close();
-		}catch(IOException e){ System.out.println(e); }
-	
-
-       
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     
      private void FillComboBox(){
@@ -954,8 +990,9 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
