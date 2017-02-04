@@ -266,10 +266,6 @@ public void executeSQlQuery(String query, String message)
             }
         });
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("Id");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Full Name");
-        }
 
         jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -709,7 +705,7 @@ if(dialogResult3 == 0) {
             try {
                 workbook = Workbook.getWorkbook(file);
             }  catch(IOException ex){
-                Logger.getLogger(xxx.class.getName()).log(Level.SEVERE,null,ex);
+                Logger.getLogger(AddSupervisor.class.getName()).log(Level.SEVERE,null,ex);
             }
             Sheet sheet = workbook.getSheet(0);
             
@@ -731,11 +727,11 @@ if(dialogResult3 == 0) {
         }
         d.add("\\n");
         data.add(d);
-    }
-    }
-catch (BiffException e) {
-e.printStackTrace();
-}
+                }
+                 }
+                    catch (BiffException e) {
+                    e.printStackTrace();
+                    }
     
         
     }//GEN-LAST:event_jButton4ActionPerformed
