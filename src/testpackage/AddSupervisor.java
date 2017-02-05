@@ -680,17 +680,17 @@ if(dialogResult3 == 0) {
             System.out.println("Not Replacing! Adding to the existing data");
             
             
-       jFileChooser1.showOpenDialog(null);
-        File file = jFileChooser1.getSelectedFile();
-        if(!file.getName().endsWith("xls")){
-         JOptionPane.showMessageDialog(null,"Please select only Excel file.",
-            "Error",JOptionPane.ERROR_MESSAGE);
+                    jFileChooser1.showOpenDialog(null);
+                     File file = jFileChooser1.getSelectedFile();
+                        if(!file.getName().endsWith("xls")){
+                        JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+                           "Error",JOptionPane.ERROR_MESSAGE);
     
 
                  }
                 else
                 {
-              fillData(file);
+              fillData2(file);
               model = new DefaultTableModel(data,headers);
               tableWidth = model.getColumnCount() *150;
               tableHeight = model.getRowCount() *25;
@@ -743,6 +743,49 @@ if(dialogResult3 == 0) {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    
+    
+    
+    void fillData2(File file)
+    {
+        Workbook workbook = null;
+        try {
+            try {
+                workbook = Workbook.getWorkbook(file);
+            }  catch(IOException ex){
+                Logger.getLogger(AddSupervisor.class.getName()).log(Level.SEVERE,null,ex);
+            }
+            Sheet sheet = workbook.getSheet(0);
+            
+            headers.clear();
+            for ( int i=0; i<sheet.getColumns(); i++){
+                Cell cell1 = sheet.getCell(i,0);
+                headers.add(cell1.getContents());
+            }
+           // data.clear();
+             for (int j = 1; j < sheet.getRows(); j++) { 
+                Vector d = new Vector();
+                
+                
+               
+            
+            for (int i = 0; i < sheet.getColumns(); i++) { 
+                Cell cell = sheet.getCell(i, j);
+            
+            d.add(cell.getContents());
+
+
+        }
+        d.add("\n");
+        data.add(d);
+                }
+                 }
+                    catch (BiffException e) {
+                    e.printStackTrace();
+                    }
+    
+        
+    }                                
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
                      
        // Get The Index Of The Slected Row 
