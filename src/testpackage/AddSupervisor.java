@@ -648,10 +648,10 @@ if(dialogResult2 == 0) {
   System.out.println("Yes option");
   
   
-  int dialogButton3 = JOptionPane.YES_NO_OPTION;
-int dialogResult3 = JOptionPane.showConfirmDialog(this, "Would you like to replace the current data", "Importing .xls file", dialogButton3);
-if(dialogResult3 == 0) {
-  System.out.println("Yes option");
+    int dialogButton3 = JOptionPane.YES_NO_OPTION;
+        int dialogResult3 = JOptionPane.showConfirmDialog(this, "Would you like to replace the current data", "Importing .xls file", dialogButton3);
+        if(dialogResult3 == 0) {
+         System.out.println("Yes option");
 
     
        jFileChooser1.showOpenDialog(null);
@@ -683,22 +683,22 @@ if(dialogResult3 == 0) {
                            "Error",JOptionPane.ERROR_MESSAGE);
     
 
-                 }
-                else
-                {
-              fillData2(file);
-              model = new DefaultTableModel(data,headers);
-              tableWidth = model.getColumnCount() *150;
-              tableHeight = model.getRowCount() *25;
-             jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
-                }
-            jTable2.setModel(model);
+                                         }
+                            else
+                                {
+                                 fillData(file);
+                                model = new DefaultTableModel(data,headers);
+                                 tableWidth = model.getColumnCount() *150;
+                                 tableHeight = model.getRowCount() *25;
+                                  jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                                            }
+                                      jTable2.setModel(model);
             
             
          
-              } 
-        }
-    }
+                                                 } 
+                                                        }
+                                                         }
 
     
     void fillData(File file)
@@ -728,7 +728,7 @@ if(dialogResult3 == 0) {
 
 
         }
-        d.add("\n");
+       d.add("\n");
         data.add(d);
                 }
                  }
@@ -741,47 +741,7 @@ if(dialogResult3 == 0) {
 
     
     
-    
-    void fillData2(File file)
-    {
-        Workbook workbook = null;
-        try {
-            try {
-                workbook = Workbook.getWorkbook(file);
-            }  catch(IOException ex){
-                Logger.getLogger(AddSupervisor.class.getName()).log(Level.SEVERE,null,ex);
-            }
-            Sheet sheet = workbook.getSheet(0);
-            
-            headers.clear();
-            for ( int i=0; i<sheet.getColumns(); i++){
-                Cell cell1 = sheet.getCell(i,0);
-                headers.add(cell1.getContents());
-            }
-           // data.clear();
-             for (int j = 1; j < sheet.getRows(); j++) { 
-                Vector d = new Vector();
-                
-                
-               
-            
-            for (int i = 0; i < sheet.getColumns(); i++) { 
-                Cell cell = sheet.getCell(i, j);
-            
-            d.add(cell.getContents());
-
-
-        }
-        d.add("\n");
-        data.add(d);
-                }
-                 }
-                    catch (BiffException e) {
-                    e.printStackTrace();
-                    }
-    
-        
-    }                                
+                                    
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
                      
        // Get The Index Of The Slected Row 
