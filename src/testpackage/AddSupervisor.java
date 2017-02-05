@@ -728,7 +728,7 @@ if(dialogResult3 == 0) {
 
 
         }
-        d.add("\\n");
+        d.add("\n");
         data.add(d);
                 }
                  }
