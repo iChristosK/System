@@ -229,11 +229,11 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
      */
     public AddContracts() {
         initComponents();
-        
+        Show_Contract_In_JTable();
         FillComboBox();
         FillComboBox1();
         FillComboBox2();
-        Show_Contract_In_JTable();
+        //Show_Contract_In_JTable();
     }
     
 
@@ -656,7 +656,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
             
-      String query = "INSERT INTO `Contract`(`ID_contract`,`fk_ID_researcher`,`fk_ID_project`,`Position`,`Details`,`Date_From`,`Date_To`,`Salary`,`Monthly_Hours`,`Hourly_Rate`) VALUES ('"+jTextField1.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+(jComboBox2.getSelectedIndex()+1)+"','"+jComboBox3.getSelectedItem().toString()+"','"+jTextField2.getText()+"','"+jTextField4.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"')";
+      String query = "INSERT INTO `Contract`(`ID_contract`,`fk_ID_researcher`,`fk_ID_project`,`Position`,`Details`,`Date_From`,`Date_To`,`Salary`,`Monthly_Hours`,`Hourly_Rate`) VALUES ('"+jTextField1.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+(jComboBox2.getSelectedIndex()+1)+"','"+jComboBox3.getSelectedItem().toString()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"')";
 
        executeSQlQuery(query, "Inserted");
 
@@ -671,6 +671,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         TableModel model = jTable2.getModel();
         
          // Display Slected Row In JTexteFields
+        
         jTextField1.setText(model.getValueAt(i,0).toString());
         jComboBox1.setSelectedItem(model.getValueAt(i,1).toString());
         jComboBox2.setSelectedItem(model.getValueAt(i,2).toString());
@@ -681,7 +682,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         jTextField5.setText(model.getValueAt(i,7).toString());
         jTextField6.setText(model.getValueAt(i,8).toString());
         jTextField7.setText(model.getValueAt(i,9).toString());
-        
+ 
         
     }//GEN-LAST:event_jTable2MouseClicked
 
