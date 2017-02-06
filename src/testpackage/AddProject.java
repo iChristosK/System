@@ -621,7 +621,7 @@ public void executeSQlQuery(String query, String message)
                 try {
                     workbook = Workbook.getWorkbook(file);
                 }  catch(IOException ex){
-                    Logger.getLogger(xxx.class.getName()).log(Level.SEVERE,null,ex);
+                    Logger.getLogger(SearchNow.class.getName()).log(Level.SEVERE,null,ex);
                 }
                 Sheet sheet = workbook.getSheet(0);
 

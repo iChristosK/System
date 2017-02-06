@@ -210,7 +210,7 @@ public class ImportData extends javax.swing.JFrame {
         
          dispose();//To close the current window
 
-            xxx closeCurrentWindow = new xxx();
+            SearchNow closeCurrentWindow = new SearchNow();
              closeCurrentWindow.setVisible(true);//Open the new window
     }//GEN-LAST:event_jButton2ActionPerformed
 
