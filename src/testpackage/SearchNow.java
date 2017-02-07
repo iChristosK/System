@@ -371,6 +371,7 @@ public ArrayList<Researcher> getResList()
                 "ID", "Full Name", "Supervisor", "Address", "Telephone", "Email"
             }
         ));
+        jTable2.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
