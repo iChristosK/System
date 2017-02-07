@@ -121,6 +121,7 @@ user = new User(rs.getInt("ID"),rs.getString("FullName"));
    {
        ArrayList<User> list = getUsersList();
        DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+       jTable2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
        Object[] row = new Object[2];
        for(int i = 0; i < list.size(); i++)
        {
@@ -540,11 +541,18 @@ public void executeSQlQuery(String query, String message)
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-               
-        String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
-        
-        executeSQlQuery(query, "Inserted");
-   
+          //DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+          // jTable2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+          
+          int[] selectedRow = jTable2.getSelectedRows();
+          for(int j=0; j<selectedRow.length; j++){
+      
+                  
+                     String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+1+"','"+jTextField2.getText()+"')";
+                                         
+                     executeSQlQuery(query, "Inserted");
+                         }
+                
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -617,88 +625,91 @@ public void executeSQlQuery(String query, String message)
                  if(dialogResult == JOptionPane.YES_OPTION){
                      
                      
-         JFileChooser jf = new JFileChooser();
-        jf.setDialogTitle("Please select the .XLS (Excel File) where you want to EXPORT the data:");
-       int result =  jf.showOpenDialog(null);
-       if(result == JFileChooser.APPROVE_OPTION){
-       String filename = jf.getSelectedFile().getName();
-        String path = jf.getSelectedFile().getParentFile().getPath();
+                 JFileChooser jf = new JFileChooser();
+                 jf.setDialogTitle("Please select the .XLS (Excel File) where you want to EXPORT the data:");
+                 int result =  jf.showOpenDialog(null);
+                 if(result == JFileChooser.APPROVE_OPTION){
+                     String filename = jf.getSelectedFile().getName();
+                    String path = jf.getSelectedFile().getParentFile().getPath();
 
-        int len = filename.length();
-        String ext = "";
-        String file = "";
+                    int len = filename.length();
+                    String ext = "";
+                    String file = "";
 
-        if(len > 4){
-            ext = filename.substring(len-4, len);
-        }
+                      if(len > 4){
+                         ext = filename.substring(len-4, len);
+                             }
 
-        if(ext.equals(".xls")){
-            file = path + "/" + filename; 
-        }else{
-            file = path + "/" + filename + ".xls"; 
-        }
-        toExcel(jTable2, new File(file));
-            }
+                            if(ext.equals(".xls")){
+                             file = path + "/" + filename; 
+                              }else{
+                              file = path + "/" + filename + ".xls"; 
+                               }
+                             toExcel(jTable2, new File(file));
+                                }
                 
-                  }
+                                      }
        
-                 int dialogButton2 = JOptionPane.YES_NO_OPTION;
-int dialogResult2 = JOptionPane.showConfirmDialog(this, "Would you like to import", "Importing .xls file", dialogButton2);
-if(dialogResult2 == 0) {
-  System.out.println("Yes option");
+                        int dialogButton2 = JOptionPane.YES_NO_OPTION;
+                        int dialogResult2 = JOptionPane.showConfirmDialog(this, "Would you like to import", "Importing .xls file", dialogButton2);
+                    if(dialogResult2 == 0) {
+                  System.out.println("Yes option");
   
   
-    int dialogButton3 = JOptionPane.YES_NO_OPTION;
-        int dialogResult3 = JOptionPane.showConfirmDialog(this, "Would you like to replace the current data", "Importing .xls file", dialogButton3);
-        if(dialogResult3 == 0) {
-         System.out.println("Yes option");
+                  int dialogButton3 = JOptionPane.YES_NO_OPTION;
+                  int dialogResult3 = JOptionPane.showConfirmDialog(this, "Would you like to replace the current data", "Importing .xls file", dialogButton3);
+                    if(dialogResult3 == 0) {
+                     System.out.println("Yes option");
 
     
-       jFileChooser1.showOpenDialog(null);
-        File file = jFileChooser1.getSelectedFile();
-        if(!file.getName().endsWith("xls")){
-         JOptionPane.showMessageDialog(null,"Please select only Excel file.",
-            "Error",JOptionPane.ERROR_MESSAGE);
+                        jFileChooser1.showOpenDialog(null);
+                          File file = jFileChooser1.getSelectedFile();
+                            if(!file.getName().endsWith("xls")){
+                              JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+                               "Error",JOptionPane.ERROR_MESSAGE);
     
 
-                 }
-                else
-                {
-              fillData(file);
-              model = new DefaultTableModel(data,headers);
-              tableWidth = model.getColumnCount() *150;
-              tableHeight = model.getRowCount() *25;
-             jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
-                }
-            jTable2.setModel(model);
-          } else 
-            {
-            System.out.println("Not Replacing! Adding to the existing data");
+                                      }
+                                else
+                                 {
+                                fillData(file);
+                                model = new DefaultTableModel(data,headers);
+                                tableWidth = model.getColumnCount() *150;
+                                 tableHeight = model.getRowCount() *25;
+                                 jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                                   }
+                                     jTable2.setModel(model);
+                                        } else 
+                                           {
+                                          System.out.println("Not Replacing! Adding to the existing data");
+                                            //Here the code to add to the existing data
+                                             //Actually you need to append or concatenate to the existing data
             
-            
-                    jFileChooser1.showOpenDialog(null);
-                     File file = jFileChooser1.getSelectedFile();
-                        if(!file.getName().endsWith("xls")){
-                        JOptionPane.showMessageDialog(null,"Please select only Excel file.",
-                           "Error",JOptionPane.ERROR_MESSAGE);
+                                         jFileChooser1.showOpenDialog(null);
+                                         File file = jFileChooser1.getSelectedFile();
+                                        if(!file.getName().endsWith("xls")){
+                                        JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+                                         "Error",JOptionPane.ERROR_MESSAGE);
     
 
                                          }
-                            else
-                                {
-                                 fillData(file);
-                                model = new DefaultTableModel(data,headers);
-                                 tableWidth = model.getColumnCount() *150;
-                                 tableHeight = model.getRowCount() *25;
-                                  jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
-                                            }
-                                      jTable2.setModel(model);
+                                      else
+                                             {
+                                             //fillData(file);
+                                                 fillData(file);
+                                             //The edited code where the data are going to be appended
+                                                model = new DefaultTableModel(data,headers);
+                                                tableWidth = model.getColumnCount() *150;
+                                                  tableHeight = model.getRowCount() *25;
+                                                    jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                                                      }
+                                                        jTable2.setModel(model);
             
             
          
-                                                 } 
-                                                        }
-                                                         }
+                                                         } 
+                                                     }
+                                                }
 
     
     void fillData(File file)
@@ -739,6 +750,44 @@ if(dialogResult2 == 0) {
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    
+    
+    void AppendData(File file)
+    {
+        Workbook workbook = null;
+        try {
+            try {
+                workbook = Workbook.getWorkbook(file);
+            }  catch(IOException ex){
+                Logger.getLogger(AddSupervisor.class.getName()).log(Level.SEVERE,null,ex);
+            }
+            Sheet sheet = workbook.getSheet(0);
+            
+           headers.clear();
+            for ( int i=0; i<sheet.getColumns(); i++){
+                Cell cell1 = sheet.getCell(i,0);
+                headers.add(cell1.getContents());
+            }
+          // data.add();
+             for (int j = 1; j < sheet.getRows(); j++) { 
+                Vector d = new Vector();
+            
+            for (int i = 0; i < sheet.getColumns(); i++) { 
+                Cell cell = sheet.getCell(i, j);
+            
+            d.add(cell.getContents());
+
+
+        }
+       d.add("\n");
+        data.add(d);
+                }
+                 }
+                    catch (BiffException e) {
+                    e.printStackTrace();
+                    }
+    
+    }
     
     
                                     
