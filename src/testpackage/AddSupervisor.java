@@ -544,15 +544,25 @@ public void executeSQlQuery(String query, String message)
           //DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
           // jTable2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
           
+          
+          // HOW TO ADD SELECTED VALUES OF JTABLE TO DATABASE CLICKING A BUTTON
+          
           int[] selectedRow = jTable2.getSelectedRows();
           for(int j=0; j<selectedRow.length; j++){
       
                   
-                     String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+1+"','"+jTextField2.getText()+"')";
+                     String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
                                          
                      executeSQlQuery(query, "Inserted");
                          }
-                
+          
+          
+          
+          /*
+             int[] selection = table.getSelectedRows();
+   for (int i = 0; i < selection.length; i++) {
+     selection[i] = table.convertRowIndexToModel(selection[i]);
+   }*/          
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
