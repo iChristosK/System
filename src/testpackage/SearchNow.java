@@ -45,18 +45,21 @@ public class SearchNow extends javax.swing.JFrame {
     static int tableWidth = 0; // set the tableWidth 
     static int tableHeight = 0;
     
-    
-    
-    
-public class Researcher {
-    
-        private int id;
-        private String firstName;
-        private String fk; 
-        private String addr;
-        private int tel; 
-        private String email;
-     
+    //new code added from oracle
+    public SearchNow() {
+       // super(new GridLayout(1,0));
+
+        JTable table = new JTable(new MyTableModel());
+        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        table.setFillsViewportHeight(true);
+
+        //Create the scroll pane and add the table to it.
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        //Add the scroll pane to this panel.
+        add(scrollPane);
+    }
+
     public Researcher(int ID, String FirstName,String fk_Supervisor,String Address,int Telephone,String Email)
     {
         this.id = ID;
@@ -116,6 +119,22 @@ public class Researcher {
        }
    }
     
+    
+    
+     public TableDemo() {
+        super(new GridLayout(1,0));
+
+        JTable table = new JTable(new MyTableModel());
+        table.setPreferredScrollableViewportSize(new Dimension(500, 70));
+        table.setFillsViewportHeight(true);
+
+        //Create the scroll pane and add the table to it.
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        //Add the scroll pane to this panel.
+        add(scrollPane);
+    }
+
     
 public ArrayList<Researcher> getResList()
    {
