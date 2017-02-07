@@ -20,15 +20,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.DefaultEditorKit;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -539,14 +543,64 @@ public void executeSQlQuery(String query, String message)
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    
+    
+       //this is a function where the 
+     private static void outputResultSet(ResultSet rs) throws Exception {
+    ResultSetMetaData rsMetaData = rs.getMetaData();
+    int numberOfColumns = rsMetaData.getColumnCount();
+    for (int i = 1; i < numberOfColumns + 1; i++) {
+      String columnName = rsMetaData.getColumnName(i);
+      System.out.print(columnName + "   ");
+
+    }
+    System.out.println();
+    System.out.println("----------------------");
+
+    while (rs.next()) {
+      for (int i = 1; i < numberOfColumns + 1; i++) {
+        System.out.print(rs.getString(i) + "   ");
+      }
+      System.out.println();
+    }
+
+  }
+     
+     
+     public static void checkUpdateCounts(int[] updateCounts) {
+    for (int i=0; i<updateCounts.length; i++) {
+        if (updateCounts[i] >= 0) {
+            System.out.println("OK; updateCount="+updateCounts[i]);
+        }
+        else if (updateCounts[i] == Statement.SUCCESS_NO_INFO) {
+            System.out.println("OK; updateCount=Statement.SUCCESS_NO_INFO");
+        }
+        else if (updateCounts[i] == Statement.EXECUTE_FAILED) {
+            System.out.println("Failure; updateCount=Statement.EXECUTE_FAILED");
+        }
+    }
+}  
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+        
+        
+        String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
+                                         
+        executeSQlQuery(query, "Inserted");
+        
+        
+        //FOUND A CODE WHERE YOU ARE ABLE TO ADD MANY ROWS IN DATABASE FASTER
+        
+        
+        
           //DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
           // jTable2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
           
           
           // HOW TO ADD SELECTED VALUES OF JTABLE TO DATABASE CLICKING A BUTTON
           
+          /* WORKING
           int[] selectedRow = jTable2.getSelectedRows();
           for(int j=0; j<selectedRow.length; j++){
       
@@ -555,16 +609,62 @@ public void executeSQlQuery(String query, String message)
                                          
                      executeSQlQuery(query, "Inserted");
                          }
-          
-          
-          
+
           /*
              int[] selection = table.getSelectedRows();
    for (int i = 0; i < selection.length; i++) {
      selection[i] = table.convertRowIndexToModel(selection[i]);
-   }*/          
+   }*/        
+          
+          // EXAMPLE ON HOW TO INSERT DATA WITH BATCH, CURRENTLY NOT WORKING
+           
+          
+          /*
+                     Connection con = getConnection();
+        try {
+            con.setAutoCommit(false);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddSupervisor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                     Statement st = con.createStatement();
+                     outputResultSet(st);
+        
+    
+                         //st.executeUpdate("create table survey (id int, name VARCHAR(30) );");
+    
+                        String INSERT_RECORD = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
+    
+                        PreparedStatement pstmt = con.prepareStatement(INSERT_RECORD);
+                       // pstmt.setString(1, "1");
+                        //pstmt.setString(2, "name1");
+                        pstmt.addBatch();
+    
+                        //pstmt.setString(1, "2");
+                        pstmt.setString(2, "name2");
+                        pstmt.addBatch();
+    
+                        // execute the batch
+                            int[] updateCounts = pstmt.executeBatch();
+
+                        checkUpdateCounts(updateCounts);
+
+                        // since there were no errors, commit
+                        con.commit();
+    
+                         ResultSet rs = st.executeQuery("SELECT * FROM supervisors");
+                          outputResultSet(rs);
+
+    
+                             rs.close();
+                            st.close();
+                             con.close();
+          */
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
+
+     
+     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
