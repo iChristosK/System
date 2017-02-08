@@ -27,6 +27,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.DefaultEditorKit;
+import javax.swing.JOptionPane;
 
 
 
@@ -760,13 +761,21 @@ public ArrayList<Researcher> getResList()
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        /*
+        if (jTextField1.getText().equals("") || jTextField2.getText().equals("")) {
+            //  jButton1.setEnabled(true);
+           JOptionPane.showMessageDialog(null, "Add required fields", "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
+          
+                } 
         
+        else {*/
+            
         
-
         String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`)"
 
         +"VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"')";
         executeSQlQuery(query, "Inserted");
+        
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
