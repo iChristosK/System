@@ -5,6 +5,7 @@
  */
 package testpackage;
 
+import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
@@ -235,6 +236,11 @@ public void executeSQlQuery(String query, String message)
                 jTextField1ActionPerformed(evt);
             }
         });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("ID for Supervisor:");
 
@@ -280,6 +286,11 @@ public void executeSQlQuery(String query, String message)
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
+            }
+        });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
             }
         });
 
@@ -582,12 +593,19 @@ public void executeSQlQuery(String query, String message)
 }  
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+         
         
+        if (jTextField1.getText().equals("") || jTextField2.getText().equals("")) {
+            //  jButton1.setEnabled(true);
+           JOptionPane.showMessageDialog(null, "Add required fields", "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
+          
+                } 
         
-        
-        String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
-                                         
-        executeSQlQuery(query, "Inserted");
+        else {
+            String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
+            executeSQlQuery(query, "Inserted");
+        }
+    
         
         
         //FOUND A CODE WHERE YOU ARE ABLE TO ADD MANY ROWS IN DATABASE FASTER
@@ -1009,6 +1027,27 @@ public JMenuBar createMenuBar () {
         
          TransferHandler.getPasteAction();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        /*
+        if (!jTextField1.getText().equals("")) {
+            jButton2.setEnabled(true);
+} else {
+            jButton2.setEnabled(false);
+}*/
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        // TODO add your handling code here:
+        /*
+        
+        if (!jTextField2.getText().equals("")) {
+            jButton2.setEnabled(true);
+} else {
+            jButton2.setEnabled(false);
+}*/
+    }//GEN-LAST:event_jTextField2KeyTyped
 
     /**
      * @param args the command line arguments
