@@ -916,7 +916,7 @@ public void executeSQlQuery(String query, String message)
     
     }*/
     
-    
+    //alternative way of exporting table
     public void exportTable(JTable table, File file) throws IOException {
         TableModel model = table.getModel();
         FileWriter out = new FileWriter(file);
@@ -937,7 +937,7 @@ public void executeSQlQuery(String query, String message)
             }
             out.write("\n");
         }
-    }
+        }
     
     void AppendData(File file ){
         try {
