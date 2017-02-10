@@ -822,8 +822,8 @@ public void executeSQlQuery(String query, String message)
                                          }
                                       else
                                              {
-                                             //fillData(file);
-                                                 fillData(file);
+                                             AppendData(file);
+                                                // fillData(file);
                                              //The edited code where the data are going to be appended
                                                 model = new DefaultTableModel(data,headers);
                                                 tableWidth = model.getColumnCount() *150;
@@ -890,12 +890,12 @@ public void executeSQlQuery(String query, String message)
             }
             Sheet sheet = workbook.getSheet(0);
             
-           headers.clear();
+          // headers.clear();
             for ( int i=0; i<sheet.getColumns(); i++){
                 Cell cell1 = sheet.getCell(i,0);
                 headers.add(cell1.getContents());
             }
-          // data.add();
+          // data.clear();
              for (int j = 1; j < sheet.getRows(); j++) { 
                 Vector d = new Vector();
             
@@ -915,6 +915,7 @@ public void executeSQlQuery(String query, String message)
                     }
     
     }
+    
     
     
                                     
