@@ -606,12 +606,12 @@ public void executeSQlQuery(String query, String message)
             executeSQlQuery(query, "Inserted");
         }
     
-        /*
+        
         try {
         
-        rows = jTable2.getRowCount();
-        Class.forName("Class.forName("com.mysql.jdbc.Driver").newInstance();
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/iotams",user,pass);
+        int rows = jTable2.getRowCount();
+        .forName("Class.forName("com.mysql.jdbc.Driver").newInstance();
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/kios",root,9667);
         con.setAutoCommit(false);
         
        // String query =
@@ -621,25 +621,37 @@ public void executeSQlQuery(String query, String message)
         
         for(int row = 0; row<rows; row++)
 {
-    String coitemname = (String)tblCO2.getValueAt(row, 0);
-    String cocateg = (String)tblCO2.getValueAt(row, 1);
-    String codesc = (String)tblCO2.getValueAt(row, 2);
-    String coloc = (String)tblCO2.getValueAt(row, 3);
-    String coitemtagno = (String)tblCO2.getValueAt(row, 4);
+    String coitemname = (String)jTable2.getValueAt(row, 0);
+    String cocateg = (String)jTable2.getValueAt(row, 1);
+  
     pst.setString(1, coitemname);
     pst.setString(2, cocateg);
-    pst.setString(3, codesc);
-    pst.setString(4, coloc);
-    pst.setString(5, coitemtagno);
+   
 
     pst.addBatch();
-        
-        
-        
-        
-        
-        
+        }
+pst.executeBatch();
+conn.commit();
+}
+catch(Exception e){
+    JOptionPane.showMessageDialog(this,e.getMessage());
+}
         */
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         /*
         try{
@@ -653,6 +665,9 @@ String queryco = "Insert into tblcheckout(CheckoutID,ItemTagNo,ItemName,Category
 pst = conn.prepareStatement(queryco);
 for(int row = 0; row<rows; row++)
 {
+        
+        
+          jTextField1.setText(model.getValueAt(i,0).toString());
     String coitemname = (String)tblCO2.getValueAt(row, 0);
     String cocateg = (String)tblCO2.getValueAt(row, 1);
     String codesc = (String)tblCO2.getValueAt(row, 2);
@@ -667,7 +682,7 @@ for(int row = 0; row<rows; row++)
     pst.addBatch();
 }
 pst.executeBatch();
-conn.commit();
+con.commit();
 }
 catch(Exception e){
     JOptionPane.showMessageDialog(this,e.getMessage());
