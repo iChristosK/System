@@ -606,6 +606,40 @@ public void executeSQlQuery(String query, String message)
             executeSQlQuery(query, "Inserted");
         }
     
+        /*
+        try {
+        
+        rows = jTable2.getRowCount();
+        Class.forName("Class.forName("com.mysql.jdbc.Driver").newInstance();
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/iotams",user,pass);
+        con.setAutoCommit(false);
+        
+       // String query =
+       //  String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
+        
+        // String query = "INSERT INTO `supervisors`(`ID`,`FullName`) VALUES (?,?)";
+        
+        for(int row = 0; row<rows; row++)
+{
+    String coitemname = (String)tblCO2.getValueAt(row, 0);
+    String cocateg = (String)tblCO2.getValueAt(row, 1);
+    String codesc = (String)tblCO2.getValueAt(row, 2);
+    String coloc = (String)tblCO2.getValueAt(row, 3);
+    String coitemtagno = (String)tblCO2.getValueAt(row, 4);
+    pst.setString(1, coitemname);
+    pst.setString(2, cocateg);
+    pst.setString(3, codesc);
+    pst.setString(4, coloc);
+    pst.setString(5, coitemtagno);
+
+    pst.addBatch();
+        
+        
+        
+        
+        
+        
+        */
         
         /*
         try{
