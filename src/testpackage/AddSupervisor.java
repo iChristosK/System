@@ -878,7 +878,7 @@ public void executeSQlQuery(String query, String message)
     }//GEN-LAST:event_jButton4ActionPerformed
 
     
-    
+    /*
     void AppendData(File file)
     {
         Workbook workbook = null;
@@ -914,6 +914,54 @@ public void executeSQlQuery(String query, String message)
                     e.printStackTrace();
                     }
     
+    }*/
+    
+    
+    public void exportTable(JTable table, File file) throws IOException {
+        TableModel model = table.getModel();
+        FileWriter out = new FileWriter(file);
+        String groupExport = "";
+        for (int i = 0; i < (model.getColumnCount()); i++) {//* disable export from TableHeaders
+            groupExport = String.valueOf(model.getColumnName(i));
+            out.write(String.valueOf(groupExport) + "\t");
+        }
+        out.write("\n");
+        for (int i = 0; i < model.getRowCount(); i++) {
+            for (int j = 0; j < (model.getColumnCount()); j++) {
+                if (model.getValueAt(i, j) == null) {
+                    out.write("null" + "\t");
+                } else {
+                    groupExport = String.valueOf(model.getValueAt(i, j));
+                    out.write(String.valueOf(groupExport) + "\t");
+                }
+            }
+            out.write("\n");
+        }
+    }
+    
+    void AppendData(File file ){
+        try {
+jxl.Workbook workbook = jxl.Workbook.getWorkbook(file);
+jxl.Sheet sheet = workbook.getSheet(0);
+headers.clear();
+for (int i = 0; i < sheet.getColumns(); i++) {
+jxl.Cell cell1 = sheet.getCell(i, 0);
+headers.add(cell1.getContents());
+}
+data.clear();
+for (int j = 1; j < sheet.getRows(); j++) {
+Vector d = new Vector();
+for (int i = 0; i < sheet.getColumns(); i++) {
+jxl.Cell cell = sheet.getCell(i, j);
+d.add(cell.getContents());
+}
+d.add("\n");
+data.add(d);
+}
+}
+catch (Exception e) {
+e.printStackTrace();
+}
     }
     
     
