@@ -488,8 +488,9 @@ public void executeSQlQuery(String query, String message)
 
     public void removeSelectedFromTable(JTable from)
 {
-    /*
+    
     DefaultTableModel tm = (DefaultTableModel) from.getModel();
+    // jTable2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     
      int[] rows = from.getSelectedRows();
             if(rows.length == 0){
@@ -499,28 +500,69 @@ public void executeSQlQuery(String query, String message)
                         
                 for(int i = 0; i < rows.length; i++){
                     System.out.println("Value at " + rows[i] + ": " + from.getValueAt(rows[i], 0));
-
+                    System.out.println("NEWWW Value at " + rows[i] + ": " + from.convertRowIndexToModel(rows[i]));
+                
+  
                 }
 
-                for(int i = 0; i < rows.length; i++){
-                    System.out.println("Current Row ("+ i +"): " + rows[i]);
-                   // rows[i] = from.convertRowIndexToModel(rows[i]);
-                   // tm.removeRow(rows[i]);
+                
+                // while(rows.length>0) {
+                    for (int i =0; i <rows.length; i++){
+                        // for (int i =rows.length; i < 0 ; i--)
+                        /*  for(int i = 0; i < rows.length; i++){
+                {
+                  
+                    String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.convertRowIndexToModel(rows[i])+"')";
+                     executeSQlQuery(query, "Deleted");
+                     System.out.println("AAAAAAA DELETED  Value at " + rows[i] + ": " + from.convertRowIndexToModel(rows[i]));
+                     
+                     */
+                    // String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.convertRowIndexToModel(rows[i])+"')";
+                    
+                     
+                     do {
+                ((DefaultTableModel) jTable2.getModel()).removeRow(jTable2.getSelectedRows()[0]);
+                String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.getSelectedRows()[i]+"')";
+                     executeSQlQuery(query, "Deleted"); 
+                     
+                } while (jTable2.getSelectedRowCount() > 0);
+                    // tm.removeRow(from.convertRowIndexToModel(rows[i]));
+                     
+  
+                         
+                             
+                             }
+                        from.clearSelection();
+                    }
+            }
+
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                //for(int i = 1; i < rows.length; i++){
+                 //   System.out.println("Current Row ("+ i +"): " + rows[i]);
+                 //  rows[i] = from.convertRowIndexToModel(rows[i]);
+                  //tm.removeRow(rows[i]);
                     
                     // tm.removeRow(rows[i]);
                     
                     // String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.convertRowIndexToModel(rows[i])+"')";
                      //String query = "DELETE FROM `supervisors` WHERE ID = ('"+rows[i]+"') ";
-                     String query = "DELETE FROM `supervisors` WHERE ID = ('"+rows[i]+"')";
+                    // String query = "DELETE FROM `supervisors` WHERE ID = ('"+rows[i]+"')";
                     
-                   executeSQlQuery(query, "Deleted");
-                      }
-                }
+                  // executeSQlQuery(query, "Deleted");
+                  // tm.removeRow(rows[i]);
+                      
+                
+                
                      
-                            //DELETE FROM `supervisors` WHERE `supervisors`.`ID` = 15;
-                           // DELETE FROM `supervisors` WHERE `supervisors`.`ID` = 16;
-           
-    */
+                            
     
     
     /*
@@ -529,27 +571,31 @@ public void executeSQlQuery(String query, String message)
       
                   
                      
-                          String query = "DELETE FROM `supervisors`(`ID`) VALUES (?)";
-                          //"INSERT INTO `supervisors`(`ID`,`FullName`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"')";
+                          String query = "truncate supervisros";DELETE FROM `supervisors`(`ID`) VALUES (?)";
+                          
                                          
                      executeSQlQuery(query, "Deleted");
         }*/
     
     
     
+   
  
-
+/*
     int[] rows = from.getSelectedRows();
     TableModel tm= from.getModel();
 
     while(rows.length>0)
         {
-        ((DefaultTableModel)tm).removeRow(from.convertRowIndexToModel(rows[0]));
+       // ((DefaultTableModel)tm).removeRow(from.convertRowIndexToModel(rows[0]));
 
         rows = from.getSelectedRows();
+        String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.convertRowIndexToModel(rows[0])+"')";
+         executeSQlQuery(query, "Deleted");
          }
     from.clearSelection();
-        }
+*/
+        
 
     
  
@@ -803,8 +849,12 @@ public void executeSQlQuery(String query, String message)
                     if(dialogResult3 == 0) {
                      System.out.println("Yes option");
                      //new code 
-                     jTable2.removeAll();
-                      model.setRowCount(0);
+                     /*
+                     
+                       String query = "truncate supervisors";      
+                     executeSQlQuery(query, "All Data Deleted");
+                    // jTable2.removeAll();
+                     // model.setRowCount(0);*/
 
                         //correct code
                         jFileChooser1.showOpenDialog(null);
@@ -996,7 +1046,7 @@ e.printStackTrace();
      
            Class.forName("com.mysql.jdbc.Driver");
             java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3305/kios","root","9667");
-    String sql="select * from jtable";
+    String sql="select * from supervisors";
     java.sql.PreparedStatement pst=con.prepareStatement(sql);
   
     ResultSet rs = pst.executeQuery(sql);
@@ -1008,11 +1058,54 @@ pst.close();
         }
         catch(Exception e)
         {
-            JOptionPane.showMessageDialog(null, e);
+          //  JOptionPane.showMessageDialog(null, e);
         }
 }
     
-                                    
+                               
+       
+       public void DeleteAll() {
+    
+int rows = jTable2.getRowCount();
+
+System.out.println(""+rows);
+for(int row = 0; row<rows ; row++)
+{
+
+String id = (String) jTable2.getValueAt(row, 0);
+String name = (String) jTable2.getValueAt(row, 1);
+
+
+ try{
+  Class.forName("com.mysql.jdbc.Driver");
+    java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
+
+
+  String query = "delete from supervisors (ID,FullName) values(?,?)" ;
+
+
+ PreparedStatement stmt = con.prepareStatement(query);
+ stmt.setString(1, id); //Invoice No
+ stmt.setString(2, name); //Code
+
+
+
+ stmt.addBatch();
+stmt.executeBatch();
+ //con.commit();
+ }
+
+ catch(Exception ex)
+ {
+  JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
+    }    
+}
+
+set();
+         
+
+    
+}
     
     
 
@@ -1056,15 +1149,13 @@ stmt.executeBatch();
 
  catch(Exception ex)
  {
-  JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
+  //JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
     }    
 }
 
 set();
          
 
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 private void setMappings(JList list) { 
         ActionMap map = list.getActionMap();
