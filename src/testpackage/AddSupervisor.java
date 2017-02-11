@@ -493,6 +493,8 @@ public void executeSQlQuery(String query, String message)
     // jTable2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
     
      int[] rows = from.getSelectedRows();
+  System.out.println("seeldted rows :" + from.getSelectedRows());
+   System.out.println("ROW LENGTH :" + rows.length);
             if(rows.length == 0){
                 JOptionPane.showMessageDialog(null, "No records are selected");
             }else if(JOptionPane.showConfirmDialog(null, "Are you sure you want to permanently delete " +
@@ -500,14 +502,18 @@ public void executeSQlQuery(String query, String message)
                         
                 for(int i = 0; i < rows.length; i++){
                     System.out.println("Value at " + rows[i] + ": " + from.getValueAt(rows[i], 0));
-                    System.out.println("NEWWW Value at " + rows[i] + ": " + from.convertRowIndexToModel(rows[i]));
+                    System.out.println("Converted Value Value at " + rows[i] + ": " + from.convertRowIndexToModel(rows[i]));
                 
   
+                    String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.getValueAt(rows[i],0)+"')";
+                    executeSQlQuery(query, "Deleted"); 
                 }
+            }
+}
 
                 
                 // while(rows.length>0) {
-                    for (int i =0; i <rows.length; i++){
+                   // for (int i =0; i <rows.length; i++){
                         // for (int i =rows.length; i < 0 ; i--)
                         /*  for(int i = 0; i < rows.length; i++){
                 {
@@ -519,6 +525,7 @@ public void executeSQlQuery(String query, String message)
                      */
                     // String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.convertRowIndexToModel(rows[i])+"')";
                     
+                    /*
                      
                      do {
                 ((DefaultTableModel) jTable2.getModel()).removeRow(jTable2.getSelectedRows()[0]);
@@ -534,10 +541,21 @@ public void executeSQlQuery(String query, String message)
                              }
                         from.clearSelection();
                     }
-            }
+            }*/
 
                 
-                
+                 // int[] rows = from.getSelectedRows();
+        //DefaultTableModel tm = (DefaultTableModel) from.getModel();
+        /*
+        for (int i = rows.length-1; i >= 0; i--) {
+           // tm.removeRow(rows[i]);
+            System.out.println("KALAN Value at " + rows[i] + ": " + from.convertRowIndexToModel(rows[i]));
+            String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.convertRowIndexToModel(rows[i])+"')";
+                     executeSQlQuery(query, "Deleted");
+                    // tm.removeRow(rows[i]);
+            }
+          }
+        }
                 
                 
                 
@@ -561,30 +579,15 @@ public void executeSQlQuery(String query, String message)
                       
                 
                 
-                     
+                     */
                             
-    
-    
-    /*
-     int[] selectedRow = jTable2.getSelectedRows();
-          for(int j=0; j<selectedRow.length; j++)
-      
-                  
-                     
-                          String query = "truncate supervisros";DELETE FROM `supervisors`(`ID`) VALUES (?)";
-                          
-                                         
-                     executeSQlQuery(query, "Deleted");
-        }*/
     
     
     
    
- 
-/*
-    int[] rows = from.getSelectedRows();
-    TableModel tm= from.getModel();
 
+    
+                        /*
     while(rows.length>0)
         {
        // ((DefaultTableModel)tm).removeRow(from.convertRowIndexToModel(rows[0]));
@@ -594,8 +597,25 @@ public void executeSQlQuery(String query, String message)
          executeSQlQuery(query, "Deleted");
          }
     from.clearSelection();
-*/
+            }
+}*/
+    
+    
+    
+    
+   // int[] rows = from.getSelectedRows();
+      //  DefaultTableModel tm = (DefaultTableModel) from.getModel();
+       // for (int i = rows.length-1; i >= 0; i--) {
+       //     tm.removeRow(rows[i]);
+            
+            
+           // String query = "DELETE FROM `supervisors` WHERE ID = ('"+rows[i]+"')";
+            // executeSQlQuery(query, "Deleted");
+                //   }
+            //}
+
         
+   
 
     
  
