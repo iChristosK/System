@@ -34,6 +34,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -329,6 +330,7 @@ public void executeSQlQuery(String query, String message)
                 "ID", "Full Name"
             }
         ));
+        jTable2.setColumnSelectionAllowed(true);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTable2MousePressed(evt);
@@ -338,6 +340,7 @@ public void executeSQlQuery(String query, String message)
             }
         });
         jScrollPane2.setViewportView(jTable2);
+        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         jLabel3.setText("Full Name of Supervisor:");
 
@@ -965,6 +968,32 @@ e.printStackTrace();
     }
     
     
+                                 
+    
+       
+       public void set()
+{
+      try
+        {
+                 
+     
+           Class.forName("com.mysql.jdbc.Driver");
+            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3305/kios","root","9667");
+    String sql="select * from jtable";
+    java.sql.PreparedStatement pst=con.prepareStatement(sql);
+  
+    ResultSet rs = pst.executeQuery(sql);
+   jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+   
+
+con.close();
+pst.close();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+}
     
                                     
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -988,10 +1017,51 @@ e.printStackTrace();
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
-
+/*
        String query = "UPDATE `supervisors` SET `FullName`='"+jTextField2.getText()+"' WHERE `ID` = "+jTextField1.getText();
        executeSQlQuery(query, "Updated");
-             
+             */
+
+
+
+int rows = jTable2.getRowCount();
+
+System.out.println(""+rows);
+for(int row = 0; row<rows ; row++)
+{
+
+String id = (String) jTable2.getValueAt(row, 0);
+String name = (String) jTable2.getValueAt(row, 1);
+
+
+ try{
+  Class.forName("com.mysql.jdbc.Driver");
+    java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
+
+
+  String query = "insert into supervisors (ID,FullName) values(?,?)" ;
+
+
+ PreparedStatement stmt = con.prepareStatement(query);
+ stmt.setString(1, id); //Invoice No
+ stmt.setString(2, name); //Code
+
+
+
+ stmt.addBatch();
+stmt.executeBatch();
+ //con.commit();
+ }
+
+ catch(Exception ex)
+ {
+  JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
+    }    
+}
+
+set();
+         
+
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
