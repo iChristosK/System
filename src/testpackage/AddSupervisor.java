@@ -500,7 +500,7 @@ public void executeSQlQuery(String query, String message)
             }else if(JOptionPane.showConfirmDialog(null, "Are you sure you want to permanently delete " +
                         rows.length + " selected record(s)") == 0){
                         
-                for(int i = 0; i < rows.length; i++){
+                for(int i = 0; i <= rows.length; i++){
                     System.out.println("Value at " + rows[i] + ": " + from.getValueAt(rows[i], 0));
                     System.out.println("Converted Value Value at " + rows[i] + ": " + from.convertRowIndexToModel(rows[i]));
                 
