@@ -6,6 +6,7 @@
 package testpackage;
 
 import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Commons;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
@@ -24,8 +25,6 @@ import java.util.logging.Logger;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.text.DefaultEditorKit;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,6 +34,12 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import net.proteanit.sql.DbUtils;
+
+
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -50,9 +55,14 @@ public class AddSupervisor extends javax.swing.JFrame {
  
     static int tableWidth = 0; // set the tableWidth 
     static int tableHeight = 0;
+        private TableRowSorter<TableModel> sorter;
+        
+    
+   
  
  
 public class User {
+   
     
     private int id;
     private String firstName;
@@ -77,6 +87,19 @@ public class User {
     }
     
    
+}
+
+
+private void filter(String text)
+{
+    RowFilter<TableModel, Object> rf = null;
+    try {
+        rf = RowFilter.regexFilter(text, 0);
+    } catch (java.util.regex.PatternSyntaxException ee) {
+        return;
+    }
+    sorter.setRowFilter(rf);
+    jTable2.setRowSorter(sorter);
 }
     
     public Connection getConnection()
@@ -169,6 +192,7 @@ public void executeSQlQuery(String query, String message)
      * Creates new form AddSupervisor
      */
     public AddSupervisor() {
+        
         initComponents();
         Show_Users_In_JTable();
        // set();
@@ -203,6 +227,8 @@ public void executeSQlQuery(String query, String message)
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jButtonSearch = new javax.swing.JButton();
+        jTextFieldSearch = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -326,6 +352,31 @@ public void executeSQlQuery(String query, String message)
 
         jLabel3.setText("Full Name of Supervisor:");
 
+        jButtonSearch.setBackground(new java.awt.Color(255, 204, 153));
+        jButtonSearch.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButtonSearch.setText("Search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
+
+        jTextFieldSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldSearchMouseClicked(evt);
+            }
+        });
+        jTextFieldSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSearchActionPerformed(evt);
+            }
+        });
+        jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldSearchKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -356,11 +407,17 @@ public void executeSQlQuery(String query, String message)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(42, 42, 42)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -393,7 +450,11 @@ public void executeSQlQuery(String query, String message)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -651,10 +712,13 @@ public void executeSQlQuery(String query, String message)
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-       removeSelectedFromTable(jTable2);
+      // removeSelectedFromTable(jTable2);
+      
+      
+       
         
-              // String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
-        // executeSQlQuery(query, "Deleted");
+               String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
+        executeSQlQuery(query, "Deleted");
         
         
   //  }
@@ -950,12 +1014,31 @@ public void executeSQlQuery(String query, String message)
                     if(dialogResult3 == 0) {
                      System.out.println("Yes option");
                      //new code 
-                     /*
                      
-                       String query = "truncate supervisors";      
-                     executeSQlQuery(query, "All Data Deleted");
-                    // jTable2.removeAll();
-                     // model.setRowCount(0);*/
+   
+                     
+                  
+                     // String query0 =  "ALTER `supervisors` SET FOREIGN KEY(0) REFERENCES root";
+                     /*
+                              String query0 =  "ALTER `supervisors` SET FOREIGN_KEY_CHECKS = 0";
+                       
+                       executeSQlQuery(query0, "All KEYS");
+
+                          String query001 = " TRUNCATE `supervisors`";
+                       executeSQlQuery(query001, "All Data removed from supervisors");
+                       
+                       
+                       String query01 =  "ALTER TABLE `supervisors` SET FOREIGN_KEY_CHECKS (1)"; 
+                       executeSQlQuery(query01, "All KEYS");
+                       */
+                       
+                       /*
+                        String query01 = "`supervisors` SET FOREIGN_KEY_CHECKS = 1;";
+                       executeSQlQuery(query01, "All KEYS SET BACK");*/
+                     
+                      
+                    jTable2.removeAll();
+                     model.setRowCount(0);
 
                         //correct code
                         jFileChooser1.showOpenDialog(null);
@@ -1316,6 +1399,74 @@ public JMenuBar createMenuBar () {
 }*/
     }//GEN-LAST:event_jTextField2KeyTyped
 
+    
+    public void searchTableContents(String searchString) { /*   
+ // DefaultTableModel currtableModel = (DefaultTableModel) jTable2.getModel();
+    //To empty the table before search
+    model.setRowCount(0);
+    int rows[] = model.setRowCount(jTable2.getLength);
+    //To search for contents from original table content
+    for (Object rows : data )
+        Vector rowVector = (Vector) rows;
+        for (Object column : rowVector) {
+            if (column.toString().contains(searchString)) {
+                //content found so adding to table
+                model.addRow(rowVector);
+                break;
+            }
+        
+
+        } */
+}
+        
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        // TODO add your handling code here:
+        
+      
+        
+       // Commons.attachJTableFilter(jTable2, jTextFieldSearch);
+        
+        // jTable2.removeAll();  
+         // model.getRowCount();
+       for(int i = 0; i < jTable2.getRowCount(); i++){ //For each row
+        for(int j = 0; j < jTable2.getColumnCount(); j++){ //For each column in that row
+           // if(jTable2.getModel().getValueAt(i, j).equals("Elias Kyriakides")){//Search the model
+           if(jTable2.getModel().getValueAt(i, j).equals(jTextFieldSearch.getText())){  //Search the model
+
+                 JOptionPane.showMessageDialog(null, "Found "+ jTable2.getModel().getValueAt(i, j), "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE);
+                 //Vector rowVector = (Vector) i;
+                  
+                 // model.addRow(data);
+                 break;
+        }   //For loop inner
+         /*  else
+           {
+              JOptionPane.showMessageDialog(null, "Not Found ","InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE);
+              
+             break;
+           }*/
+        
+           
+        }   //For loop outer
+      
+        
+       }
+       
+        
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jTextFieldSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSearchMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchMouseClicked
+
+    private void jTextFieldSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchActionPerformed
+
+    private void jTextFieldSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -1359,6 +1510,7 @@ public JMenuBar createMenuBar () {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonSearch;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1375,6 +1527,7 @@ public JMenuBar createMenuBar () {
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextFieldSearch;
     private javax.persistence.EntityManager kiosPUEntityManager;
     private java.util.List<testpackage.Supervisors> supervisorsList;
     private javax.persistence.Query supervisorsQuery;
