@@ -627,11 +627,28 @@ public void executeSQlQuery(String query, String message)
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-       removeSelectedFromTable(jTable2);
+      // removeSelectedFromTable(jTable2);
         
               // String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
         // executeSQlQuery(query, "Deleted");
+        
+        
+        
+        
+        
        // deleterow();
+       
+       
+       //Working deletion
+         DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+                int row = jTable2.getSelectedRow();
+
+                while (row != -1)
+                {
+                    int modelRow = jTable2.convertRowIndexToModel( row );
+                    model.removeRow( modelRow );
+                    row = jTable2.getSelectedRow();
+                }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
@@ -1093,51 +1110,7 @@ pst.close();
 }
     
                                
-       
-       public void DeleteAll() {
-    
-int rows = jTable2.getRowCount();
-
-System.out.println(""+rows);
-for(int row = 0; row<rows ; row++)
-{
-
-String id = (String) jTable2.getValueAt(row, 0);
-String name = (String) jTable2.getValueAt(row, 1);
-
-
- try{
-  Class.forName("com.mysql.jdbc.Driver");
-    java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
-
-
-  String query = "delete from supervisors (ID,FullName) values(?,?)" ;
-
-
- PreparedStatement stmt = con.prepareStatement(query);
- stmt.setString(1, id); //Invoice No
- stmt.setString(2, name); //Code
-
-
-
- stmt.addBatch();
-stmt.executeBatch();
- //con.commit();
- }
-
- catch(Exception ex)
- {
-  JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
-    }    
-}
-
-set();
-         
-
-    
-}
-    
-    
+ 
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
@@ -1174,7 +1147,7 @@ String name = (String) jTable2.getValueAt(row, 1);
 
  stmt.addBatch();
 stmt.executeBatch();
- //con.commit();
+con.commit();
  }
 
  catch(Exception ex)
