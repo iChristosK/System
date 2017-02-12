@@ -715,9 +715,14 @@ public void executeSQlQuery(String query, String message)
 
           /*
              int[] selection = table.getSelectedRows();
-   for (int i = 0; i < selection.length; i++) {
-     selection[i] = table.convertRowIndexToModel(selection[i]);
-   }*/        
+             for (int i = 0; i < selection.length; i++) {
+             selection[i] = table.convertRowIndexToModel(selection[i]);
+           }*/        
+          
+          
+          
+          
+          
           
           // EXAMPLE ON HOW TO INSERT DATA WITH BATCH, CURRENTLY NOT WORKING
            
