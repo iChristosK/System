@@ -505,15 +505,43 @@ public void executeSQlQuery(String query, String message)
             }else if(JOptionPane.showConfirmDialog(null, "Are you sure you want to permanently delete " +
                         rows.length + " selected record(s)") == 0){
                         
-                for(int i = 0; i <= rows.length; i++){
-                    System.out.println("Value at " + rows[i] + ": " + from.getValueAt(rows[i], 0));
-                    System.out.println("Converted Value Value at " + rows[i] + ": " + from.convertRowIndexToModel(rows[i]));
+               
+                    for(int i = 0; i < rows.length; i++){
+                    //System.out.println("Value at " + rows[i] + ": " + from.getValueAt(rows[i], 0));
+                    //System.out.println("Converted Value Value at " + rows[i] + ": " + from.convertRowIndexToModel(rows[i]));
                 
-  
-                    String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.getValueAt(rows[i],0)+"')";
-                    executeSQlQuery(query, "Deleted"); 
+                          
+               
+                    
+                  
+                     String query2 = "UPDATE `researchers` SET fk_Supervisor = 1 WHERE fk_Supervisor = ('"+from.getValueAt(rows[i], 0)+"')";
+                    
+                   executeSQlQuery(query2, "Updated from Researchers Table");
+                   
+                     String query1 = "UPDATE `project` SET Project_super = 1 WHERE Project_super = ('"+from.getValueAt(rows[i], 0)+"')";
+                     
+                     
+                   executeSQlQuery(query1, "Updated from Project Table");
+                   
+                   String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.getValueAt(rows[i], 0)+"')";
+                    executeSQlQuery(query, "Deleted Supervisors Table"); 
+                    
+    
+                    
                 }
+                    String query2 = "UPDATE `researchers` SET fk_Supervisor = 1 WHERE fk_Supervisor = ('"+from.getValueAt(rows[0], 0)+"')";
+                    
+                   executeSQlQuery(query2, "Updated from Researchers Table");
+                   
+                     String query1 = "UPDATE `project` SET Project_super = 1 WHERE Project_super = ('"+from.getValueAt(rows[0], 0)+"')";
+                     
+                     
+                   executeSQlQuery(query1, "Updated from Project Table");
+                   
+                   String query = "DELETE FROM `supervisors` WHERE ID = ('"+from.getValueAt(rows[0], 0)+"')";
+                    executeSQlQuery(query, "Deleted Supervisors Table"); 
             }
+           
 }
 
                 
@@ -627,30 +655,45 @@ public void executeSQlQuery(String query, String message)
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-      // removeSelectedFromTable(jTable2);
+       removeSelectedFromTable(jTable2);
         
               // String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
         // executeSQlQuery(query, "Deleted");
         
         
-        
+    }
         
         
        // deleterow();
        
        
        //Working deletion
+       /*
          DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
                 int row = jTable2.getSelectedRow();
 
                 while (row != -1)
                 {
+                    
                     int modelRow = jTable2.convertRowIndexToModel( row );
+                    
+                     String query2 = "DELETE FROM `researchers` WHERE fk_Supervisor = ('"+row+"')";
+                   executeSQlQuery(query2, "Deleting NOW");
+                   
+                     String query1 = "DELETE FROM `project` WHERE Project_super = ('"+row+"')";
+                   executeSQlQuery(query1, "Deleting NOW");
+                   
+                    String query = "DELETE FROM `supervisors` WHERE ID = ('"+row+"')";
+                    executeSQlQuery(query, "Deleted");
+                    
                     model.removeRow( modelRow );
-                    row = jTable2.getSelectedRow();
+                    //row = jTable2.getSelectedRow();
+                    
+                   
+                    
                 }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+*/
     
     
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
