@@ -144,6 +144,32 @@ public class AddContracts extends javax.swing.JFrame {
    }
     
     
+public JMenuBar createMenuBar () {
+        JMenuItem menuItem = null;
+        JMenuBar menuBar = new JMenuBar();
+        JMenu mainMenu = new JMenu("Edit");
+        mainMenu.setMnemonic(KeyEvent.VK_E);
+
+        menuItem = new JMenuItem(new DefaultEditorKit.CutAction());
+        menuItem.setText("Cut");
+        menuItem.setMnemonic(KeyEvent.VK_T);
+        mainMenu.add(menuItem);
+
+        menuItem = new JMenuItem(new DefaultEditorKit.CopyAction());
+        menuItem.setText("Copy");
+        menuItem.setMnemonic(KeyEvent.VK_C);
+        mainMenu.add(menuItem);
+
+        menuItem = new JMenuItem(new DefaultEditorKit.PasteAction());
+        menuItem.setText("Paste");
+        menuItem.setMnemonic(KeyEvent.VK_P);
+        mainMenu.add(menuItem);
+
+        menuBar.add(mainMenu);
+        return menuBar;
+    }
+
+    
     
         
 public ArrayList<Contract> getContractList()
@@ -280,6 +306,11 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
         jTextField5 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -415,12 +446,14 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
             }
         });
 
+        jTextField4.setText("eg. 2017-12-10");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
             }
         });
 
+        jTextField3.setText("eg. 2016-10-12");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -505,12 +538,12 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                                                 .addComponent(jLabel9))))
                                     .addGap(18, 18, 18)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+                                        .addComponent(jTextField5)
+                                        .addComponent(jTextField4)
                                         .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
                                         .addComponent(jTextField6))
                                     .addGap(3, 3, 3))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -529,7 +562,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(458, 458, 458)
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 3, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -564,7 +597,6 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                                         .addGap(10, 10, 10)
                                         .addComponent(jLabel3))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel8)
@@ -598,8 +630,40 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
                         .addGap(18, 18, 18)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
+
+        jMenu2.setText("File");
+        jMenuBar.add(jMenu2);
+
+        jMenu3.setText("Edit");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("Cut");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("Paste");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuBar.add(jMenu3);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -607,14 +671,14 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -896,6 +960,21 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
 
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        TransferHandler.getCopyAction();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+
+        TransferHandler.getPasteAction();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3MouseClicked
+
     
      private void FillComboBox(){
         
@@ -1028,6 +1107,11 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),r
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

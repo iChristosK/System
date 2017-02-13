@@ -661,13 +661,7 @@ public void executeSQlQuery(String query, String message)
                 
                 
                      */
-                            
-    
-    
-    
-   
 
-    
                         /*
     while(rows.length>0)
         {
@@ -695,19 +689,11 @@ public void executeSQlQuery(String query, String message)
                 //   }
             //}
 
-        
-   
 
-    
- 
-    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
       // removeSelectedFromTable(jTable2);
-      
-      
-       
-        
+
                String query = "DELETE FROM `supervisors` WHERE ID = ('"+jTextField1.getText()+"')";
         executeSQlQuery(query, "Deleted");
         
@@ -1028,8 +1014,8 @@ public void executeSQlQuery(String query, String message)
                        executeSQlQuery(query01, "All KEYS SET BACK");*/
                      
                       
-                    jTable2.removeAll();
-                     model.setRowCount(0);
+                   // jTable2.removeAll();
+                  //   model.setRowCount(0);
 
                         //correct code
                         jFileChooser1.showOpenDialog(null);
@@ -1220,7 +1206,7 @@ e.printStackTrace();
                  
      
            Class.forName("com.mysql.jdbc.Driver");
-            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3305/kios","root","9667");
+            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
     String sql="select * from supervisors";
     java.sql.PreparedStatement pst=con.prepareStatement(sql);
   
