@@ -290,7 +290,6 @@ public ArrayList<Researcher> getResList()
         jTextField5 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
         jLabel26 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
@@ -310,7 +309,6 @@ public ArrayList<Researcher> getResList()
         jTable1 = new javax.swing.JTable();
         jLabel31 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -333,7 +331,7 @@ public ArrayList<Researcher> getResList()
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 303, 30));
+        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 303, 30));
 
         jLabel4.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel4.setText("Full Name:*");
@@ -364,14 +362,14 @@ public ArrayList<Researcher> getResList()
                 jTextField6ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 303, -1));
+        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 303, 30));
 
         jTextField17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField17ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 303, -1));
+        jPanel5.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 303, -1));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
@@ -382,7 +380,7 @@ public ArrayList<Researcher> getResList()
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel29.setText("Details:");
         jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 60, -1));
-        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 303, -1));
+        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 300, -1));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Access to KIOS:");
@@ -395,16 +393,7 @@ public ArrayList<Researcher> getResList()
                 jRadioButton7ActionPerformed(evt);
             }
         });
-        jPanel5.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 130, -1));
-
-        jRadioButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jRadioButton8.setText("No");
-        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton8ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 90, 150, -1));
+        jPanel5.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 300, -1));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel26.setText("Active:");
@@ -415,7 +404,7 @@ public ArrayList<Researcher> getResList()
                 jTextField16ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 303, 20));
+        jPanel5.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 300, -1));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Equipment:");
@@ -537,11 +526,9 @@ public ArrayList<Researcher> getResList()
         jLabel31.setText("Office Number:");
         jPanel5.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, -1));
 
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton1.setText("Yes");
-        jPanel5.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 130, -1));
-
-        jRadioButton2.setText("No");
-        jPanel5.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 150, -1));
+        jPanel5.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 300, -1));
 
         jMenu2.setText("File");
         jMenuBar.add(jMenu2);
@@ -741,27 +728,56 @@ public JMenuBar createMenuBar () {
                 } 
         
         else {
-             jRadioButton7.setActionCommand("1");
-             jRadioButton8.setActionCommand("0");
-             jRadioButton1.setActionCommand("1");
-             jRadioButton2.setActionCommand("0");
              
+             if (jRadioButton7.isSelected() == true)
+                     {
+                          jRadioButton7.setActionCommand("1");
+                     }
+             else 
+             {
+                   jRadioButton7.setActionCommand("0");
+                 
+                 
+             }
+             
+               if (jRadioButton1.isSelected() == true)
+                     {
+                          jRadioButton1.setActionCommand("1");
+                     }
+             else 
+             {
+                   jRadioButton1.setActionCommand("0");
+                 
+                 
+             }
+             
+             
+             
+             //jRadioButton7.setActionCommand("1");
+            
+             //jRadioButton1.setActionCommand("1");
+           
+             /*
               jRadioButton7.setActionCommand("1");
          String q7= jRadioButton7.getActionCommand();
-          jRadioButton1.setActionCommand("1");
+          jRadioButton7.setActionCommand("1");
+          
+           String q1= jRadioButton1.getActionCommand();
+          jRadioButton1.setActionCommand("1");*/
+          
                // JOptionPane.showMessageDialog(null, q1);
              
-         // JOptionPane.showMessageDialog(null, "Add required fields", "InfoBox: "+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+buttonGroup1.getSelection().getActionCommand()+"','"+jTextField16.getText()+"','"+buttonGroup2.getSelection().getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedIndex()+1)+"')" + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
+         // JOptionPane.showMessageDialog(null, "Add required fields", "InfoBox: "+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+q7+"','"+jTextField16.getText()+"','"+buttonGroup2.getSelection().getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedIndex()+1)+"')" + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
 
-          JOptionPane.showMessageDialog(null, "Add required fields SELECT BUTTON IS:  " + q7  , "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
+        //  JOptionPane.showMessageDialog(null, "Add required fields SELECT BUTTON IS:  " + q7  , "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
             
         //"+buttonGroup1.getSelection().getActionCommand()+" 
        // buttonGroup1.setActionCommand().getElements();
        //  jRadioButton7.setActionCommand().getText();
         
-      //  String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+buttonGroup1.getSelection().getActionCommand()+"','"+jTextField16.getText()+"','"+buttonGroup2.getSelection().getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedIndex()+1)+"')";
+        String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+jRadioButton7.getActionCommand()+"','"+jTextField16.getText()+"','"+jRadioButton1.getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedItem())+"')";
       
-       // executeSQlQuery(query, "Inserted");
+        executeSQlQuery(query, "Inserted");
         
         
          }
@@ -786,16 +802,12 @@ public JMenuBar createMenuBar () {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField16ActionPerformed
 
-    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton8ActionPerformed
-
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
         // TODO add your handling code here:
-        /*
+        
         jRadioButton7.setActionCommand("1");
-         String q1= jRadioButton7.getActionCommand();
-                JOptionPane.showMessageDialog(null, q1);*/
+        String q1= jRadioButton7.getActionCommand();
+               // JOptionPane.showMessageDialog(null, q1);
     }//GEN-LAST:event_jRadioButton7ActionPerformed
 
     
@@ -1128,9 +1140,7 @@ public JMenuBar createMenuBar () {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
