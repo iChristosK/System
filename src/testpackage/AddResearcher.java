@@ -295,11 +295,8 @@ public ArrayList<Researcher> getResList()
         jLabel27 = new javax.swing.JLabel();
         jComboBox7 = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
         jComboBox9 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
@@ -309,6 +306,12 @@ public ArrayList<Researcher> getResList()
         jTable1 = new javax.swing.JTable();
         jLabel31 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
+        jButton8 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jTextFieldSearch = new javax.swing.JTextField();
+        jButtonSearch = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -418,59 +421,34 @@ public ArrayList<Researcher> getResList()
         jPanel5.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, 303, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 204, 153));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
         jButton2.setText("Add");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 190, 190, 54));
-
-        jButton5.setBackground(new java.awt.Color(255, 204, 153));
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton5.setText("Import");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 190, 54));
-
-        jButton4.setBackground(new java.awt.Color(255, 204, 153));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton4.setText("Edit Researcher");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 480, 186, 56));
+        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 100, 190, 54));
 
         jButton6.setBackground(new java.awt.Color(255, 204, 153));
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
         jButton6.setText("Save");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 340, 190, 54));
+        jPanel5.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 240, 190, 50));
 
         jButton1.setBackground(new java.awt.Color(255, 204, 153));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 550, 190, 56));
-
-        jButton3.setBackground(new java.awt.Color(255, 204, 153));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton3.setText("Clear All");
-        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 410, 190, 56));
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 630, 190, 50));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Supervisor:*");
@@ -529,6 +507,73 @@ public ArrayList<Researcher> getResList()
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton1.setText("Yes");
         jPanel5.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 300, -1));
+
+        jButton8.setBackground(new java.awt.Color(255, 204, 153));
+        jButton8.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButton8.setText("Import");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 370, 190, 50));
+
+        jButton5.setBackground(new java.awt.Color(255, 204, 153));
+        jButton5.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButton5.setText("Export");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 430, 190, 50));
+
+        jTextFieldSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldSearchMouseClicked(evt);
+            }
+        });
+        jTextFieldSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSearchActionPerformed(evt);
+            }
+        });
+        jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldSearchKeyTyped(evt);
+            }
+        });
+        jPanel5.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 500, 190, 50));
+
+        jButtonSearch.setBackground(new java.awt.Color(255, 204, 153));
+        jButtonSearch.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButtonSearch.setText("Search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButtonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 560, 190, 50));
+
+        jButton3.setBackground(new java.awt.Color(255, 204, 153));
+        jButton3.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButton3.setText("Edit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 310, 190, 50));
+
+        jButton4.setBackground(new java.awt.Color(255, 204, 153));
+        jButton4.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButton4.setText("Delete");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 170, 190, 50));
 
         jMenu2.setText("File");
         jMenuBar.add(jMenu2);
@@ -599,8 +644,97 @@ public ArrayList<Researcher> getResList()
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField17ActionPerformed
 
+    
+    
+    
+       public void set()
+{
+      try
+        {
+                 
+     
+           Class.forName("com.mysql.jdbc.Driver");
+            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
+         String sql="select * from researchers";
+         java.sql.PreparedStatement pst=con.prepareStatement(sql);
+  
+         ResultSet rs = pst.executeQuery(sql);
+         jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+   
+
+        con.close();
+        pst.close();
+        }
+        catch(Exception e)
+        {
+          //  JOptionPane.showMessageDialog(null, e);
+        }
+}
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        
+        
+        
+
+int rows = jTable1.getRowCount();
+
+System.out.println(""+rows);
+for(int row = 0; row<rows ; row++)
+{
+
+String id = (String) jTable1.getValueAt(row, 0);
+String name = (String) jTable1.getValueAt(row, 1);
+String name1 = (String) jTable1.getValueAt(row, 2);
+String name2= (String) jTable1.getValueAt(row, 3);
+String name3 = (String) jTable1.getValueAt(row, 4);
+String name4 = (String) jTable1.getValueAt(row, 5);
+String name5 = (String) jTable1.getValueAt(row, 6);
+String name6 = (String) jTable1.getValueAt(row, 7);
+String name7 = (String) jTable1.getValueAt(row, 8);
+String name8 = (String) jTable1.getValueAt(row, 9);
+String name9 = (String) jTable1.getValueAt(row, 10);
+String name10 = (String) jTable1.getValueAt(row, 11);
+
+
+
+ try{
+  Class.forName("com.mysql.jdbc.Driver");
+    java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
+
+
+  String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+      
+ PreparedStatement stmt = con.prepareStatement(query);
+ stmt.setString(1, id); //Invoice No
+ stmt.setString(2, name); //Code
+ stmt.setString(3, name1);
+ stmt.setString(4, name2);
+ stmt.setString(5, name3);
+ stmt.setString(6, name4);
+ stmt.setString(7, name5);
+ stmt.setString(8, name6);
+ stmt.setString(9, name7);
+ stmt.setString(10, name8);
+ stmt.setString(11, name9);
+ stmt.setString(12, name10);
+
+
+
+
+ stmt.addBatch();
+stmt.executeBatch();
+con.commit();
+ }
+
+ catch(Exception ex)
+ {
+  //JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
+    }    
+}
+
+set();
+         
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jComboBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox9ActionPerformed
@@ -708,16 +842,6 @@ public JMenuBar createMenuBar () {
         menuBar.add(mainMenu);
         return menuBar;
     }
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-
-        dispose();//To close the current window
-
-        EditResearcher closeCurrentWindow = new EditResearcher();
-        closeCurrentWindow.setVisible(true);//Open the new window
-
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
@@ -750,30 +874,7 @@ public JMenuBar createMenuBar () {
                  
                  
              }
-             
-             
-             
-             //jRadioButton7.setActionCommand("1");
-            
-             //jRadioButton1.setActionCommand("1");
-           
-             /*
-              jRadioButton7.setActionCommand("1");
-         String q7= jRadioButton7.getActionCommand();
-          jRadioButton7.setActionCommand("1");
-          
-           String q1= jRadioButton1.getActionCommand();
-          jRadioButton1.setActionCommand("1");*/
-          
-               // JOptionPane.showMessageDialog(null, q1);
-             
-         // JOptionPane.showMessageDialog(null, "Add required fields", "InfoBox: "+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+q7+"','"+jTextField16.getText()+"','"+buttonGroup2.getSelection().getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedIndex()+1)+"')" + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
-
-        //  JOptionPane.showMessageDialog(null, "Add required fields SELECT BUTTON IS:  " + q7  , "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
-            
-        //"+buttonGroup1.getSelection().getActionCommand()+" 
-       // buttonGroup1.setActionCommand().getElements();
-       //  jRadioButton7.setActionCommand().getText();
+   
         
         String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+jRadioButton7.getActionCommand()+"','"+jTextField16.getText()+"','"+jRadioButton1.getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedItem())+"')";
       
@@ -901,127 +1002,6 @@ public JMenuBar createMenuBar () {
 		}catch(IOException e){ System.out.println(e); }
 	}
     
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        //works perfect
-        //add to existing data in jTable
-
-        int dialogButton = JOptionPane.YES_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to export the current data first?","Warning",dialogButton);
-        if(dialogResult == JOptionPane.YES_OPTION){
-
-            JFileChooser jf = new JFileChooser();
-            jf.setDialogTitle("Please select the .XLS (Excel File) where you want to EXPORT the data:");
-            int result =  jf.showOpenDialog(null);
-            if(result == JFileChooser.APPROVE_OPTION){
-                String filename = jf.getSelectedFile().getName();
-                String path = jf.getSelectedFile().getParentFile().getPath();
-
-                int len = filename.length();
-                String ext = "";
-                String file = "";
-
-                if(len > 4){
-                    ext = filename.substring(len-4, len);
-                }
-
-                if(ext.equals(".xls")){
-                    file = path + "/" + filename;
-                }else{
-                    file = path + "/" + filename + ".xls";
-                }
-                toExcel(jTable1, new File(file));
-            }
-
-        }
-
-        int dialogButton2 = JOptionPane.YES_NO_OPTION;
-        int dialogResult2 = JOptionPane.showConfirmDialog(this, "Would you like to import", "Importing .xls file", dialogButton2);
-        if(dialogResult2 == 0) {
-            System.out.println("Yes option");
-
-            int dialogButton3 = JOptionPane.YES_NO_OPTION;
-            int dialogResult3 = JOptionPane.showConfirmDialog(this, "Would you like to replace the current data", "Importing .xls file", dialogButton3);
-            if(dialogResult3 == 0) {
-                System.out.println("Yes option");
-
-                jFileChooser1.showOpenDialog(null);
-                File file = jFileChooser1.getSelectedFile();
-                if(!file.getName().endsWith("xls")){
-                    JOptionPane.showMessageDialog(null,"Please select only Excel file.",
-                        "Error",JOptionPane.ERROR_MESSAGE);
-
-                }
-                else
-                {
-                    fillData(file);
-                    model = new DefaultTableModel(data,headers);
-                    tableWidth = model.getColumnCount() *150;
-                    tableHeight = model.getRowCount() *25;
-                    jTable1.setPreferredSize( new Dimension (tableWidth,tableHeight));
-                }
-                jTable1.setModel(model);
-            } else
-            {
-                System.out.println("Not Replacing! Adding to the existing data");
-
-                jFileChooser1.showOpenDialog(null);
-                File file = jFileChooser1.getSelectedFile();
-                if(!file.getName().endsWith("xls")){
-                    JOptionPane.showMessageDialog(null,"Please select only Excel file.",
-                        "Error",JOptionPane.ERROR_MESSAGE);
-
-                }
-                else
-                {
-                    fillData(file);
-                    model = new DefaultTableModel(data,headers);
-                    tableWidth = model.getColumnCount() *150;
-                    tableHeight = model.getRowCount() *25;
-                    jTable1.setPreferredSize( new Dimension (tableWidth,tableHeight));
-                }
-                jTable1.setModel(model);
-
-            }
-        }
-        }
-
-        void fillData(File file)
-        {
-            Workbook workbook = null;
-            try {
-                try {
-                    workbook = Workbook.getWorkbook(file);
-                }  catch(IOException ex){
-                    Logger.getLogger(SearchNow.class.getName()).log(Level.SEVERE,null,ex);
-                }
-                Sheet sheet = workbook.getSheet(0);
-
-                headers.clear();
-                for ( int i=0; i<sheet.getColumns(); i++){
-                    Cell cell1 = sheet.getCell(i,0);
-                    headers.add(cell1.getContents());
-                }
-                data.clear();
-                for (int j = 1; j < sheet.getRows(); j++) {
-                    Vector d = new Vector();
-
-                    for (int i = 0; i < sheet.getColumns(); i++) {
-                        Cell cell = sheet.getCell(i, j);
-
-                        d.add(cell.getContents());
-
-                    }
-                    d.add("\\n");
-                    data.add(d);
-                }
-            }
-            catch (BiffException e) {
-                e.printStackTrace();
-            }
-
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         TransferHandler.getCopyAction();
@@ -1072,6 +1052,309 @@ public JMenuBar createMenuBar () {
      //   maleButton.setActionCommand( maleButton.getText() );
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+
+        //add to existing data in jTable without replacing the old data
+
+        int dialogButton = JOptionPane.YES_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Like to export the current data first?","Warning",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+
+            JFileChooser jf = new JFileChooser();
+            jf.setDialogTitle("Please select the .XLS (Excel File) where you want to EXPORT the data:");
+            int result =  jf.showOpenDialog(null);
+            if(result == JFileChooser.APPROVE_OPTION){
+                String filename = jf.getSelectedFile().getName();
+                String path = jf.getSelectedFile().getParentFile().getPath();
+
+                int len = filename.length();
+                String ext = "";
+                String file = "";
+
+                if(len > 4){
+                    ext = filename.substring(len-4, len);
+                }
+
+                if(ext.equals(".xls")){
+                    file = path + "/" + filename;
+                }else{
+                    file = path + "/" + filename + ".xls";
+                }
+                toExcel(jTable1, new File(file));
+            }
+
+        }
+
+        int dialogButton2 = JOptionPane.YES_NO_OPTION;
+        int dialogResult2 = JOptionPane.showConfirmDialog(this, "Would you like to import", "Importing .xls file", dialogButton2);
+        if(dialogResult2 == 0) {
+            System.out.println("Yes option");
+
+            int dialogButton3 = JOptionPane.YES_NO_OPTION;
+            int dialogResult3 = JOptionPane.showConfirmDialog(this, "Would you like to replace the current data", "Importing .xls file", dialogButton3);
+            if(dialogResult3 == 0) {
+                System.out.println("Yes option");
+                //new code
+
+                // String query0 =  "ALTER `supervisors` SET FOREIGN KEY(0) REFERENCES root";
+                /*
+                String query0 =  "ALTER `supervisors` SET FOREIGN_KEY_CHECKS = 0";
+
+                executeSQlQuery(query0, "All KEYS");
+
+                String query001 = " TRUNCATE `supervisors`";
+                executeSQlQuery(query001, "All Data removed from supervisors");
+
+                String query01 =  "ALTER TABLE `supervisors` SET FOREIGN_KEY_CHECKS (1)";
+                executeSQlQuery(query01, "All KEYS");
+                */
+
+                /*
+                String query01 = "`supervisors` SET FOREIGN_KEY_CHECKS = 1;";
+                executeSQlQuery(query01, "All KEYS SET BACK");*/
+
+                // jTable2.removeAll();
+                //   model.setRowCount(0);
+
+                //correct code
+                jFileChooser1.showOpenDialog(null);
+                File file = jFileChooser1.getSelectedFile();
+                if(!file.getName().endsWith("xls")){
+                    JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+                        "Error",JOptionPane.ERROR_MESSAGE);
+
+                }
+                else
+                {
+                    fillData(file);
+                    model = new DefaultTableModel(data,headers);
+                    tableWidth = model.getColumnCount() *150;
+                    tableHeight = model.getRowCount() *25;
+                    jTable1.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                }
+                jTable1.setModel(model);
+            } else
+            {
+                System.out.println("Not Replacing! Adding to the existing data");
+                //Here the code to add to the existing data
+                //Actually you need to append or concatenate to the existing data
+
+                jFileChooser1.showOpenDialog(null);
+                File file = jFileChooser1.getSelectedFile();
+                if(!file.getName().endsWith("xls")){
+                    JOptionPane.showMessageDialog(null,"Please select only Excel file.",
+                        "Error",JOptionPane.ERROR_MESSAGE);
+
+                }
+                else
+                {
+                    AppendData(file);
+                    // fillData(file);
+                    //The edited code where the data are going to be appended
+                    model = new DefaultTableModel(data,headers);
+                    tableWidth = model.getColumnCount() *150;
+                    tableHeight = model.getRowCount() *25;
+                    jTable1.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                }
+                jTable1.setModel(model);
+
+            }
+        }
+        }
+
+        void fillData(File file)
+        {
+            Workbook workbook = null;
+            try {
+                try {
+                    workbook = Workbook.getWorkbook(file);
+                }  catch(IOException ex){
+                    Logger.getLogger(AddSupervisor.class.getName()).log(Level.SEVERE,null,ex);
+                }
+                Sheet sheet = workbook.getSheet(0);
+
+                headers.clear();
+                for ( int i=0; i<sheet.getColumns(); i++){
+                    Cell cell1 = sheet.getCell(i,0);
+                    headers.add(cell1.getContents());
+                }
+                data.clear();
+                for (int j = 1; j < sheet.getRows(); j++) {
+                    Vector d = new Vector();
+
+                    for (int i = 0; i < sheet.getColumns(); i++) {
+                        Cell cell = sheet.getCell(i, j);
+
+                        d.add(cell.getContents());
+
+                    }
+                    d.add("\n");
+                    data.add(d);
+                }
+            }
+            catch (BiffException e) {
+                e.printStackTrace();
+            }
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+ JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle("Please select the .XLS (Excel File) where you want to EXPORT the data:");
+       int result =  jf.showOpenDialog(null);
+       if(result == JFileChooser.APPROVE_OPTION){
+       String filename = jf.getSelectedFile().getName();
+        String path = jf.getSelectedFile().getParentFile().getPath();
+
+        int len = filename.length();
+        String ext = "";
+        String file = "";
+
+        if(len > 4){
+            ext = filename.substring(len-4, len);
+        }
+
+        if(ext.equals(".xls")){
+            file = path + "/" + filename; 
+        }else{
+            file = path + "/" + filename + ".xls"; 
+        }
+        toExcel(jTable1, new File(file));
+    }
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTextFieldSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSearchMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchMouseClicked
+
+    private void jTextFieldSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchActionPerformed
+
+    private void jTextFieldSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchKeyTyped
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        // TODO add your handling code here:
+
+        // Commons.attachJTableFilter(jTable2, jTextFieldSearch);
+
+        // jTable2.removeAll();
+        // model.getRowCount();
+        for(int i = 0; i < jTable1.getRowCount(); i++){ //For each row
+            for(int j = 0; j < jTable1.getColumnCount(); j++){ //For each column in that row
+                // if(jTable2.getModel().getValueAt(i, j).equals("Elias Kyriakides")){//Search the model
+                    if(jTable1.getModel().getValueAt(i, j).equals(jTextFieldSearch.getText())){  //Search the model
+
+                        JOptionPane.showMessageDialog(null, "Found "+ jTable1.getModel().getValueAt(i, j), "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE);
+                        //Vector rowVector = (Vector) i;
+
+                        // model.addRow(data);
+                        break;
+                    }   //For loop inner
+                    /*  else
+                    {
+                        JOptionPane.showMessageDialog(null, "Not Found ","InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE);
+
+                        break;
+                    }*/
+
+                }   //For loop outer
+
+            }
+
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        // removeSelectedFromTable(jTable2);
+
+       
+        String query = "UPDATE FROM `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+jRadioButton7.getActionCommand()+"','"+jTextField16.getText()+"','"+jRadioButton1.getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedItem())+"')";
+      
+        executeSQlQuery(query, "Updated");
+        
+
+        //  }
+
+        // deleterow();
+
+        //Working deletion
+
+        /*
+        String query2 = "DELETE FROM `researchers` WHERE fk_Supervisor = ('"+row+"')";
+        executeSQlQuery(query2, "Deleting NOW");
+
+        String query1 = "DELETE FROM `project` WHERE Project_super = ('"+row+"')";
+        executeSQlQuery(query1, "Deleting NOW");
+
+        String query = "DELETE FROM `supervisors` WHERE ID = ('"+row+"')";
+        executeSQlQuery(query, "Deleted");*/
+
+        /*
+        DefaultTableModel from = (DefaultTableModel)jTable2.getModel();
+        int row = jTable2.getSelectedRow();
+
+        while (row != -1)
+        {
+
+            int modelRow = jTable2.convertRowIndexToModel( row );
+            String query2 = "UPDATE `researchers` SET fk_Supervisor = 1 WHERE fk_Supervisor = ('"+row+"') ";
+
+            executeSQlQuery(query2, "Updated from Researchers Table");
+
+            String query1 = "UPDATE `project` SET Project_super = 1 WHERE Project_super = ('"+row+"')";
+
+            executeSQlQuery(query1, "Updated from Project Table");
+
+            String query = "DELETE FROM `supervisors` WHERE ID = ('"+row+"')";
+            executeSQlQuery(query, "Deleted Supervisors Table");
+
+            model.removeRow( modelRow );
+            //row = jTable2.getSelectedRow();
+
+        }*/
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+
+        
+         String query = "DELETE FROM `researchers` WHERE ID = ('"+jTextField1.getText()+"')";
+        executeSQlQuery(query, "Deleted");
+     
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+        
+        
+    void AppendData(File file ){
+        try {
+jxl.Workbook workbook = jxl.Workbook.getWorkbook(file);
+jxl.Sheet sheet = workbook.getSheet(0);
+headers.clear();
+for (int i = 0; i < sheet.getColumns(); i++) {
+jxl.Cell cell1 = sheet.getCell(i, 0);
+headers.add(cell1.getContents());
+}
+data.clear();
+for (int j = 1; j < sheet.getRows(); j++) {
+Vector d = new Vector();
+for (int i = 0; i < sheet.getColumns(); i++) {
+jxl.Cell cell = sheet.getCell(i, j);
+d.add(cell.getContents());
+}
+d.add("\n");
+data.add(d);
+}
+}
+catch (Exception e) {
+e.printStackTrace();
+}
+    }
     /**
      * @param args the command line arguments
      */
@@ -1117,6 +1400,8 @@ public JMenuBar createMenuBar () {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButtonSearch;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
@@ -1150,5 +1435,6 @@ public JMenuBar createMenuBar () {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextFieldSearch;
     // End of variables declaration//GEN-END:variables
 }

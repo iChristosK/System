@@ -7,7 +7,6 @@ package testpackage;
 
 
 
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
@@ -23,15 +22,26 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.text.DefaultEditorKit;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.Statement;
+import net.proteanit.sql.DbUtils;
+
+
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.swing.text.DefaultEditorKit;
+import javax.swing.table.TableRowSorter;
+
+
+
 /**
  *
  * @author Christos
@@ -293,9 +303,6 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
         jTextField7 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jComboBox3 = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -306,6 +313,11 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
         jTextField5 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jTextFieldSearch = new javax.swing.JTextField();
+        jButtonSearch = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -353,7 +365,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
         jTextField2.setRows(5);
         jScrollPane1.setViewportView(jTextField2);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 314, 398, 39));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 398, 39));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Contract ID:*");
@@ -412,39 +424,14 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
         jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 19, 305, 83));
 
         jButton3.setBackground(new java.awt.Color(255, 204, 153));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 580, 203, 57));
-
-        jButton2.setBackground(new java.awt.Color(255, 204, 153));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton2.setText("Save");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 500, 203, 63));
-
-        jButton1.setBackground(new java.awt.Color(255, 204, 153));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton1.setText("Clear all");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 420, 203, 63));
-
-        jButton4.setBackground(new java.awt.Color(255, 204, 153));
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jButton4.setText("Edit Contracts");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 350, 203, 56));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 617, 203, 50));
         jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 273, 398, -1));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -473,7 +460,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 110, 207, 66));
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 70, 200, 50));
 
         jTextField4.setText("eg. 2017-12-10");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -506,7 +493,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 270, 207, 64));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 404, 200, 60));
 
         jButton9.setBackground(new java.awt.Color(255, 204, 153));
         jButton9.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -516,7 +503,64 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 200, 207, 60));
+        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 320, 200, 60));
+
+        jButton8.setBackground(new java.awt.Color(255, 204, 153));
+        jButton8.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButton8.setText("Save");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 190, 200, 50));
+
+        jButton10.setBackground(new java.awt.Color(255, 204, 153));
+        jButton10.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButton10.setText("Delete");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 130, 200, 50));
+
+        jTextFieldSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldSearchMouseClicked(evt);
+            }
+        });
+        jTextFieldSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldSearchActionPerformed(evt);
+            }
+        });
+        jTextFieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldSearchKeyTyped(evt);
+            }
+        });
+        jPanel2.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 480, 200, 50));
+
+        jButtonSearch.setBackground(new java.awt.Color(255, 204, 153));
+        jButtonSearch.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButtonSearch.setText("Search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButtonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 550, 200, 50));
+
+        jButton11.setBackground(new java.awt.Color(255, 204, 153));
+        jButton11.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButton11.setText("Edit");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 250, 200, 50));
 
         jMenu2.setText("File");
         jMenuBar.add(jMenu2);
@@ -592,24 +636,6 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        
-        
-        //HERE SAVE CONTRACTS TABLE
-        //EASY
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-
-        dispose();//To close the current window
-
-        EditContracts closeCurrentWindow = new EditContracts();
-        closeCurrentWindow.setVisible(true);//Open the new window
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -854,6 +880,162 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu3MouseClicked
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+
+        // removeSelectedFromTable(jTable2);
+        
+        
+int rows = jTable2.getRowCount();
+
+System.out.println(""+rows);
+for(int row = 0; row<rows ; row++)
+{
+
+String id = (String) jTable2.getValueAt(row, 0);
+String res = (String) jTable2.getValueAt(row, 1);
+
+String pro = (String) jTable2.getValueAt(row, 2);
+String pos = (String) jTable2.getValueAt(row, 3);
+String det = (String) jTable2.getValueAt(row, 4);
+
+
+String from = (String) jTable2.getValueAt(row, 5);
+String to = (String) jTable2.getValueAt(row, 6);
+
+String salary = (String) jTable2.getValueAt(row, 7);
+String monthly = (String) jTable2.getValueAt(row, 8);
+
+String rate = (String) jTable2.getValueAt(row, 9);
+
+
+
+
+ try{
+  Class.forName("com.mysql.jdbc.Driver");
+    java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
+
+
+   String query = "INSERT INTO `Contract`(`ID_contract`,`fk_ID_researcher`,`fk_ID_project`,`Position`,`Details`,`Date_From`,`Date_To`,`Salary`,`Monthly_Hours`,`Hourly_Rate`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+
+ PreparedStatement stmt = con.prepareStatement(query);
+ stmt.setString(1, id); //Invoice No
+ stmt.setString(2, res); //Code
+ stmt.setString(3, pro);
+ stmt.setString(4, pos);
+ stmt.setString(5,det);
+ stmt.setString(6, from);
+ stmt.setString(7, to);
+ stmt.setString(8, salary);
+ stmt.setString(9, monthly);
+ stmt.setString(10, rate);
+ 
+
+
+
+ stmt.addBatch();
+stmt.executeBatch();
+con.commit();
+ }
+
+ catch(Exception ex)
+ {
+  //JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
+    }    
+}
+
+set();
+         
+
+                       
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    
+    
+    
+       public void set()
+{
+      try
+        {
+                 
+     
+           Class.forName("com.mysql.jdbc.Driver");
+            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
+         String sql="select * from contract";
+         java.sql.PreparedStatement pst=con.prepareStatement(sql);
+  
+         ResultSet rs = pst.executeQuery(sql);
+         jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+   
+
+        con.close();
+        pst.close();
+        }
+        catch(Exception e)
+        {
+          //  JOptionPane.showMessageDialog(null, e);
+        }
+}
+    
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        
+         String query = "DELETE FROM `Contract`(`ID_contract`,`fk_ID_researcher`,`fk_ID_project`,`Position`,`Details`,`Date_From`,`Date_To`,`Salary`,`Monthly_Hours`,`Hourly_Rate`) VALUES ('"+jTextField1.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+(jComboBox2.getSelectedIndex()+1)+"','"+jComboBox3.getSelectedItem().toString()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"')";
+
+       executeSQlQuery(query, "Deleted");
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jTextFieldSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSearchMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchMouseClicked
+
+    private void jTextFieldSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchActionPerformed
+
+    private void jTextFieldSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldSearchKeyTyped
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        // TODO add your handling code here:
+
+        // Commons.attachJTableFilter(jTable2, jTextFieldSearch);
+
+        // jTable2.removeAll();
+        // model.getRowCount();
+        for(int i = 0; i < jTable2.getRowCount(); i++){ //For each row
+            for(int j = 0; j < jTable2.getColumnCount(); j++){ //For each column in that row
+                // if(jTable2.getModel().getValueAt(i, j).equals("Elias Kyriakides")){//Search the model
+                    if(jTable2.getModel().getValueAt(i, j).equals(jTextFieldSearch.getText())){  //Search the model
+
+                        JOptionPane.showMessageDialog(null, "Found "+ jTable2.getModel().getValueAt(i, j), "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE);
+                        //Vector rowVector = (Vector) i;
+
+                        // model.addRow(data);
+                        break;
+                    }   //For loop inner
+                    /*  else
+                    {
+                        JOptionPane.showMessageDialog(null, "Not Found ","InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE);
+
+                        break;
+                    }*/
+
+                }   //For loop outer
+
+            }
+
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+       String query = "UPDATE `Contract`(`ID_contract`,`fk_ID_researcher`,`fk_ID_project`,`Position`,`Details`,`Date_From`,`Date_To`,`Salary`,`Monthly_Hours`,`Hourly_Rate`) VALUES ('"+jTextField1.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+(jComboBox2.getSelectedIndex()+1)+"','"+jComboBox3.getSelectedItem().toString()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"')";
+
+       executeSQlQuery(query, "Updated");
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     
      private void FillComboBox(){
         
@@ -963,14 +1145,15 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonSearch;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -1002,5 +1185,6 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextFieldSearch;
     // End of variables declaration//GEN-END:variables
 }
