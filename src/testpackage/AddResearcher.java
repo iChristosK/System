@@ -293,58 +293,58 @@ public ArrayList<Researcher> getResList()
 
         jLabel1.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel1.setText("Researcher ID:*");
-        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 107, -1, -1));
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 203, 303, -1));
+        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 303, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel4.setText("Full Name:*");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 157, -1, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel5.setText("Address:");
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 212, -1, -1));
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel6.setText("Telephone:");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 247, -1, -1));
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
 
         jLabel30.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel30.setText("Email:");
-        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 292, -1, -1));
-        jPanel5.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 151, 303, -1));
+        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
+        jPanel5.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 303, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 101, 303, -1));
+        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 303, -1));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 241, 303, -1));
+        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 303, -1));
 
         jTextField17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField17ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 286, 303, -1));
+        jPanel5.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 303, -1));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 153, 0));
         jButton7.setText("Researchers");
-        jPanel5.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(385, 19, 386, 70));
+        jPanel5.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 386, 70));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -363,16 +363,16 @@ public ArrayList<Researcher> getResList()
 
         scrollPane1.add(jScrollPane2);
 
-        jPanel5.add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 950, 410));
+        jPanel5.add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 920, 320));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel29.setText("Details:");
-        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(556, 104, -1, -1));
-        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 101, 303, -1));
+        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, -1, -1));
+        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 303, -1));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Access to KIOS:");
-        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 335, -1, -1));
+        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 90, 100, 60));
 
         jRadioButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton7.setText("Yes");
@@ -381,7 +381,7 @@ public ArrayList<Researcher> getResList()
                 jRadioButton7ActionPerformed(evt);
             }
         });
-        jPanel5.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 330, -1, -1));
+        jPanel5.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 90, 80, -1));
 
         jRadioButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton8.setText("No");
@@ -390,7 +390,7 @@ public ArrayList<Researcher> getResList()
                 jRadioButton8ActionPerformed(evt);
             }
         });
-        jPanel5.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
+        jPanel5.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 90, 90, -1));
 
         jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox4.setText("Active");
@@ -399,29 +399,29 @@ public ArrayList<Researcher> getResList()
                 jCheckBox4ActionPerformed(evt);
             }
         });
-        jPanel5.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(387, 331, 80, 25));
+        jPanel5.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 130, 180, 25));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel26.setText("Office Number:");
-        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 154, -1, -1));
+        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, -1, -1));
 
         jTextField16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField16ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 151, 303, -1));
+        jPanel5.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, 303, -1));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Equipment:");
-        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 201, 90, 27));
+        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 90, 27));
 
         jComboBox7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox7ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 202, 303, -1));
+        jPanel5.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 303, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 204, 153));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -431,7 +431,7 @@ public ArrayList<Researcher> getResList()
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 330, 190, 54));
+        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 190, 190, 54));
 
         jButton5.setBackground(new java.awt.Color(255, 204, 153));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -441,7 +441,7 @@ public ArrayList<Researcher> getResList()
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 400, 190, 54));
+        jPanel5.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 260, 190, 54));
 
         jButton4.setBackground(new java.awt.Color(255, 204, 153));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -451,7 +451,7 @@ public ArrayList<Researcher> getResList()
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 640, 186, 56));
+        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 480, 186, 56));
 
         jButton6.setBackground(new java.awt.Color(255, 204, 153));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -461,7 +461,7 @@ public ArrayList<Researcher> getResList()
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 480, 190, 54));
+        jPanel5.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 340, 190, 54));
 
         jButton1.setBackground(new java.awt.Color(255, 204, 153));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -471,16 +471,16 @@ public ArrayList<Researcher> getResList()
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 710, 190, 56));
+        jPanel5.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 550, 190, 56));
 
         jButton3.setBackground(new java.awt.Color(255, 204, 153));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton3.setText("Clear All");
-        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 560, 190, 56));
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 410, 190, 56));
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Supervisor:*");
-        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 244, -1, -1));
+        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, -1, -1));
 
         jComboBox9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -497,18 +497,18 @@ public ArrayList<Researcher> getResList()
                 jComboBox9ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 285, 303, -1));
+        jPanel5.add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 303, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("2nd Supervisor:");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(525, 289, -1, -1));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, -1, -1));
 
         jComboBox8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox8ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 240, 303, -1));
+        jPanel5.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 303, -1));
         jPanel5.add(jFileChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1057, 922, 14, 20));
 
         jMenu2.setText("File");
@@ -547,16 +547,13 @@ public ArrayList<Researcher> getResList()
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1239, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel5.getAccessibleContext().setAccessibleName("Personal Detail");
