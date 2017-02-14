@@ -51,8 +51,7 @@ public class AddResearcher extends javax.swing.JFrame {
       
     static Vector headers = new Vector();
     static DefaultTableModel model = null;
-    static Vector data = new 
-    Vector();
+    static Vector data = new Vector();
  
     static int tableWidth = 0; // set the tableWidth 
     static int tableHeight = 0;
@@ -66,17 +65,31 @@ public class Researcher {
         private String firstName;
         private int fk; 
         private String addr;
-        private int tel; 
+        private String tel; 
         private String email;
+        private int access;
+        private String office;
+        private int active;
+        private String details;
+        private String fk2;
+        private String equipment;
+         
      
-    public Researcher(String ID, String FirstName,int fk_Supervisor,String Address,int Telephone,String Email)
+    public Researcher(String ID, String FirstName,int Supervisor,String Address,String Telephone,String Email, int Access,String Office,int Active,String Details,String Second,String Equipment)
     {
         this.id = ID;
         this.firstName = FirstName;
-        this.fk = fk_Supervisor;
+        this.fk = Supervisor;
         this.addr = Address;
         this.tel = Telephone;
         this.email = Email;
+        this.access = Access;
+        this.office = Office;
+        this.active = Active;
+        this.details = Details;
+        this.fk2 = Second;
+        this.equipment = Equipment;
+        
   
     }
 
@@ -102,16 +115,47 @@ public class Researcher {
         return addr;
     }
     
-     public int getTel()
+     public String getTel()
     {
         return tel;
     }
-   
-     
+
       public String getEmail()
     {
         return email;
     }
+      
+      public int getAccess()
+      {
+          return access;
+      }
+      
+     public String getOffice()
+      {
+          return office;
+      }
+     
+     public int getActive()
+     {
+         return active;
+     }
+      
+      public String getDetails()
+      {
+          return details;
+      }
+     
+      public String getSecond()
+      {
+          return fk2;
+      }
+
+      public String getEquipment()
+      {
+          return equipment;
+      }
+      
+    
 }
 
     public Connection getConnection()
@@ -146,7 +190,7 @@ public ArrayList<Researcher> getResList()
 
            while(rs.next())
            {
-            researcher = new Researcher(rs.getString("ID"),rs.getString("FullName"),rs.getInt("fk_Supervisor"),rs.getString("Address"),rs.getInt("Telephone"),rs.getString("Email"));
+            researcher = new Researcher(rs.getString("ID"),rs.getString("FullName"),rs.getInt("fk_Supervisor"),rs.getString("Address"),rs.getString("Telephone"),rs.getString("Email"),rs.getInt("AccessToKios"),rs.getString("OfficeNumber"),rs.getInt("Active"),rs.getString("Details"),rs.getString("supervisor2"),rs.getString("Equipment"));
             
                ResearcherList.add(researcher);
            }
@@ -165,7 +209,7 @@ public ArrayList<Researcher> getResList()
    {
        ArrayList<Researcher> list = getResList();
        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-       Object[] row = new Object[6];
+       Object[] row = new Object[12];
        for(int i = 0; i < list.size(); i++)
        {
            row[0] = list.get(i).getId();
@@ -174,6 +218,13 @@ public ArrayList<Researcher> getResList()
            row[3] = list.get(i).getAddr();
            row[4] = list.get(i).getTel();
            row[5] = list.get(i).getEmail();
+           row[6] = list.get(i).getAccess();
+           row[7] = list.get(i).getOffice();
+           row[8] = list.get(i).getActive();
+           row[9] = list.get(i).getDetails();
+           row[10] = list.get(i).getSecond();
+           row[11] = list.get(i).getEquipment();
+            
             
            model.addRow(row);
        }
@@ -221,6 +272,8 @@ public ArrayList<Researcher> getResList()
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
@@ -238,7 +291,6 @@ public ArrayList<Researcher> getResList()
         jLabel25 = new javax.swing.JLabel();
         jRadioButton7 = new javax.swing.JRadioButton();
         jRadioButton8 = new javax.swing.JRadioButton();
-        jCheckBox4 = new javax.swing.JCheckBox();
         jLabel26 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
@@ -256,6 +308,9 @@ public ArrayList<Researcher> getResList()
         jFileChooser1 = new javax.swing.JFileChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel31 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -278,45 +333,45 @@ public ArrayList<Researcher> getResList()
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 303, -1));
+        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 303, 30));
 
         jLabel4.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel4.setText("Full Name:*");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel5.setText("Address:");
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel6.setText("Telephone:");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         jLabel30.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel30.setText("Email:");
-        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 300, 70, -1));
-        jPanel5.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 303, -1));
+        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 70, -1));
+        jPanel5.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 303, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 303, -1));
+        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 303, -1));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 303, -1));
+        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 303, -1));
 
         jTextField17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField17ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 303, -1));
+        jPanel5.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 303, -1));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
@@ -326,12 +381,12 @@ public ArrayList<Researcher> getResList()
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel29.setText("Details:");
-        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 90, 60, -1));
-        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 303, -1));
+        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 60, -1));
+        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 303, -1));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Access to KIOS:");
-        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 100, 30));
+        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 100, 30));
 
         jRadioButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton7.setText("Yes");
@@ -340,7 +395,7 @@ public ArrayList<Researcher> getResList()
                 jRadioButton7ActionPerformed(evt);
             }
         });
-        jPanel5.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 80, 80, -1));
+        jPanel5.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 130, -1));
 
         jRadioButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton8.setText("No");
@@ -349,38 +404,29 @@ public ArrayList<Researcher> getResList()
                 jRadioButton8ActionPerformed(evt);
             }
         });
-        jPanel5.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 80, 90, -1));
-
-        jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox4.setText("Active");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, 190, 25));
+        jPanel5.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 90, 150, -1));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel26.setText("Office Number:");
-        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
+        jLabel26.setText("Active:");
+        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 160, 60, -1));
 
         jTextField16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField16ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 303, -1));
+        jPanel5.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 130, 303, 20));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Equipment:");
-        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 90, 27));
+        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 270, 90, 27));
 
         jComboBox7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox7ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 303, -1));
+        jPanel5.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, 303, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 204, 153));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -439,7 +485,7 @@ public ArrayList<Researcher> getResList()
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Supervisor:*");
-        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, -1, -1));
+        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         jComboBox9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -456,18 +502,18 @@ public ArrayList<Researcher> getResList()
                 jComboBox9ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 303, -1));
+        jPanel5.add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, 303, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("2nd Supervisor:");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, -1, -1));
 
         jComboBox8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox8ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, 303, -1));
+        jPanel5.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 303, -1));
         jPanel5.add(jFileChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1057, 922, 14, 20));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -475,7 +521,7 @@ public ArrayList<Researcher> getResList()
 
             },
             new String [] {
-                "ID", "Full Name", "Supervisor", "Address", "Telephone", "Email"
+                "ID", "Full Name", "Supervisor", "Address", "Telephone", "Email", "Access Kios", "Office No.", "Active", "Details", "Supervisor 2", "Equipment"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -485,7 +531,17 @@ public ArrayList<Researcher> getResList()
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 870, 330));
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 980, 330));
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel31.setText("Office Number:");
+        jPanel5.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 130, -1, -1));
+
+        jRadioButton1.setText("Yes");
+        jPanel5.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 130, -1));
+
+        jRadioButton2.setText("No");
+        jPanel5.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 150, -1));
 
         jMenu2.setText("File");
         jMenuBar.add(jMenu2);
@@ -530,7 +586,9 @@ public ArrayList<Researcher> getResList()
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         jPanel5.getAccessibleContext().setAccessibleName("Personal Detail");
@@ -683,11 +741,15 @@ public JMenuBar createMenuBar () {
                 } 
         
         else {
+             jRadioButton7.setActionCommand("1");
+             jRadioButton8.setActionCommand("0");
+             jRadioButton1.setActionCommand("1");
+             jRadioButton2.setActionCommand("0");
+         
 
         
-        String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`)"
-                
-       +"VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"')"; 
+        String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+buttonGroup1.getSelection().getActionCommand()+"','"+jTextField16.getText()+"','"+buttonGroup2.getSelection().getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedIndex()+1)+"')";
+      
         executeSQlQuery(query, "Inserted");
         
         
@@ -704,10 +766,6 @@ public JMenuBar createMenuBar () {
         closeCurrentWindow.setVisible(true);//Open the new window
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
 
     private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
         // TODO add your handling code here:
@@ -1007,6 +1065,8 @@ public JMenuBar createMenuBar () {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1014,7 +1074,6 @@ public JMenuBar createMenuBar () {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
@@ -1027,6 +1086,7 @@ public JMenuBar createMenuBar () {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1036,6 +1096,8 @@ public JMenuBar createMenuBar () {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JScrollPane jScrollPane1;

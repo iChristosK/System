@@ -5,8 +5,7 @@
  */
 package testpackage;
 
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Commons;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
@@ -31,7 +30,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.Statement;
 import net.proteanit.sql.DbUtils;
 
