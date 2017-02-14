@@ -734,7 +734,7 @@ public JMenuBar createMenuBar () {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-         if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField6.getText().equals("") || jTextField17.getText().equals("")) {
+         if (jTextField1.getText().equals("") || jTextField2.getText().equals("")) {
             //  jButton1.setEnabled(true);
            JOptionPane.showMessageDialog(null, "Add required fields", "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
           
@@ -745,12 +745,23 @@ public JMenuBar createMenuBar () {
              jRadioButton8.setActionCommand("0");
              jRadioButton1.setActionCommand("1");
              jRadioButton2.setActionCommand("0");
-         
+             
+              jRadioButton7.setActionCommand("1");
+         String q7= jRadioButton7.getActionCommand();
+          jRadioButton1.setActionCommand("1");
+               // JOptionPane.showMessageDialog(null, q1);
+             
+         // JOptionPane.showMessageDialog(null, "Add required fields", "InfoBox: "+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+buttonGroup1.getSelection().getActionCommand()+"','"+jTextField16.getText()+"','"+buttonGroup2.getSelection().getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedIndex()+1)+"')" + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
 
+          JOptionPane.showMessageDialog(null, "Add required fields SELECT BUTTON IS:  " + q7  , "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
+            
+        //"+buttonGroup1.getSelection().getActionCommand()+" 
+       // buttonGroup1.setActionCommand().getElements();
+       //  jRadioButton7.setActionCommand().getText();
         
-        String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+buttonGroup1.getSelection().getActionCommand()+"','"+jTextField16.getText()+"','"+buttonGroup2.getSelection().getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedIndex()+1)+"')";
+      //  String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+buttonGroup1.getSelection().getActionCommand()+"','"+jTextField16.getText()+"','"+buttonGroup2.getSelection().getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedIndex()+1)+"')";
       
-        executeSQlQuery(query, "Inserted");
+       // executeSQlQuery(query, "Inserted");
         
         
          }
@@ -781,6 +792,10 @@ public JMenuBar createMenuBar () {
 
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
         // TODO add your handling code here:
+        /*
+        jRadioButton7.setActionCommand("1");
+         String q1= jRadioButton7.getActionCommand();
+                JOptionPane.showMessageDialog(null, q1);*/
     }//GEN-LAST:event_jRadioButton7ActionPerformed
 
     
@@ -1027,6 +1042,22 @@ public JMenuBar createMenuBar () {
         jTextField3.setText(model.getValueAt(i,3).toString());
         jTextField6.setText(model.getValueAt(i,4).toString());
         jTextField17.setText(model.getValueAt(i,5).toString());
+        //jRadioButton1.setActionCommand(jRadioButton1.setText(model.getValueAt(i,6).toString()));
+        jTextField16.setText(model.getValueAt(i,7).toString());
+     //   buttonGroup2.setActionCommand(model.getValueAt(i,8).toString());
+        jTextField5.setText(model.getValueAt(i,9).toString());
+        jComboBox9.setSelectedItem(model.getValueAt(i,10).toString());
+        jComboBox7.setSelectedItem(model.getValueAt(i,11).toString());
+           
+         
+         //jRadioButton1.setActionCommand(jRadioButton1.getText());
+        // buttonGroup1.getSelection().getActionCommand());
+       
+      //  jRadioButton1.isSelected(model.getValueAt(i,6).toString());
+        
+        
+      //  buttonGroup1.isSelected(model.getValueAt(i,6).toString());
+     //   maleButton.setActionCommand( maleButton.getText() );
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
