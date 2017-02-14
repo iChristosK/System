@@ -8,28 +8,6 @@ package testpackage;
 
 
 import java.awt.*;
-import java.util.Vector;
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
-import javax.swing.JFileChooser;
-import javax.swing.JTable;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.text.DefaultEditorKit;
-import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
 import javax.swing.*;
@@ -84,14 +62,14 @@ public class AddResearcher extends javax.swing.JFrame {
     
 public class Researcher {
     
-        private int id;
+        private String id;
         private String firstName;
-        private String fk; 
+        private int fk; 
         private String addr;
         private int tel; 
         private String email;
      
-    public Researcher(int ID, String FirstName,String fk_Supervisor,String Address,int Telephone,String Email)
+    public Researcher(String ID, String FirstName,int fk_Supervisor,String Address,int Telephone,String Email)
     {
         this.id = ID;
         this.firstName = FirstName;
@@ -103,7 +81,7 @@ public class Researcher {
     }
 
    
-    public int getId()
+    public String getId()
     {
         return id;
     }
@@ -114,7 +92,7 @@ public class Researcher {
     }
     
     
-     public String getfk()
+     public int getfk()
     {
         return fk;
     }
@@ -168,7 +146,7 @@ public ArrayList<Researcher> getResList()
 
            while(rs.next())
            {
-            researcher = new Researcher(rs.getInt("ID"),rs.getString("FullName"),rs.getString("fk_Supervisor"),rs.getString("Address"),rs.getInt("Telephone"),rs.getString("Email"));
+            researcher = new Researcher(rs.getString("ID"),rs.getString("FullName"),rs.getInt("fk_Supervisor"),rs.getString("Address"),rs.getInt("Telephone"),rs.getString("Email"));
             
                ResearcherList.add(researcher);
            }
@@ -186,7 +164,7 @@ public ArrayList<Researcher> getResList()
    public void Show_Res_In_JTable()
    {
        ArrayList<Researcher> list = getResList();
-       DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+       DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
        Object[] row = new Object[6];
        for(int i = 0; i < list.size(); i++)
        {
@@ -210,9 +188,9 @@ public ArrayList<Researcher> getResList()
            if((st.executeUpdate(query)) == 1)
            {
                // refresh jtable data
-               DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+               DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
                model.setRowCount(0);
-               Show_Res_In_JTable();
+               Show_Res_In_JTable(); 
                
                JOptionPane.showMessageDialog(null, "Data "+message+" Succefully");
            }else{
@@ -227,10 +205,11 @@ public ArrayList<Researcher> getResList()
      */
     public AddResearcher() {
         initComponents();
+        Show_Res_In_JTable();
         FillComboBox();
         FillComboBox2();
         FillComboBoxLast();
-        Show_Res_In_JTable();
+        
     }
 
     /**
@@ -254,9 +233,6 @@ public ArrayList<Researcher> getResList()
         jTextField6 = new javax.swing.JTextField();
         jTextField17 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
-        scrollPane1 = new java.awt.ScrollPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
@@ -278,6 +254,8 @@ public ArrayList<Researcher> getResList()
         jLabel3 = new javax.swing.JLabel();
         jComboBox8 = new javax.swing.JComboBox<>();
         jFileChooser1 = new javax.swing.JFileChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -293,86 +271,67 @@ public ArrayList<Researcher> getResList()
 
         jLabel1.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel1.setText("Researcher ID:*");
-        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 303, -1));
+        jPanel5.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 303, -1));
 
         jLabel4.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel4.setText("Full Name:*");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel5.setText("Address:");
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel6.setText("Telephone:");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
 
         jLabel30.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
         jLabel30.setText("Email:");
-        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
-        jPanel5.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 303, -1));
+        jPanel5.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 300, 70, -1));
+        jPanel5.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 303, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 303, -1));
+        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 303, -1));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 303, -1));
+        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 303, -1));
 
         jTextField17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField17ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 303, -1));
+        jPanel5.add(jTextField17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 303, -1));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 153, 0));
         jButton7.setText("Researchers");
-        jPanel5.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 386, 70));
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Full Name", "Supervisor", "Address", "Telephone", "Email"
-            }
-        ));
-        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable2MouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(jTable2);
-
-        scrollPane1.add(jScrollPane2);
-
-        jPanel5.add(scrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 920, 320));
+        jPanel5.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 350, 60));
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel29.setText("Details:");
-        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, -1, -1));
-        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, 303, -1));
+        jPanel5.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(435, 90, 60, -1));
+        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 303, -1));
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setText("Access to KIOS:");
-        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 90, 100, 60));
+        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 100, 30));
 
         jRadioButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton7.setText("Yes");
@@ -381,7 +340,7 @@ public ArrayList<Researcher> getResList()
                 jRadioButton7ActionPerformed(evt);
             }
         });
-        jPanel5.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 90, 80, -1));
+        jPanel5.add(jRadioButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 80, 80, -1));
 
         jRadioButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jRadioButton8.setText("No");
@@ -390,7 +349,7 @@ public ArrayList<Researcher> getResList()
                 jRadioButton8ActionPerformed(evt);
             }
         });
-        jPanel5.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 90, 90, -1));
+        jPanel5.add(jRadioButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 80, 90, -1));
 
         jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCheckBox4.setText("Active");
@@ -399,29 +358,29 @@ public ArrayList<Researcher> getResList()
                 jCheckBox4ActionPerformed(evt);
             }
         });
-        jPanel5.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 130, 180, 25));
+        jPanel5.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 120, 190, 25));
 
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel26.setText("Office Number:");
-        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 120, -1, -1));
+        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
         jTextField16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField16ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 120, 303, -1));
+        jPanel5.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 303, -1));
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel27.setText("Equipment:");
-        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 90, 27));
+        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 90, 27));
 
         jComboBox7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox7ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 303, -1));
+        jPanel5.add(jComboBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 303, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 204, 153));
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -480,7 +439,7 @@ public ArrayList<Researcher> getResList()
 
         jLabel28.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel28.setText("Supervisor:*");
-        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 200, -1, -1));
+        jPanel5.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, -1, -1));
 
         jComboBox9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -497,19 +456,36 @@ public ArrayList<Researcher> getResList()
                 jComboBox9ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 240, 303, -1));
+        jPanel5.add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 303, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("2nd Supervisor:");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, -1, -1));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, -1, -1));
 
         jComboBox8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox8ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 303, -1));
+        jPanel5.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 230, 303, -1));
         jPanel5.add(jFileChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1057, 922, 14, 20));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Full Name", "Supervisor", "Address", "Telephone", "Email"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 870, 330));
 
         jMenu2.setText("File");
         jMenuBar.add(jMenu2);
@@ -547,13 +523,14 @@ public ArrayList<Researcher> getResList()
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jPanel5.getAccessibleContext().setAccessibleName("Personal Detail");
@@ -748,24 +725,6 @@ public JMenuBar createMenuBar () {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton7ActionPerformed
 
-    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
-        // TODO add your handling code here:
-        
-           // Get The Index Of The Slected Row 
-        int i = jTable2.getSelectedRow();
-
-        TableModel model = jTable2.getModel();
-        
-         // Display Slected Row In JTexteFields
-        jTextField1.setText(model.getValueAt(i,0).toString());
-        jTextField2.setText(model.getValueAt(i,1).toString());
-        jComboBox8.setSelectedItem(model.getValueAt(i,2).toString());
-        jTextField3.setText(model.getValueAt(i,3).toString());
-        jTextField6.setText(model.getValueAt(i,4).toString());
-        jTextField17.setText(model.getValueAt(i,5).toString());
-        
-    }//GEN-LAST:event_jTable2MouseClicked
-
     
     
     private void jComboBoxSelect()
@@ -886,7 +845,7 @@ public JMenuBar createMenuBar () {
                 }else{
                     file = path + "/" + filename + ".xls";
                 }
-                toExcel(jTable2, new File(file));
+                toExcel(jTable1, new File(file));
             }
 
         }
@@ -914,9 +873,9 @@ public JMenuBar createMenuBar () {
                     model = new DefaultTableModel(data,headers);
                     tableWidth = model.getColumnCount() *150;
                     tableHeight = model.getRowCount() *25;
-                    jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                    jTable1.setPreferredSize( new Dimension (tableWidth,tableHeight));
                 }
-                jTable2.setModel(model);
+                jTable1.setModel(model);
             } else
             {
                 System.out.println("Not Replacing! Adding to the existing data");
@@ -934,9 +893,9 @@ public JMenuBar createMenuBar () {
                     model = new DefaultTableModel(data,headers);
                     tableWidth = model.getColumnCount() *150;
                     tableHeight = model.getRowCount() *25;
-                    jTable2.setPreferredSize( new Dimension (tableWidth,tableHeight));
+                    jTable1.setPreferredSize( new Dimension (tableWidth,tableHeight));
                 }
-                jTable2.setModel(model);
+                jTable1.setModel(model);
 
             }
         }
@@ -993,6 +952,24 @@ public JMenuBar createMenuBar () {
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        
+        
+         // Get The Index Of The Slected Row 
+        int i = jTable1.getSelectedRow();
+
+        TableModel model = jTable1.getModel();
+        
+         // Display Slected Row In JTexteFields
+        jTextField1.setText(model.getValueAt(i,0).toString());
+        jTextField2.setText(model.getValueAt(i,1).toString());
+        jComboBox8.setSelectedItem(model.getValueAt(i,2).toString());
+        jTextField3.setText(model.getValueAt(i,3).toString());
+        jTextField6.setText(model.getValueAt(i,4).toString());
+        jTextField17.setText(model.getValueAt(i,5).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1061,8 +1038,8 @@ public JMenuBar createMenuBar () {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
@@ -1070,6 +1047,5 @@ public JMenuBar createMenuBar () {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private java.awt.ScrollPane scrollPane1;
     // End of variables declaration//GEN-END:variables
 }

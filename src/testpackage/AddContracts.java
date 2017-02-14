@@ -51,7 +51,7 @@ public class AddContracts extends javax.swing.JFrame {
     
     public class Contract {
       private int id;
-      private int researcher;
+      private String researcher;
       private int project;
       private String position;
       private String details;
@@ -62,7 +62,7 @@ public class AddContracts extends javax.swing.JFrame {
       private int hourlyrate;
       
       
-      public Contract( int ID,int Researcher, int Project, String Position, String Details, String DateFrom, String DateTo, int Salary, int MonthlyHours, int HourlyRate)
+      public Contract( int ID,String Researcher, int Project, String Position, String Details, String DateFrom, String DateTo, int Salary, int MonthlyHours, int HourlyRate)
       {
      this.id = ID;
      this.researcher = Researcher;
@@ -83,7 +83,7 @@ public class AddContracts extends javax.swing.JFrame {
    }
   
      
-  public int getResearcher()
+  public String getResearcher()
    {
        return researcher;
    }
@@ -189,7 +189,7 @@ public ArrayList<Contract> getContractList()
 
            while(rs.next())
            {
-contract = new Contract(rs.getInt("ID_contract"),rs.getInt("fk_ID_researcher"),rs.getInt("fk_ID_project"),rs.getString("Position"),rs.getString("Details"),rs.getString("Date_From"),rs.getString("Date_To"),rs.getInt("Salary"),rs.getInt("Monthly_Hours"),rs.getInt("Hourly_Rate"));
+contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"),rs.getInt("fk_ID_project"),rs.getString("Position"),rs.getString("Details"),rs.getString("Date_From"),rs.getString("Date_To"),rs.getInt("Salary"),rs.getInt("Monthly_Hours"),rs.getInt("Hourly_Rate"));
                ContractList.add(contract);
            }
 
