@@ -421,7 +421,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 19, 305, 83));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(464, 19, 305, 70));
 
         jButton3.setBackground(new java.awt.Color(255, 204, 153));
         jButton3.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
