@@ -310,7 +310,7 @@ public JMenuBar createMenuBar () {
         jButton7.setForeground(new java.awt.Color(255, 153, 0));
         jButton7.setText("Project");
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 25, 275, 80));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, 275, 80));
 
         jButton1.setBackground(new java.awt.Color(255, 204, 153));
         jButton1.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
