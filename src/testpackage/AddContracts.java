@@ -1009,18 +1009,14 @@ set();
             for(int j = 0; j < jTable2.getColumnCount(); j++){ //For each column in that row
                 // if(jTable2.getModel().getValueAt(i, j).equals("Elias Kyriakides")){//Search the model
                     if(jTable2.getModel().getValueAt(i, j).equals(jTextFieldSearch.getText())){  //Search the model
-
+                           jTable2.removeAll();
                         JOptionPane.showMessageDialog(null, "Found "+ jTable2.getModel().getValueAt(i, j), "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE);
                         //Vector rowVector = (Vector) i;
 
                         // model.addRow(data);
                         break;
                     }   //For loop inner
-                    /*  else
-                    {
-                        JOptionPane.showMessageDialog(null, "Not Found ","InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE);
-
-
+                    
 
                 }   //For loop outer
 

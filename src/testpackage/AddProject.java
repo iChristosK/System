@@ -851,28 +851,29 @@ public JMenuBar createMenuBar () {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
 
-        JFileChooser jf = new JFileChooser();
+       
+         JFileChooser jf = new JFileChooser();
         jf.setDialogTitle("Please select the .XLS (Excel File) where you want to EXPORT the data:");
-        int result =  jf.showOpenDialog(null);
-        if(result == JFileChooser.APPROVE_OPTION){
-            String filename = jf.getSelectedFile().getName();
-            String path = jf.getSelectedFile().getParentFile().getPath();
+       int result =  jf.showOpenDialog(null);
+       if(result == JFileChooser.APPROVE_OPTION){
+       String filename = jf.getSelectedFile().getName();
+        String path = jf.getSelectedFile().getParentFile().getPath();
 
-            int len = filename.length();
-            String ext = "";
-            String file = "";
+        int len = filename.length();
+        String ext = "";
+        String file = "";
 
-            if(len > 4){
-                ext = filename.substring(len-4, len);
-            }
-
-            if(ext.equals(".xls")){
-                file = path + "/" + filename;
-            }else{
-                file = path + "/" + filename + ".xls";
-            }
-            toExcel(jTable2, new File(file));
+        if(len > 4){
+            ext = filename.substring(len-4, len);
         }
+
+        if(ext.equals(".xls")){
+            file = path + "/" + filename; 
+        }else{
+            file = path + "/" + filename + ".xls"; 
+        }
+        toExcel(jTable2, new File(file));
+    }
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
