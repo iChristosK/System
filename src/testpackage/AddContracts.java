@@ -1020,8 +1020,7 @@ set();
                     {
                         JOptionPane.showMessageDialog(null, "Not Found ","InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE);
 
-                        break;
-                    }*/
+
 
                 }   //For loop outer
 
