@@ -407,7 +407,7 @@ public void executeSQlQuery(String query, String message)
         jButton7.setForeground(new java.awt.Color(255, 153, 0));
         jButton7.setText("Supervisors");
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 325, 81));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 325, 70));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
