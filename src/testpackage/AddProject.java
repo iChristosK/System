@@ -320,7 +320,7 @@ public JMenuBar createMenuBar () {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 580, 190, 60));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 580, 190, 50));
 
         jButton2.setBackground(new java.awt.Color(255, 204, 153));
         jButton2.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
