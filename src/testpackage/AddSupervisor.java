@@ -267,10 +267,10 @@ public void executeSQlQuery(String query, String message)
                 jTextField1KeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 190, 30));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 190, 30));
 
         jLabel2.setText("ID for Supervisor:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 150, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 150, 30));
 
         jButton2.setBackground(new java.awt.Color(255, 204, 153));
         jButton2.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -307,7 +307,7 @@ public void executeSQlQuery(String query, String message)
                 jTextField2KeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 188, 30));
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 188, 30));
 
         jButton4.setBackground(new java.awt.Color(255, 204, 153));
         jButton4.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -363,7 +363,7 @@ public void executeSQlQuery(String query, String message)
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 641, 250));
 
         jLabel3.setText("Full Name of Supervisor:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 157, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 157, 30));
 
         jButtonSearch.setBackground(new java.awt.Color(255, 204, 153));
         jButtonSearch.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -407,7 +407,7 @@ public void executeSQlQuery(String query, String message)
         jButton7.setForeground(new java.awt.Color(255, 153, 0));
         jButton7.setText("Supervisors");
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 325, 70));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 325, 70));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -420,8 +420,8 @@ public void executeSQlQuery(String query, String message)
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 4, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jMenu2.setText("File");
