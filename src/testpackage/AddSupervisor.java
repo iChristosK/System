@@ -255,7 +255,7 @@ public void executeSQlQuery(String query, String message)
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(913, 78, 207, 52));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 207, 52));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,10 +267,10 @@ public void executeSQlQuery(String query, String message)
                 jTextField1KeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 190, 30));
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 190, 30));
 
         jLabel2.setText("ID for Supervisor:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 202, 150, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 150, 30));
 
         jButton2.setBackground(new java.awt.Color(255, 204, 153));
         jButton2.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -280,7 +280,7 @@ public void executeSQlQuery(String query, String message)
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(913, 8, 207, 52));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, 207, 52));
 
         jButton3.setBackground(new java.awt.Color(255, 204, 153));
         jButton3.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -290,7 +290,7 @@ public void executeSQlQuery(String query, String message)
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(913, 352, 207, 52));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, 207, 52));
 
         jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -307,7 +307,7 @@ public void executeSQlQuery(String query, String message)
                 jTextField2KeyTyped(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, 188, 30));
+        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 188, 30));
 
         jButton4.setBackground(new java.awt.Color(255, 204, 153));
         jButton4.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -317,7 +317,7 @@ public void executeSQlQuery(String query, String message)
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(913, 282, 207, 52));
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 310, 207, 52));
         jPanel2.add(jFileChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1117, 814, 3, 0));
 
         jButton9.setBackground(new java.awt.Color(255, 204, 153));
@@ -328,7 +328,7 @@ public void executeSQlQuery(String query, String message)
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(913, 550, 207, 58));
+        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 550, 207, 58));
 
         jButton5.setBackground(new java.awt.Color(255, 204, 153));
         jButton5.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -338,7 +338,7 @@ public void executeSQlQuery(String query, String message)
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(913, 148, 207, 52));
+        jPanel2.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 190, 207, 52));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -360,10 +360,10 @@ public void executeSQlQuery(String query, String message)
         jScrollPane2.setViewportView(jTable2);
         jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 641, 250));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 641, 250));
 
         jLabel3.setText("Full Name of Supervisor:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 157, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 157, 30));
 
         jButtonSearch.setBackground(new java.awt.Color(255, 204, 153));
         jButtonSearch.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -373,7 +373,7 @@ public void executeSQlQuery(String query, String message)
                 jButtonSearchActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(913, 486, 207, 52));
+        jPanel2.add(jButtonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 490, 207, 52));
 
         jTextFieldSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -390,7 +390,7 @@ public void executeSQlQuery(String query, String message)
                 jTextFieldSearchKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(913, 416, 207, 52));
+        jPanel2.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 430, 207, 52));
 
         jButton6.setBackground(new java.awt.Color(255, 204, 153));
         jButton6.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -400,23 +400,22 @@ public void executeSQlQuery(String query, String message)
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(913, 218, 207, 52));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 250, 207, 52));
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 153, 0));
         jButton7.setText("Supervisors");
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 325, 70));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 325, 70));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1088, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -461,7 +460,7 @@ public void executeSQlQuery(String query, String message)
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
