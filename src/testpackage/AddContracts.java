@@ -431,7 +431,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 617, 203, 50));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 550, 203, 50));
         jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 273, 398, -1));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -550,7 +550,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
                 jButtonSearchActionPerformed(evt);
             }
         });
-        jPanel2.add(jButtonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 550, 200, 50));
+        jPanel2.add(jButtonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 490, 200, 50));
 
         jButton11.setBackground(new java.awt.Color(255, 204, 153));
         jButton11.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
