@@ -493,7 +493,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 404, 200, 60));
+        jPanel2.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 370, 200, 50));
 
         jButton9.setBackground(new java.awt.Color(255, 204, 153));
         jButton9.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -503,7 +503,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
                 jButton9ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 320, 200, 60));
+        jPanel2.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 310, 200, 50));
 
         jButton8.setBackground(new java.awt.Color(255, 204, 153));
         jButton8.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -540,7 +540,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
                 jTextFieldSearchKeyTyped(evt);
             }
         });
-        jPanel2.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 480, 200, 50));
+        jPanel2.add(jTextFieldSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 430, 200, 50));
 
         jButtonSearch.setBackground(new java.awt.Color(255, 204, 153));
         jButtonSearch.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
