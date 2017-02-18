@@ -432,7 +432,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
             }
         });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 540, 203, 50));
-        jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(138, 273, 398, -1));
+        jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 398, -1));
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
