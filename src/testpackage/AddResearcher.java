@@ -30,16 +30,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.Statement;
 import net.proteanit.sql.DbUtils;
-
-
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+
 
 
 /**
@@ -52,7 +47,6 @@ public class AddResearcher extends javax.swing.JFrame {
     static Vector headers = new Vector();
     static DefaultTableModel model = null;
     static Vector data = new Vector();
- 
     static int tableWidth = 0; // set the tableWidth 
     static int tableHeight = 0;
     
@@ -67,15 +61,15 @@ public class Researcher {
         private String addr;
         private String tel; 
         private String email;
-        private int access;
+        private boolean access;
         private String office;
-        private int active;
+        private boolean active;
         private String details;
         private String fk2;
         private String equipment;
          
      
-    public Researcher(String ID, String FirstName,int Supervisor,String Address,String Telephone,String Email, int Access,String Office,int Active,String Details,String Second,String Equipment)
+    public Researcher(String ID, String FirstName,int Supervisor,String Address,String Telephone,String Email, boolean Access,String Office,boolean Active,String Details,String Second,String Equipment)
     {
         this.id = ID;
         this.firstName = FirstName;
@@ -125,7 +119,7 @@ public class Researcher {
         return email;
     }
       
-      public int getAccess()
+      public boolean getAccess()
       {
           return access;
       }
@@ -135,7 +129,7 @@ public class Researcher {
           return office;
       }
      
-     public int getActive()
+     public boolean getActive()
      {
          return active;
      }
@@ -190,7 +184,7 @@ public ArrayList<Researcher> getResList()
 
            while(rs.next())
            {
-            researcher = new Researcher(rs.getString("ID"),rs.getString("FullName"),rs.getInt("fk_Supervisor"),rs.getString("Address"),rs.getString("Telephone"),rs.getString("Email"),rs.getInt("AccessToKios"),rs.getString("OfficeNumber"),rs.getInt("Active"),rs.getString("Details"),rs.getString("supervisor2"),rs.getString("Equipment"));
+            researcher = new Researcher(rs.getString("ID"),rs.getString("FullName"),rs.getInt("fk_Supervisor"),rs.getString("Address"),rs.getString("Telephone"),rs.getString("Email"),rs.getBoolean("AccessToKios"),rs.getString("OfficeNumber"),rs.getBoolean("Active"),rs.getString("Details"),rs.getString("supervisor2"),rs.getString("Equipment"));
             
                ResearcherList.add(researcher);
            }
@@ -652,8 +646,8 @@ public ArrayList<Researcher> getResList()
         {
                  
      
-           Class.forName("com.mysql.jdbc.Driver");
-            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
+         Class.forName("com.mysql.jdbc.Driver");
+         java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
          String sql="select * from researchers";
          java.sql.PreparedStatement pst=con.prepareStatement(sql);
   
@@ -704,8 +698,8 @@ String name10 = (String) jTable1.getValueAt(row, 11);
   String query = "INSERT INTO `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
       
  PreparedStatement stmt = con.prepareStatement(query);
- stmt.setString(1, id); //Invoice No
- stmt.setString(2, name); //Code
+ stmt.setString(1, id); 
+ stmt.setString(2, name); 
  stmt.setString(3, name1);
  stmt.setString(4, name2);
  stmt.setString(5, name3);
@@ -722,12 +716,12 @@ String name10 = (String) jTable1.getValueAt(row, 11);
 
  stmt.addBatch();
 stmt.executeBatch();
-con.commit();
+//con.commit();
  }
 
  catch(Exception ex)
  {
-  //JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
+  JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
     }    
 }
 
@@ -992,7 +986,7 @@ public JMenuBar createMenuBar () {
 
 			for(int i=0; i< model.getRowCount(); i++) {
 				for(int j=0; j < model.getColumnCount(); j++) {
-					excel.write(model.getValueAt(i,j).toString()+"\t");
+					excel.write(model.getValueAt(i,j)+"\t");
 				}
 				excel.write("\n");
 			}
@@ -1026,29 +1020,21 @@ public JMenuBar createMenuBar () {
 
         TableModel model = jTable1.getModel();
         
-         // Display Slected Row In JTexteFields
+         // Display Selected Row In JTexteFields
         jTextField1.setText(model.getValueAt(i,0).toString());
         jTextField2.setText(model.getValueAt(i,1).toString());
-        jComboBox8.setSelectedItem(model.getValueAt(i,2).toString());
+         jComboBox8.setSelectedIndex((int) model.getValueAt(i,2)-1);
         jTextField3.setText(model.getValueAt(i,3).toString());
         jTextField6.setText(model.getValueAt(i,4).toString());
         jTextField17.setText(model.getValueAt(i,5).toString());
-        //jRadioButton1.setActionCommand(jRadioButton1.setText(model.getValueAt(i,6).toString()));
+        jRadioButton7.setSelected((boolean) model.getValueAt(i,6)); 
         jTextField16.setText(model.getValueAt(i,7).toString());
-     //   buttonGroup2.setActionCommand(model.getValueAt(i,8).toString());
+        jRadioButton1.setSelected((boolean) model.getValueAt(i,8)); 
         jTextField5.setText(model.getValueAt(i,9).toString());
-        jComboBox9.setSelectedItem(model.getValueAt(i,10).toString());
-        jComboBox7.setSelectedItem(model.getValueAt(i,11).toString());
+        jComboBox9.setSelectedIndex((int) model.getValueAt(i,10)-1); 
+        jComboBox7.setSelectedIndex((int) model.getValueAt(i,11)-1);
+        
            
-         
-         //jRadioButton1.setActionCommand(jRadioButton1.getText());
-        // buttonGroup1.getSelection().getActionCommand());
-       
-      //  jRadioButton1.isSelected(model.getValueAt(i,6).toString());
-        
-        
-      //  buttonGroup1.isSelected(model.getValueAt(i,6).toString());
-     //   maleButton.setActionCommand( maleButton.getText() );
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed

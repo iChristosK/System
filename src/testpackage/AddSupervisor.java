@@ -1150,12 +1150,12 @@ e.printStackTrace();
                  
      
            Class.forName("com.mysql.jdbc.Driver");
-            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
-    String sql="select * from supervisors";
-    java.sql.PreparedStatement pst=con.prepareStatement(sql);
+            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/kios","root","9667");
+             String sql= "SELECT * FROM  `supervisors` ";
+              java.sql.PreparedStatement pst=con.prepareStatement(sql);
   
-    ResultSet rs = pst.executeQuery(sql);
-   jTable2.setModel(DbUtils.resultSetToTableModel(rs));
+            ResultSet rs = pst.executeQuery(sql);
+             jTable2.setModel(DbUtils.resultSetToTableModel(rs));
    
 
 con.close();
@@ -1390,7 +1390,7 @@ public JMenuBar createMenuBar () {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-         String query = "UPDATE `supervisors` SET `FullName`='"+jTextField2.getText()+"' WHERE `ID` = "+jTextField1.getText();
+         String query = "UPDATE `supervisors` SET `FullName`='"+jTextField2.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
        executeSQlQuery(query, "Updated");
         
     }//GEN-LAST:event_jButton6ActionPerformed

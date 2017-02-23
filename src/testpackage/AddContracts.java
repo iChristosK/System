@@ -30,12 +30,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import net.proteanit.sql.DbUtils;
-
-
 import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -48,8 +47,27 @@ import javax.swing.table.TableRowSorter;
  */
 public class AddContracts extends javax.swing.JFrame {
     
+      /*
+    static class DecimalFormatRenderer extends DefaultTableCellRenderer {
+    private static final DecimalFormat formatter = new DecimalFormat( ".**" );
+ //private static DecimalFormat formatter = new DecimalFormat(".##");
+      public Component getTableCellRendererComponent(
+         JTable table, Object value, boolean isSelected,
+         boolean hasFocus, int row, int column) {
+ 
+         // First format the cell value as required
+ 
+         value = formatter.format((Number)value);
+ 
+            // And pass it on to parent class
+ 
+         return super.getTableCellRendererComponent(
+            table, value, isSelected, hasFocus, row, column );
+      }
+    }*/
+    DecimalFormat dec = new DecimalFormat("###.##");
     
-    
+     
     static Vector headers = new Vector();
     static DefaultTableModel model = null;
     static Vector data = new
@@ -57,6 +75,7 @@ public class AddContracts extends javax.swing.JFrame {
     
     static int tableWidth = 0;// set the tableWidth
     static int tableHeight = 0;
+  
     
     
     public class Contract {
@@ -67,12 +86,12 @@ public class AddContracts extends javax.swing.JFrame {
       private String details;
       private String datefrom;
       private String dateto;
-      private int salary;
-      private int monthlyhours;
-      private int hourlyrate;
+      private float salary;
+      private float monthlyhours;
+      private float hourlyrate;
       
       
-      public Contract( int ID,String Researcher, int Project, String Position, String Details, String DateFrom, String DateTo, int Salary, int MonthlyHours, int HourlyRate)
+      public Contract( int ID,String Researcher, int Project, String Position, String Details, String DateFrom, String DateTo, float Salary, float MonthlyHours, float HourlyRate)
       {
      this.id = ID;
      this.researcher = Researcher;
@@ -123,17 +142,17 @@ public class AddContracts extends javax.swing.JFrame {
       return dateto;
   }
   
-  public int getSalary()
+  public float getSalary()
   {
       return salary;
   }
   
-  public int getMonthlyhours()
+  public float getMonthlyhours()
   {
       return monthlyhours;
   }
   
-  public int getHourlyRate()
+  public float getHourlyRate()
   {
       return hourlyrate;
   }
@@ -213,6 +232,17 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
 
    public void Show_Contract_In_JTable()
    {
+       
+      // dec.format(jTable2.getColumnModel().getColumn(9));
+       /*
+       jTable2.getColumnModel().getColumn(9).setCellRenderer(
+ new DecimalFormatRenderer() );
+       
+       jTable2.getColumnModel().getColumn(8).setCellRenderer(
+         new DecimalFormatRenderer() );
+       jTable2.getColumnModel().getColumn(7).setCellRenderer(
+         new DecimalFormatRenderer() );*/
+       
        ArrayList<Contract> list = getContractList();
        DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
        Object[] row = new Object[10];
@@ -333,27 +363,27 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Researcher:*");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 181, -1, -1));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Project:*");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 230, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Position:*");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 277, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Details:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 317, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("From:*");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 132, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 130, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("To:*");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(596, 181, -1, -1));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 180, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Salary:*");
@@ -369,7 +399,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Contract ID:*");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 132, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -387,11 +417,11 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
         jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 226, 398, -1));
 
         jLabel7.setText("€");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(635, 231, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Monthly Hours:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(551, 277, -1, -1));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, -1, -1));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,7 +432,7 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Hourly Rate:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(557, 320, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 320, -1, -1));
 
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -442,12 +472,22 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
                 "Contract ID", "Researcher ID", "Project ID", "Position", "Details", "From Date", "To Date", "Salary", "Monthly Hours", "Hourly Rate"
             }
         ));
+        jTable2.setColumnSelectionAllowed(true);
+        jTable2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jTable2MouseMoved(evt);
+            }
+        });
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(jTable2);
+        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(7).setCellRenderer(null);
+        }
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 1040, 190));
         jPanel2.add(jFileChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1101, 19, 0, 0));
@@ -648,16 +688,19 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
         
         else {
             
-      String query = "INSERT INTO `Contract`(`ID_contract`,`fk_ID_researcher`,`fk_ID_project`,`Position`,`Details`,`Date_From`,`Date_To`,`Salary`,`Monthly_Hours`,`Hourly_Rate`) VALUES ('"+jTextField1.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+(jComboBox2.getSelectedIndex()+1)+"','"+jComboBox3.getSelectedItem().toString()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"')";
+      String query = "INSERT INTO `Contract`(`ID_contract`,`fk_ID_researcher`,`fk_ID_project`,`Position`,`Details`,`Date_From`,`Date_To`,`Salary`,`Monthly_Hours`,`Hourly_Rate`) VALUES ('"+jTextField1.getText()+"','"+jComboBox1.getSelectedItem()+"','"+(jComboBox2.getSelectedIndex()+1)+"','"+jComboBox3.getSelectedItem().toString()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"')";
 
        executeSQlQuery(query, "Inserted");
           }
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
+   
+
+
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
-        
+     
         
          int i = jTable2.getSelectedRow();
 
@@ -666,9 +709,13 @@ contract = new Contract(rs.getInt("ID_contract"),rs.getString("fk_ID_researcher"
          // Display Slected Row In JTexteFields
         
         jTextField1.setText(model.getValueAt(i,0).toString());
-        jComboBox1.setSelectedItem(model.getValueAt(i,1).toString());
-        jComboBox2.setSelectedItem(model.getValueAt(i,2).toString());
+        //jComboBox1.setSelectedItem(model.getValueAt(i,1).toString());
+        jComboBox1.setSelectedItem( model.getValueAt(i,1).toString());
+         jComboBox2.setSelectedIndex((int) model.getValueAt(i,2)-1);
+        //jComboBox2.setSelectedItem(model.getValueAt(i,2).toString());
+        // jComboBox2.setSelectedItem( model.getValueAt(i,2).toString());
         jComboBox3.setSelectedItem(model.getValueAt(i,3).toString());
+        // jComboBox3.setSelectedIndex((int) model.getValueAt(i,3)-1);
         jTextField2.setText(model.getValueAt(i,4).toString());
         jTextField3.setText(model.getValueAt(i,5).toString());
         jTextField4.setText(model.getValueAt(i,6).toString());
@@ -1031,6 +1078,12 @@ set();
        executeSQlQuery(query, "Updated");
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jTable2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseMoved
+        // TODO add your handling code here:
+        
+           
+    }//GEN-LAST:event_jTable2MouseMoved
+
     
      private void FillComboBox(){
         
@@ -1046,7 +1099,7 @@ set();
 
            
         while(rs.next()){
-            String memberType = rs.getString("FullName");
+            String memberType = rs.getString("ID");
             jComboBox1.addItem(memberType);
 
         }
@@ -1135,6 +1188,7 @@ set();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddContracts().setVisible(true);
+         
             }
         });
     }

@@ -61,11 +61,11 @@ public class Project {
     
     private int id;
     private String project_name;
-    private String supervisor;
+    private int supervisor;
     private String details;
    
     
-    public Project(int ID, String ProjectName,String Supervisor,String Details)
+    public Project(int ID, String ProjectName, int Supervisor,String Details)
     {
         this.id = ID;
         this.project_name = ProjectName;
@@ -86,7 +86,7 @@ public class Project {
     }
     
     
-    public String getSupervisor()
+    public int getSupervisor()
     {
         return supervisor;
     }
@@ -104,7 +104,7 @@ public class Project {
        Connection con;
 
        try {
-           con = DriverManager.getConnection("jdbc:mysql://localhost/kios", "root","9667");
+           con = DriverManager.getConnection("jdbc:mysql://localhost:3306/kios", "root","9667");
            return con;
        } 
       catch (Exception e) {
@@ -133,7 +133,7 @@ public ArrayList<Project> getProjectList()
 
            while(rs.next())
            {
-project = new Project(rs.getInt("Project_ID"),rs.getString("Project_Name"),rs.getString("Project_super"),rs.getString("Details"));
+project = new Project(rs.getInt("Project_ID"),rs.getString("Project_Name"),rs.getInt("Project_super"),rs.getString("Details"));
                ProjectList.add(project);
            }
 
@@ -149,6 +149,7 @@ project = new Project(rs.getInt("Project_ID"),rs.getString("Project_Name"),rs.ge
    {
        ArrayList<Project> list = getProjectList();
        DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+       jTable2.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
        Object[] row = new Object[4];
        for(int i = 0; i < list.size(); i++)
        {
@@ -219,8 +220,9 @@ public JMenuBar createMenuBar () {
      */
     public AddProject() {
         initComponents();
-        FillComboBox();
         Show_Project_In_JTable();
+        FillComboBox();
+        //Show_Project_In_JTable();
     }
 
     /**
@@ -240,7 +242,6 @@ public JMenuBar createMenuBar () {
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -255,6 +256,7 @@ public JMenuBar createMenuBar () {
         jButton11 = new javax.swing.JButton();
         jTextFieldSearch = new javax.swing.JTextField();
         jButtonSearch = new javax.swing.JButton();
+        jTextField4 = new javax.swing.JTextField();
         jMenuBar = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -298,13 +300,6 @@ public JMenuBar createMenuBar () {
         jLabel5.setText("Details:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(579, 190, 70, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 187, 432, -1));
-
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 153, 0));
@@ -340,12 +335,14 @@ public JMenuBar createMenuBar () {
                 "Project ID", "Project Name", "Supervisor", "Details"
             }
         ));
+        jTable2.setColumnSelectionAllowed(true);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable2MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable2);
+        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 252, 1065, 355));
         jPanel2.add(jFileChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 866, 21, 12));
@@ -427,6 +424,7 @@ public JMenuBar createMenuBar () {
             }
         });
         jPanel2.add(jButtonSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 520, 190, 50));
+        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, 440, -1));
 
         jMenu2.setText("File");
         jMenuBar.add(jMenu2);
@@ -497,13 +495,9 @@ public JMenuBar createMenuBar () {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-           if (jTextField1.getText().equals("")  || jTextField2.getText().equals("")  || jTextField3.getText().equals("")) {
+           if (jTextField1.getText().equals("")  || jTextField2.getText().equals("")) {
             //  jButton1.setEnabled(true);
            JOptionPane.showMessageDialog(null, "Add required fields", "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
           
@@ -511,7 +505,7 @@ public JMenuBar createMenuBar () {
         
         else {
    
-         String query = "INSERT INTO `project`(`Project_ID`,`Project_Name`,`Project_super`,`Details`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+jTextField3.getText()+"')";
+         String query = "INSERT INTO `project`(`Project_ID`,`Project_Name`,`Project_super`,`Details`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+jTextField4.getText()+"')";
        
          executeSQlQuery(query, "Inserted");
            }
@@ -521,7 +515,7 @@ public JMenuBar createMenuBar () {
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
 
-           // Get The Index Of The Slected Row 
+           // Get The Index Of The Selected Row 
         int i = jTable2.getSelectedRow();
 
         TableModel model = jTable2.getModel();
@@ -529,35 +523,16 @@ public JMenuBar createMenuBar () {
          // Display Slected Row In JTexteFields
         jTextField1.setText(model.getValueAt(i,0).toString());
         jTextField2.setText(model.getValueAt(i,1).toString());
-        jComboBox1.setSelectedItem(model.getValueAt(i,2).toString());
-        jTextField3.setText(model.getValueAt(i,3).toString());
+        jComboBox1.setSelectedIndex((int) model.getValueAt(i,2)-1);
+        //jComboBox1.isSelect(model.getValueAt(i,2).toString());
+       jTextField4.setText(model.getValueAt(i,3).toString());
     
         
     }//GEN-LAST:event_jTable2MouseClicked
 
     
     
-    public void toExcel(JTable table, File file){
-		try{
-			TableModel model = table.getModel();
-			FileWriter excel = new FileWriter(file);
-
-			for(int i = 0; i < model.getColumnCount(); i++){
-				excel.write(model.getColumnName(i) + "\t");
-			}
-
-			excel.write("\n");
-
-			for(int i=0; i< model.getRowCount(); i++) {
-				for(int j=0; j < model.getColumnCount(); j++) {
-					excel.write(model.getValueAt(i,j).toString()+"\t");
-				}
-				excel.write("\n");
-			}
-
-			excel.close();
-		}catch(IOException e){ System.out.println(e); }
-	}
+  
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         TransferHandler.getCopyAction();
@@ -575,50 +550,10 @@ public JMenuBar createMenuBar () {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
 
-        // removeSelectedFromTable(jTable2);
-
-        String query = "DELETE FROM `project` WHERE ID = ('"+jTextField1.getText()+"')";
+        String query = "DELETE FROM `project` WHERE Project_ID = ('"+jTextField1.getText()+"')";
         executeSQlQuery(query, "Deleted");
-
-        //  }
-
-        // deleterow();
-
-        //Working deletion
-
-        /*
-        String query2 = "DELETE FROM `researchers` WHERE fk_Supervisor = ('"+row+"')";
-        executeSQlQuery(query2, "Deleting NOW");
-
-        String query1 = "DELETE FROM `project` WHERE Project_super = ('"+row+"')";
-        executeSQlQuery(query1, "Deleting NOW");
-
-        String query = "DELETE FROM `supervisors` WHERE ID = ('"+row+"')";
-        executeSQlQuery(query, "Deleted");*/
-
-        /*
-        DefaultTableModel from = (DefaultTableModel)jTable2.getModel();
-        int row = jTable2.getSelectedRow();
-
-        while (row != -1)
-        {
-
-            int modelRow = jTable2.convertRowIndexToModel( row );
-            String query2 = "UPDATE `researchers` SET fk_Supervisor = 1 WHERE fk_Supervisor = ('"+row+"') ";
-
-            executeSQlQuery(query2, "Updated from Researchers Table");
-
-            String query1 = "UPDATE `project` SET Project_super = 1 WHERE Project_super = ('"+row+"')";
-
-            executeSQlQuery(query1, "Updated from Project Table");
-
-            String query = "DELETE FROM `supervisors` WHERE ID = ('"+row+"')";
-            executeSQlQuery(query, "Deleted Supervisors Table");
-
-            model.removeRow( modelRow );
-            //row = jTable2.getSelectedRow();
-
-        }*/
+        
+        
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -627,43 +562,123 @@ public JMenuBar createMenuBar () {
         String query = "UPDATE `supervisors` SET `FullName`='"+jTextField2.getText()+"' WHERE `ID` = "+jTextField1.getText();
         executeSQlQuery(query, "Updated");
         */
-
+/*
         int rows = jTable2.getRowCount();
 
         System.out.println(""+rows);
         for(int row = 0; row<rows ; row++)
         {
 
-            String id = (String) jTable2.getValueAt(row, 0);
+            int id = (int) jTable2.getValueAt(row, 0);
             String name = (String) jTable2.getValueAt(row, 1);
-            String supervisor = (String) jTable2.getValueAt(row, 2);
+            int supervisor = (int) jTable2.getValueAt(row, 2);
             String details = (String) jTable2.getValueAt(row, 3);
 
             try{
                 Class.forName("com.mysql.jdbc.Driver");
-                java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
+                java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/kios","root","9667");
 
                 
          String query = "INSERT INTO `project`(`Project_ID`,`Project_Name`,`Project_super`,`Details`) VALUES (?,?,?,?)";
        
                 PreparedStatement stmt = con.prepareStatement(query);
-                stmt.setString(1, id); //Invoice No
-                stmt.setString(2, name); //Code
-                 stmt.setString(3, supervisor); //Invoice No
-                stmt.setString(4, details); //Code
+                stmt.setInt(1, id); 
+                stmt.setString(2, name); 
+                 stmt.setInt(3, supervisor); 
+                stmt.setString(4, details); 
 
                 stmt.addBatch();
                 stmt.executeBatch();
-                con.commit();
+              //  con.commit();
             }
 
             catch(Exception ex)
             {
-                //JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
+                JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
             }
         }
 
-        set();
+        set();*/
+
+/*
+// test with save butto nupdate
+        try{
+                Class.forName("com.mysql.jdbc.Driver");
+                java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/kios","root","9667");
+
+                
+         
+       // String query = "UPDATE `project` SET `Project_Name`='"+jTextField2.getText()+"' WHERE `Project_ID` = '"+jTextField1.getText()+"'";
+       
+        
+        
+         String query = "INSERT INTO `project`(`Project_ID`,`Project_Name`,`Project_super`,`Details`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+jTextField4.getText()+"')";
+       
+      //   String query = "INSERT INTO `project`(`Project_ID`,`Project_Name`,`Project_super`,`Details`) VALUES (?,?,?,?)";
+        
+         executeSQlQuery(query, "Inserted");
+         
+                PreparedStatement stmt = con.prepareStatement(query);
+            
+                stmt.addBatch(query);
+                //stmt.addBatch(query1);
+               // stmt.addBatch(query2);
+                stmt.executeBatch();
+               // con.commit();
+            }
+
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Data not added  "+ ex);
+            }
+       */
+
+
+
+
+
+
+int rows = jTable2.getRowCount();
+
+System.out.println(""+rows);
+for(int row = 0; row<rows ; row++)
+{
+
+String id = (String) jTable2.getValueAt(row, 0);
+String name = (String) jTable2.getValueAt(row, 1);
+String supervi = (String) jTable2.getValueAt(row, 2);
+String detail = (String) jTable2.getValueAt(row,3);
+
+
+ try{
+  Class.forName("com.mysql.jdbc.Driver");
+    java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
+
+
+  String query = "INSERT INTO `project`(`Project_ID`,`Project_Name`,`Project_super`,`Details`) VALUES (?,?,?,?)";
+
+
+ PreparedStatement stmt = con.prepareStatement(query);
+ stmt.setString(1, id);
+ stmt.setString(2, name);
+ stmt.setString(3, supervi);
+ stmt.setString(4,detail);
+
+
+
+ stmt.addBatch();
+stmt.executeBatch();
+con.commit();
+ }
+
+ catch(Exception ex)
+ {
+  //JOptionPane.showMessageDialog(null, "Cannot save. "+ ex);
+    }    
+}
+
+set();
+        
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -677,8 +692,8 @@ public JMenuBar createMenuBar () {
                  
      
            Class.forName("com.mysql.jdbc.Driver");
-            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
-         String sql="select * from project";
+            java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/kios","root","9667");
+         String sql= "SELECT * FROM  `project` ";
          java.sql.PreparedStatement pst=con.prepareStatement(sql);
   
          ResultSet rs = pst.executeQuery(sql);
@@ -693,14 +708,80 @@ public JMenuBar createMenuBar () {
           //  JOptionPane.showMessageDialog(null, e);
         }
 }
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-         String query = "UPDATE `project`(`Project_ID`,`Project_Name`,`Project_super`,`Details`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+jTextField3.getText()+"')";
        
-         executeSQlQuery(query, "Updated");
+       public boolean isCellEditable(int row, int col)  
+        { return true; }  
+   
+     
+    
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+      
+        /*
+        You can use Batch update but queries must be action(i.e. insert,update and delete) queries
 
+Statement s = c.createStatement();
+String s1 = "update emp set name='abc' where salary=984";
+String s2 = "insert into emp values ('Osama',1420)";  
+s.addBatch(s1);
+s.addBatch(s2);     
+s.executeBatch();
+        */
+        
+        
+        try{
+                Class.forName("com.mysql.jdbc.Driver");
+                java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/kios","root","9667");
+
+                
+         
+        String query = "UPDATE `project` SET `Project_Name`='"+jTextField2.getText()+"' WHERE `Project_ID` = '"+jTextField1.getText()+"'";
+        String query1 = "UPDATE `project` SET `Project_super`='"+(jComboBox1.getSelectedIndex()+1)+"' WHERE `Project_ID` = '"+jTextField1.getText()+"'";
+        
+        String query2 = "UPDATE `project` SET `Details`='"+jTextField4.getText()+"' WHERE `Project_ID` = '"+jTextField1.getText()+"'";
+        
+                PreparedStatement stmt = con.prepareStatement(query);
+            
+                stmt.addBatch(query);
+                stmt.addBatch(query1);
+                stmt.addBatch(query2);
+                stmt.executeBatch();
+               // con.commit();
+            }
+
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Data not edited  "+ ex);
+            }
+       
+   
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    
+    
+    
+    public void toExcel(JTable table, File file){
+		try{
+			TableModel model = table.getModel();
+			FileWriter excel = new FileWriter(file);
+
+			for(int i = 0; i < model.getColumnCount(); i++){
+				excel.write(model.getColumnName(i) + "\t");
+			}
+
+			excel.write("\n");
+
+			for(int i=0; i< model.getRowCount(); i++) {
+				for(int j=0; j < model.getColumnCount(); j++) {
+					//excel.write(model.getValueAt(i,j).toString()+"\t");
+                                        excel.write(model.getValueAt(i,j) + "\t");
+				}
+				excel.write("\n");
+			}
+
+			excel.close();
+		}catch(IOException e){ System.out.println(e); }
+	}
+    
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
 
@@ -744,29 +825,7 @@ public JMenuBar createMenuBar () {
             int dialogResult3 = JOptionPane.showConfirmDialog(this, "Would you like to replace the current data", "Importing .xls file", dialogButton3);
             if(dialogResult3 == 0) {
                 System.out.println("Yes option");
-                //new code
-
-                // String query0 =  "ALTER `supervisors` SET FOREIGN KEY(0) REFERENCES root";
-                /*
-                String query0 =  "ALTER `supervisors` SET FOREIGN_KEY_CHECKS = 0";
-
-                executeSQlQuery(query0, "All KEYS");
-
-                String query001 = " TRUNCATE `supervisors`";
-                executeSQlQuery(query001, "All Data removed from supervisors");
-
-                String query01 =  "ALTER TABLE `supervisors` SET FOREIGN_KEY_CHECKS (1)";
-                executeSQlQuery(query01, "All KEYS");
-                */
-
-                /*
-                String query01 = "`supervisors` SET FOREIGN_KEY_CHECKS = 1;";
-                executeSQlQuery(query01, "All KEYS SET BACK");*/
-
-                // jTable2.removeAll();
-                //   model.setRowCount(0);
-
-                //correct code
+                
                 jFileChooser1.showOpenDialog(null);
                 File file = jFileChooser1.getSelectedFile();
                 if(!file.getName().endsWith("xls")){
@@ -819,7 +878,7 @@ public JMenuBar createMenuBar () {
                 try {
                     workbook = Workbook.getWorkbook(file);
                 }  catch(IOException ex){
-                    Logger.getLogger(AddSupervisor.class.getName()).log(Level.SEVERE,null,ex);
+                    Logger.getLogger(AddProject.class.getName()).log(Level.SEVERE,null,ex);
                 }
                 Sheet sheet = workbook.getSheet(0);
 
@@ -848,6 +907,30 @@ public JMenuBar createMenuBar () {
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
+        
+        
+        
+        public void exportTable(JTable table, File file) throws IOException {
+        TableModel model = table.getModel();
+        FileWriter out = new FileWriter(file);
+        String groupExport = "";
+        for (int i = 0; i < (model.getColumnCount()); i++) {//* disable export from TableHeaders
+            groupExport = String.valueOf(model.getColumnName(i));
+            out.write(String.valueOf(groupExport) + "\t");
+        }
+        out.write("\n");
+        for (int i = 0; i < model.getRowCount(); i++) {
+            for (int j = 0; j < (model.getColumnCount()); j++) {
+                if (model.getValueAt(i, j) == null) {
+                    out.write("null" + "\t");
+                } else {
+                    groupExport = String.valueOf(model.getValueAt(i, j));
+                    out.write(String.valueOf(groupExport) + "\t");
+                }
+            }
+            out.write("\n");
+        }
+        }
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
 
@@ -873,8 +956,11 @@ public JMenuBar createMenuBar () {
             file = path + "/" + filename + ".xls"; 
         }
         toExcel(jTable2, new File(file));
-    }
-
+       
+        
+    
+       
+       }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jTextFieldSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSearchMouseClicked
@@ -1011,7 +1097,7 @@ public JMenuBar createMenuBar () {
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextFieldSearch;
     // End of variables declaration//GEN-END:variables
 }
