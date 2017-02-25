@@ -21,7 +21,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultEditorKit;
@@ -29,15 +28,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import net.proteanit.sql.DbUtils;
-
-
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+
 
 
 /**
@@ -524,7 +519,6 @@ public JMenuBar createMenuBar () {
         jTextField1.setText(model.getValueAt(i,0).toString());
         jTextField2.setText(model.getValueAt(i,1).toString());
         jComboBox1.setSelectedIndex((int) model.getValueAt(i,2)-1);
-        //jComboBox1.isSelect(model.getValueAt(i,2).toString());
        jTextField4.setText(model.getValueAt(i,3).toString());
     
         

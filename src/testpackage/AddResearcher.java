@@ -5,8 +5,6 @@
  */
 package testpackage;
 
-
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
@@ -22,7 +20,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultEditorKit;
@@ -65,11 +62,11 @@ public class Researcher {
         private String office;
         private boolean active;
         private String details;
-        private String fk2;
+        private int fk2;
         private String equipment;
          
      
-    public Researcher(String ID, String FirstName,int Supervisor,String Address,String Telephone,String Email, boolean Access,String Office,boolean Active,String Details,String Second,String Equipment)
+    public Researcher(String ID, String FirstName,int Supervisor,String Address,String Telephone,String Email, boolean Access,String Office,boolean Active,String Details,int Second,String Equipment)
     {
         this.id = ID;
         this.firstName = FirstName;
@@ -139,7 +136,7 @@ public class Researcher {
           return details;
       }
      
-      public String getSecond()
+      public int getSecond()
       {
           return fk2;
       }
@@ -184,7 +181,7 @@ public ArrayList<Researcher> getResList()
 
            while(rs.next())
            {
-            researcher = new Researcher(rs.getString("ID"),rs.getString("FullName"),rs.getInt("fk_Supervisor"),rs.getString("Address"),rs.getString("Telephone"),rs.getString("Email"),rs.getBoolean("AccessToKios"),rs.getString("OfficeNumber"),rs.getBoolean("Active"),rs.getString("Details"),rs.getString("supervisor2"),rs.getString("Equipment"));
+            researcher = new Researcher(rs.getString("ID"),rs.getString("FullName"),rs.getInt("fk_Supervisor"),rs.getString("Address"),rs.getString("Telephone"),rs.getString("Email"),rs.getBoolean("AccessToKios"),rs.getString("OfficeNumber"),rs.getBoolean("Active"),rs.getString("Details"),rs.getInt("supervisor2"),rs.getString("Equipment"));
             
                ResearcherList.add(researcher);
            }
@@ -335,11 +332,11 @@ public ArrayList<Researcher> getResList()
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
-        jLabel5.setText("Address:");
+        jLabel5.setText("Address:*");
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
-        jLabel6.setText("Telephone:");
+        jLabel6.setText("Telephone:*");
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         jLabel30.setFont(new java.awt.Font("Helvetica", 0, 14)); // NOI18N
@@ -466,7 +463,7 @@ public ArrayList<Researcher> getResList()
         jPanel5.add(jComboBox9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, 303, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setText("2nd Supervisor:");
+        jLabel3.setText("2nd Supervisor:*");
         jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 240, -1, -1));
 
         jComboBox8.addActionListener(new java.awt.event.ActionListener() {
@@ -485,12 +482,14 @@ public ArrayList<Researcher> getResList()
                 "ID", "Full Name", "Supervisor", "Address", "Telephone", "Email", "Access Kios", "Office No.", "Active", "Details", "Supervisor 2", "Equipment"
             }
         ));
+        jTable1.setColumnSelectionAllowed(true);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 980, 330));
 
@@ -648,7 +647,7 @@ public ArrayList<Researcher> getResList()
      
          Class.forName("com.mysql.jdbc.Driver");
          java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost/kios","root","9667");
-         String sql="select * from researchers";
+         String sql="SELECT * FROM  `researchers` ";
          java.sql.PreparedStatement pst=con.prepareStatement(sql);
   
          ResultSet rs = pst.executeQuery(sql);
@@ -711,12 +710,9 @@ String name10 = (String) jTable1.getValueAt(row, 11);
  stmt.setString(11, name9);
  stmt.setString(12, name10);
 
-
-
-
  stmt.addBatch();
 stmt.executeBatch();
-//con.commit();
+con.commit();
  }
 
  catch(Exception ex)
@@ -725,7 +721,7 @@ stmt.executeBatch();
     }    
 }
 
-set();
+//set();
          
 
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -835,10 +831,34 @@ public JMenuBar createMenuBar () {
         menuBar.add(mainMenu);
         return menuBar;
     }
+
+
+private boolean isEntry(String name, String size) {
+    int rowCount = jTable1.getRowCount();
+    String row = null, tname = null, tsize = null, input = name + "|" + size;
+    for (int i = 0; i < rowCount - 1; i++) {
+        tname = (String) jTable1.getValueAt(i, 0);
+        tsize = (String) jTable1.getValueAt(i, 2);
+        row = tname + "|" + tsize;
+        if (input.equalsIgnoreCase(row)) {
+            return true;
+        }
+    }
+    return false;
+}
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-         if (jTextField1.getText().equals("") || jTextField2.getText().equals("")) {
+        
+        
+         if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField6.getText().equals("")) {
+            //  jButton1.setEnabled(true);
+           JOptionPane.showMessageDialog(null, "Add required fields", "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
+          
+                } 
+        
+         if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField6.getText().equals("")) {
             //  jButton1.setEnabled(true);
            JOptionPane.showMessageDialog(null, "Add required fields", "InfoBox: " + "Warning!", JOptionPane.INFORMATION_MESSAGE); 
           
@@ -906,6 +926,20 @@ public JMenuBar createMenuBar () {
 
     
     
+    /* // Check if no row is selected
+    int row = Table.getSelectedRow();
+
+if(row == -1)
+{
+    // No row selected
+    // Show error message
+}
+else
+{
+    String Table_click = (Table.getModel().getValueAt(row, 0).toString());
+    // do whatever you need to do with the data from the row
+}*/
+
     private void jComboBoxSelect()
     {
 
@@ -986,7 +1020,7 @@ public JMenuBar createMenuBar () {
 
 			for(int i=0; i< model.getRowCount(); i++) {
 				for(int j=0; j < model.getColumnCount(); j++) {
-					excel.write(model.getValueAt(i,j)+"\t");
+					excel.write(model.getValueAt(i,j).toString()+"\t");
 				}
 				excel.write("\n");
 			}
@@ -1015,7 +1049,33 @@ public JMenuBar createMenuBar () {
         // TODO add your handling code here:
         
         
-         // Get The Index Of The Slected Row 
+         if (jRadioButton7.isSelected() == true)
+                     {
+                          jRadioButton7.setActionCommand("1");
+                     }
+             else 
+             {
+                   jRadioButton7.setActionCommand("0");
+                 
+                 
+             }
+             
+               if (jRadioButton1.isSelected() == true)
+                     {
+                          jRadioButton1.setActionCommand("1");
+                     }
+             else 
+             {
+                   jRadioButton1.setActionCommand("0");
+                 
+             }
+             
+         
+        
+        
+         // Get The Index Of The Selected Row 
+         
+         //SELECT * FROM `researchers` ORDER BY `researchers`.`Telephone` ASC
         int i = jTable1.getSelectedRow();
 
         TableModel model = jTable1.getModel();
@@ -1023,16 +1083,18 @@ public JMenuBar createMenuBar () {
          // Display Selected Row In JTexteFields
         jTextField1.setText(model.getValueAt(i,0).toString());
         jTextField2.setText(model.getValueAt(i,1).toString());
-         jComboBox8.setSelectedIndex((int) model.getValueAt(i,2)-1);
+        jComboBox8.setSelectedIndex((int) model.getValueAt(i,2)-1);
         jTextField3.setText(model.getValueAt(i,3).toString());
         jTextField6.setText(model.getValueAt(i,4).toString());
         jTextField17.setText(model.getValueAt(i,5).toString());
-        jRadioButton7.setSelected((boolean) model.getValueAt(i,6)); 
+       //jRadioButton7.setSelected((boolean) model.getValueAt(i,6)); 
+        jRadioButton7.setSelected( (boolean) model.getValueAt(i,6));
         jTextField16.setText(model.getValueAt(i,7).toString());
         jRadioButton1.setSelected((boolean) model.getValueAt(i,8)); 
         jTextField5.setText(model.getValueAt(i,9).toString());
         jComboBox9.setSelectedIndex((int) model.getValueAt(i,10)-1); 
-        jComboBox7.setSelectedIndex((int) model.getValueAt(i,11)-1);
+      //jComboBox7.setSelectedIndex((int) model.getValueAt(i,11)-1);
+        jComboBox7.setSelectedItem( model.getValueAt(i,11).toString());
         
            
     }//GEN-LAST:event_jTable1MouseClicked
@@ -1134,8 +1196,8 @@ public JMenuBar createMenuBar () {
                 }
                 else
                 {
-                    AppendData(file);
-                    // fillData(file);
+                    //AppendData(file);
+                    fillData(file);
                     //The edited code where the data are going to be appended
                     model = new DefaultTableModel(data,headers);
                     tableWidth = model.getColumnCount() *150;
@@ -1155,7 +1217,7 @@ public JMenuBar createMenuBar () {
                 try {
                     workbook = Workbook.getWorkbook(file);
                 }  catch(IOException ex){
-                    Logger.getLogger(AddSupervisor.class.getName()).log(Level.SEVERE,null,ex);
+                    Logger.getLogger(AddResearcher.class.getName()).log(Level.SEVERE,null,ex);
                 }
                 Sheet sheet = workbook.getSheet(0);
 
@@ -1256,12 +1318,123 @@ public JMenuBar createMenuBar () {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
+        
+        
+        
+        
+        try{
+                Class.forName("com.mysql.jdbc.Driver");
+                java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/kios","root","9667");
+
+                
+         /*
+               1	ID	varchar(10)	utf8_general_ci		No	None			 Change Change	 Drop Drop	
+
+	2	FullName	varchar(45)	utf8_general_ci		No	None			 Change Change	 Drop Drop	
+
+	3	fk_SupervisorIndex	int(3)			No	None			 Change Change	 Drop Drop	
+
+	4	Address	varchar(45)	utf8_general_ci		Yes	NULL			 Change Change	 Drop Drop	
+
+	5	Telephone	varchar(45)	utf8_general_ci		Yes	NULL			 Change Change	 Drop Drop	
+
+	6	Email	varchar(45)	utf8_general_ci		Yes	NULL			 Change Change	 Drop Drop	
+
+	7	AccessToKios	tinyint(1)			Yes	NULL			 Change Change	 Drop Drop	
+
+	8	OfficeNumber	varchar(45)	utf8_general_ci		Yes	NULL			 Change Change	 Drop Drop	
+
+	9	Active	tinyint(1)			Yes	NULL			 Change Change	 Drop Drop	
+
+	10	Details	varchar(40)	utf8_general_ci		Yes	NULL			 Change Change	 Drop Drop	
+
+	11	supervisor2Index	int(3)			Yes	NULL			 Change Change	 Drop Drop	
+	12	Equipment
+                */
+                
+         
+         if (jRadioButton7.isSelected() == true)
+                     {
+                          jRadioButton7.setActionCommand("1");
+                     }
+             else 
+             {
+                   jRadioButton7.setActionCommand("0");
+                 
+                 
+             }
+             
+               if (jRadioButton1.isSelected() == true)
+                     {
+                          jRadioButton1.setActionCommand("1");
+                     }
+             else 
+             {
+                   jRadioButton1.setActionCommand("0");
+                 
+             }
+             
+         
+         
+         
+         
+        String query = "UPDATE `researchers` SET `FullName`='"+jTextField2.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+       
+        String query1 = "UPDATE `researchers` SET `fk_Supervisor`='"+(jComboBox8.getSelectedIndex()+1)+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query2 = "UPDATE `researchers` SET `Address`='"+jTextField3.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query3 = "UPDATE `researchers` SET `Telephone`='"+jTextField6.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query4 = "UPDATE `researchers` SET `Email`='"+jTextField17.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query5 = "UPDATE `researchers` SET `AccessToKios`='"+jRadioButton7.getActionCommand()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query6 = "UPDATE `researchers` SET `OfficeNumber`='"+jTextField16.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query7 = "UPDATE `researchers` SET `Active`='"+jRadioButton1.getActionCommand()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query8 = "UPDATE `researchers` SET `Details`='"+jTextField5.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query9 = "UPDATE `researchers` SET `supervisor2`='"+(jComboBox8.getSelectedIndex()+1)+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query10 = "UPDATE `researchers` SET `Equipment`='"+jComboBox7.getSelectedItem()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        
+        
+                PreparedStatement stmt = con.prepareStatement(query);
+            
+                stmt.addBatch(query);
+                stmt.addBatch(query1);
+                stmt.addBatch(query2);
+                stmt.addBatch(query3);
+                stmt.addBatch(query4);
+                stmt.addBatch(query5);
+                stmt.addBatch(query6);
+                stmt.addBatch(query7);
+                stmt.addBatch(query8);
+                stmt.addBatch(query9);
+                stmt.addBatch(query10);
+                stmt.executeBatch();
+               // con.commit();
+            }
+
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Data not edited  "+ ex);
+            }
+       
+        
+        
+        
+        
+        
         // removeSelectedFromTable(jTable2);
 
        
-        String query = "UPDATE FROM `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+jRadioButton7.getActionCommand()+"','"+jTextField16.getText()+"','"+jRadioButton1.getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedItem())+"')";
+        //String query = "UPDATE FROM `researchers`(`ID`,`FullName`,`fk_Supervisor`,`Address`,`Telephone`,`Email`,`AccessToKios`,`OfficeNumber`,`Active`,`Details`,`supervisor2`,`Equipment`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+(jComboBox8.getSelectedIndex()+1)+"','"+jTextField3.getText()+"','"+jTextField6.getText()+"','"+jTextField17.getText()+"','"+jRadioButton7.getActionCommand()+"','"+jTextField16.getText()+"','"+jRadioButton1.getActionCommand()+"','"+jTextField5.getText()+"','"+(jComboBox9.getSelectedIndex()+1)+"','"+(jComboBox7.getSelectedItem())+"')";
       
-        executeSQlQuery(query, "Updated");
+       // executeSQlQuery(query, "Updated");
         
 
         //  }

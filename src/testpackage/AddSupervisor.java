@@ -229,6 +229,7 @@ public void executeSQlQuery(String query, String message)
         jTextFieldSearch = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -280,7 +281,7 @@ public void executeSQlQuery(String query, String message)
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, 207, 52));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 207, 52));
 
         jButton3.setBackground(new java.awt.Color(255, 204, 153));
         jButton3.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
@@ -408,6 +409,16 @@ public void executeSQlQuery(String query, String message)
         jButton7.setText("Supervisors");
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 325, 70));
+
+        jButton8.setBackground(new java.awt.Color(255, 204, 153));
+        jButton8.setFont(new java.awt.Font("Helvetica", 1, 16)); // NOI18N
+        jButton8.setText("Refresh");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, 207, 52));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -935,8 +946,11 @@ public void executeSQlQuery(String query, String message)
                     if(dialogResult3 == 0) {
                      System.out.println("Yes option");
                      //new code 
-                     
-   
+                     //Code to remove data from table only
+                         DefaultTableModel model=(DefaultTableModel) jTable2.getModel();
+                    while(model.getRowCount()>0){
+                 model.setRowCount(0);
+                 }
                      
                   
                      // String query0 =  "ALTER `supervisors` SET FOREIGN KEY(0) REFERENCES root";
@@ -1395,6 +1409,18 @@ public JMenuBar createMenuBar () {
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
+   
+    
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+       
+            
+             dispose();//To close the current window
+
+        AddSupervisor closeCurrentWindow = new AddSupervisor();
+        closeCurrentWindow.setVisible(true);//Open the new window
+ 
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1438,6 +1464,7 @@ public JMenuBar createMenuBar () {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JFileChooser jFileChooser1;

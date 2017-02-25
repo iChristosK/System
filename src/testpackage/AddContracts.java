@@ -22,7 +22,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultEditorKit;
@@ -940,21 +939,15 @@ for(int row = 0; row<rows ; row++)
 
 String id = (String) jTable2.getValueAt(row, 0);
 String res = (String) jTable2.getValueAt(row, 1);
-
 String pro = (String) jTable2.getValueAt(row, 2);
 String pos = (String) jTable2.getValueAt(row, 3);
 String det = (String) jTable2.getValueAt(row, 4);
-
-
 String from = (String) jTable2.getValueAt(row, 5);
 String to = (String) jTable2.getValueAt(row, 6);
-
 String salary = (String) jTable2.getValueAt(row, 7);
 String monthly = (String) jTable2.getValueAt(row, 8);
 
 String rate = (String) jTable2.getValueAt(row, 9);
-
-
 
 
  try{
@@ -1073,9 +1066,82 @@ set();
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-       String query = "UPDATE `Contract`(`ID_contract`,`fk_ID_researcher`,`fk_ID_project`,`Position`,`Details`,`Date_From`,`Date_To`,`Salary`,`Monthly_Hours`,`Hourly_Rate`) VALUES ('"+jTextField1.getText()+"','"+(jComboBox1.getSelectedIndex()+1)+"','"+(jComboBox2.getSelectedIndex()+1)+"','"+jComboBox3.getSelectedItem().toString()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"')";
+       //String query = "UPDATE `Contract`(`ID_contract`,`fk_ID_researcher`,`fk_ID_project`,`Position`,`Details`,`Date_From`,`Date_To`,`Salary`,`Monthly_Hours`,`Hourly_Rate`) VALUES ('"+jTextField1.getText()+"','"+jComboBox1.getSelectedItem().toString()+"','"+(jComboBox2.getSelectedIndex()+1)+"','"+jComboBox3.getSelectedItem().toString()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+jTextField4.getText()+"','"+jTextField5.getText()+"','"+jTextField6.getText()+"','"+jTextField7.getText()+"')";
 
-       executeSQlQuery(query, "Updated");
+      // executeSQlQuery(query, "Updated");
+      
+      
+      // in order to sort contracts
+      //SELECT * FROM `contract` ORDER BY `contract`.`fk_ID_researcher` ASCf
+      
+      
+      
+        try{
+                Class.forName("com.mysql.jdbc.Driver");
+                java.sql.Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/kios","root","9667");
+
+                
+         /*
+            
+        	
+ID_contract
+fk_ID_researcher
+fk_ID_project
+Position
+Details
+Date_From
+Date_To
+Salary
+Monthly_Hours
+Hourly_Rate
+         
+         */
+         /*
+        String query = "UPDATE `contract` SET `FullName`='"+jTextField2.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+       
+        String query1 = "UPDATE `researchers` SET `fk_Supervisor`='"+(jComboBox8.getSelectedIndex()+1)+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query2 = "UPDATE `researchers` SET `Address`='"+jTextField3.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query3 = "UPDATE `researchers` SET `Telephone`='"+jTextField6.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query4 = "UPDATE `researchers` SET `Email`='"+jTextField17.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query5 = "UPDATE `researchers` SET `AccessToKios`='"+jRadioButton7.getActionCommand()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query6 = "UPDATE `researchers` SET `OfficeNumber`='"+jTextField16.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query7 = "UPDATE `researchers` SET `Active`='"+jRadioButton1.getActionCommand()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query8 = "UPDATE `researchers` SET `Details`='"+jTextField5.getText()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query9 = "UPDATE `researchers` SET `supervisor2`='"+(jComboBox8.getSelectedIndex()+1)+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        String query10 = "UPDATE `researchers` SET `Equipment`='"+jComboBox7.getSelectedItem()+"' WHERE `ID` = '"+jTextField1.getText()+"'";
+        
+        
+        
+                PreparedStatement stmt = con.prepareStatement(query);
+            
+                stmt.addBatch(query);
+                stmt.addBatch(query1);
+                stmt.addBatch(query2);
+                stmt.addBatch(query3);
+                stmt.addBatch(query4);
+                stmt.addBatch(query5);
+                stmt.addBatch(query6);
+                stmt.addBatch(query7);
+                stmt.addBatch(query8);
+                stmt.addBatch(query9);
+                stmt.addBatch(query10);
+                stmt.executeBatch();
+               // con.commit();*/
+            }
+
+            catch(Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, "Data not edited  "+ ex);
+            }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jTable2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseMoved
